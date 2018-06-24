@@ -11,12 +11,20 @@
         <%----------------------左侧菜单栏分割(结束)----------------------%>
         <br>
         <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link" href="/user"><i class="fa-fw fas fa-user"></i> 人员管理</a></li>
-            <li class="nav-item"><a class="nav-link" href="/role"><i class="fa-fw fas fa-neuter"></i> 设备管理</a></li>
-            <li class="nav-item"><a class="nav-link" href="/role"><i class="fa-fw fas fa-neuter"></i> 财务管理</a></li>
-            <li class="nav-item"><a class="nav-link" href="/purchase/pesticide"><i class="fa-fw fas fa-user"></i> 任务下达</a></li>
-            <li class="nav-item"><a class="nav-link" href="/purchase/seed"><i class="fa-fw fas fa-neuter"></i> 数据采集</a></li>
-            <li class="nav-item"><a class="nav-link" href="/task"><i class="fa-fw fas fa-neuter"></i> 质量追踪</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/plough"><i class="fa-fw fas fa-user"></i> 土地翻耕</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/sow"><i class="fa-fw fas fa-neuter"></i> 播种信息</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/pruning"><i class="fa-fw fas fa-neuter"></i> 整枝记录</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/shuguo"><i class="fa-fw fas fa-user"></i> 蔬果记录</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/pollination"><i class="fa-fw fas fa-neuter"></i> 授粉记录</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/fertilization"><i class="fa-fw fas fa-neuter"></i> 施肥信息</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/anti_disease_pest"><i class="fa-fw fas fa-neuter"></i> 病虫害防治</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/weed"><i class="fa-fw fas fa-neuter"></i> 杂草管理</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/irrigation"><i class="fa-fw fas fa-neuter"></i> 灌溉信息</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/product_pick"><i class="fa-fw fas fa-neuter"></i> 采摘信息</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/product_pack"><i class="fa-fw fas fa-neuter"></i> 产品包装</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/product_check"><i class="fa-fw fas fa-neuter"></i> 产品检测信息</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/check_report"><i class="fa-fw fas fa-neuter"></i> 检验报告</a></li>
+            <li class="nav-item"><a class="nav-link" href="/produce-task/sell_info"><i class="fa-fw fas fa-neuter"></i> 销售流向信息</a></li>
         </ul>
 
 
