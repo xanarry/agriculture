@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.FertilizerDao">
+
+    <insert id="addFertilizer" keyProperty="fertilizer.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Fertilizer">
+        INSERT INTO t_fertilizer(
+            `NO`,
+`name`,
+`producer`,
+`specification`,
+`unit`,
+`model`,
+`suitFor`,
+`recommendDilute`,
+`recommendUseAmount`,
+`licenseNO`,
+`remark`
+        )VALUES(
+            #{fertilizer.NO},
+#{fertilizer.name},
+#{fertilizer.producer},
+#{fertilizer.specification},
+#{fertilizer.unit},
+#{fertilizer.model},
+#{fertilizer.suitFor},
+#{fertilizer.recommendDilute},
+#{fertilizer.recommendUseAmount},
+#{fertilizer.licenseNO},
+#{fertilizer.remark}
+        )
+    </insert>
+
+    <delete id="deleteFertilizer">
+        DELETE FROM t_fertilizer WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateFertilizer" parameterType="com.agriculture.dataBase.domain.Fertilizer">
+        UPDATE t_fertilizer SET
+            `NO` = #{fertilizer.NO},
+`name` = #{fertilizer.name},
+`producer` = #{fertilizer.producer},
+`specification` = #{fertilizer.specification},
+`unit` = #{fertilizer.unit},
+`model` = #{fertilizer.model},
+`suitFor` = #{fertilizer.suitFor},
+`recommendDilute` = #{fertilizer.recommendDilute},
+`recommendUseAmount` = #{fertilizer.recommendUseAmount},
+`licenseNO` = #{fertilizer.licenseNO},
+`remark` = #{fertilizer.remark}
+        WHERE `ID` = #{fertilizer.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_fertilizer
+    </select>
+
+
+
+
+    <select id="getFertilizer"  resultType="com.agriculture.dataBase.domain.Fertilizer">
+        SELECT * FROM t_fertilizer WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getFertilizerList"  resultType="com.agriculture.dataBase.domain.Fertilizer">
+        SELECT * from t_fertilizer
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

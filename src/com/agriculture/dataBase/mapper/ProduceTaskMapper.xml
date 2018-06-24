@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.ProduceTaskDao">
+
+    <insert id="addProduceTask" keyProperty="produceTask.ID" keyColumn="ID" useGeneratedKeys="false" parameterType="com.agriculture.dataBase.domain.ProduceTask">
+        INSERT INTO t_produce_task(
+            `ID`,
+`productName`,
+`productType`,
+`productDetail`,
+`area`,
+`state`,
+`operator`,
+`createTime`
+        )VALUES(
+            #{produceTask.ID},
+#{produceTask.productName},
+#{produceTask.productType},
+#{produceTask.productDetail},
+#{produceTask.area},
+#{produceTask.state},
+#{produceTask.operator},
+#{produceTask.createTime}
+        )
+    </insert>
+
+    <delete id="deleteProduceTask">
+        DELETE FROM t_produce_task WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateProduceTask" parameterType="com.agriculture.dataBase.domain.ProduceTask">
+        UPDATE t_produce_task SET
+            `productName` = #{produceTask.productName},
+`productType` = #{produceTask.productType},
+`productDetail` = #{produceTask.productDetail},
+`area` = #{produceTask.area},
+`state` = #{produceTask.state},
+`operator` = #{produceTask.operator},
+`createTime` = #{produceTask.createTime}
+        WHERE `ID` = #{produceTask.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_produce_task
+    </select>
+
+
+
+
+    <select id="getProduceTask"  resultType="com.agriculture.dataBase.domain.ProduceTask">
+        SELECT * FROM t_produce_task WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getProduceTaskList"  resultType="com.agriculture.dataBase.domain.ProduceTask">
+        SELECT * from t_produce_task
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

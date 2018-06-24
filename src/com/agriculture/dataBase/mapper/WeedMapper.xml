@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.WeedDao">
+
+    <insert id="addWeed" keyProperty="weed.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Weed">
+        INSERT INTO t_weed(
+            `produceTaskID`,
+`weedName`,
+`method`,
+`operator`,
+`operateTime`
+        )VALUES(
+            #{weed.produceTaskID},
+#{weed.weedName},
+#{weed.method},
+#{weed.operator},
+#{weed.operateTime}
+        )
+    </insert>
+
+    <delete id="deleteWeed">
+        DELETE FROM t_weed WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateWeed" parameterType="com.agriculture.dataBase.domain.Weed">
+        UPDATE t_weed SET
+            `produceTaskID` = #{weed.produceTaskID},
+`weedName` = #{weed.weedName},
+`method` = #{weed.method},
+`operator` = #{weed.operator},
+`operateTime` = #{weed.operateTime}
+        WHERE `ID` = #{weed.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_weed
+    </select>
+
+
+
+
+    <select id="getWeed"  resultType="com.agriculture.dataBase.domain.Weed">
+        SELECT * FROM t_weed WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getWeedList"  resultType="com.agriculture.dataBase.domain.Weed">
+        SELECT * from t_weed
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.MaterialUseRecordDao">
+
+    <insert id="addMaterialUseRecord" keyProperty="materialUseRecord.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.MaterialUseRecord">
+        INSERT INTO t_material_use_record(
+            `produceTaskID`,
+`materialID`,
+`materialName`,
+`product`,
+`area`,
+`materialType`,
+`produceTaskItem`,
+`useAmount`,
+`unit`,
+`userDate`,
+`remark`
+        )VALUES(
+            #{materialUseRecord.produceTaskID},
+#{materialUseRecord.materialID},
+#{materialUseRecord.materialName},
+#{materialUseRecord.product},
+#{materialUseRecord.area},
+#{materialUseRecord.materialType},
+#{materialUseRecord.produceTaskItem},
+#{materialUseRecord.useAmount},
+#{materialUseRecord.unit},
+#{materialUseRecord.userDate},
+#{materialUseRecord.remark}
+        )
+    </insert>
+
+    <delete id="deleteMaterialUseRecord">
+        DELETE FROM t_material_use_record WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateMaterialUseRecord" parameterType="com.agriculture.dataBase.domain.MaterialUseRecord">
+        UPDATE t_material_use_record SET
+            `produceTaskID` = #{materialUseRecord.produceTaskID},
+`materialID` = #{materialUseRecord.materialID},
+`materialName` = #{materialUseRecord.materialName},
+`product` = #{materialUseRecord.product},
+`area` = #{materialUseRecord.area},
+`materialType` = #{materialUseRecord.materialType},
+`produceTaskItem` = #{materialUseRecord.produceTaskItem},
+`useAmount` = #{materialUseRecord.useAmount},
+`unit` = #{materialUseRecord.unit},
+`userDate` = #{materialUseRecord.userDate},
+`remark` = #{materialUseRecord.remark}
+        WHERE `ID` = #{materialUseRecord.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_material_use_record
+    </select>
+
+
+
+
+    <select id="getMaterialUseRecord"  resultType="com.agriculture.dataBase.domain.MaterialUseRecord">
+        SELECT * FROM t_material_use_record WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getMaterialUseRecordList"  resultType="com.agriculture.dataBase.domain.MaterialUseRecord">
+        SELECT * from t_material_use_record
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

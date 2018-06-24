@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.SeedDao">
+
+    <insert id="addSeed" keyProperty="seed.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Seed">
+        INSERT INTO t_seed(
+            `NO`,
+`name`,
+`producer`,
+`specification`,
+`unit`,
+`model`,
+`suitFor`,
+`remark`
+        )VALUES(
+            #{seed.NO},
+#{seed.name},
+#{seed.producer},
+#{seed.specification},
+#{seed.unit},
+#{seed.model},
+#{seed.suitFor},
+#{seed.remark}
+        )
+    </insert>
+
+    <delete id="deleteSeed">
+        DELETE FROM t_seed WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateSeed" parameterType="com.agriculture.dataBase.domain.Seed">
+        UPDATE t_seed SET
+            `NO` = #{seed.NO},
+`name` = #{seed.name},
+`producer` = #{seed.producer},
+`specification` = #{seed.specification},
+`unit` = #{seed.unit},
+`model` = #{seed.model},
+`suitFor` = #{seed.suitFor},
+`remark` = #{seed.remark}
+        WHERE `ID` = #{seed.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_seed
+    </select>
+
+
+
+
+    <select id="getSeed"  resultType="com.agriculture.dataBase.domain.Seed">
+        SELECT * FROM t_seed WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getSeedList"  resultType="com.agriculture.dataBase.domain.Seed">
+        SELECT * from t_seed
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

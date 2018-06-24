@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.SellInfoDao">
+
+    <insert id="addSellInfo" keyProperty="sellInfo.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.SellInfo">
+        INSERT INTO t_sell_info(
+            `produceTaskID`,
+`productName`,
+`sellTo`,
+`amount`,
+`unit`,
+`wrapMethod`,
+`conveyMethod`,
+`operator`,
+`sellTime`
+        )VALUES(
+            #{sellInfo.produceTaskID},
+#{sellInfo.productName},
+#{sellInfo.sellTo},
+#{sellInfo.amount},
+#{sellInfo.unit},
+#{sellInfo.wrapMethod},
+#{sellInfo.conveyMethod},
+#{sellInfo.operator},
+#{sellInfo.sellTime}
+        )
+    </insert>
+
+    <delete id="deleteSellInfo">
+        DELETE FROM t_sell_info WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateSellInfo" parameterType="com.agriculture.dataBase.domain.SellInfo">
+        UPDATE t_sell_info SET
+            `produceTaskID` = #{sellInfo.produceTaskID},
+`productName` = #{sellInfo.productName},
+`sellTo` = #{sellInfo.sellTo},
+`amount` = #{sellInfo.amount},
+`unit` = #{sellInfo.unit},
+`wrapMethod` = #{sellInfo.wrapMethod},
+`conveyMethod` = #{sellInfo.conveyMethod},
+`operator` = #{sellInfo.operator},
+`sellTime` = #{sellInfo.sellTime}
+        WHERE `ID` = #{sellInfo.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_sell_info
+    </select>
+
+
+
+
+    <select id="getSellInfo"  resultType="com.agriculture.dataBase.domain.SellInfo">
+        SELECT * FROM t_sell_info WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getSellInfoList"  resultType="com.agriculture.dataBase.domain.SellInfo">
+        SELECT * from t_sell_info
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

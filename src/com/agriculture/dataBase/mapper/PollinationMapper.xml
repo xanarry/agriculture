@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.PollinationDao">
+
+    <insert id="addPollination" keyProperty="pollination.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Pollination">
+        INSERT INTO t_pollination(
+            `produceTaskID`,
+`method`,
+`operator`,
+`operateTime`
+        )VALUES(
+            #{pollination.produceTaskID},
+#{pollination.method},
+#{pollination.operator},
+#{pollination.operateTime}
+        )
+    </insert>
+
+    <delete id="deletePollination">
+        DELETE FROM t_pollination WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updatePollination" parameterType="com.agriculture.dataBase.domain.Pollination">
+        UPDATE t_pollination SET
+            `produceTaskID` = #{pollination.produceTaskID},
+`method` = #{pollination.method},
+`operator` = #{pollination.operator},
+`operateTime` = #{pollination.operateTime}
+        WHERE `ID` = #{pollination.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_pollination
+    </select>
+
+
+
+
+    <select id="getPollination"  resultType="com.agriculture.dataBase.domain.Pollination">
+        SELECT * FROM t_pollination WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getPollinationList"  resultType="com.agriculture.dataBase.domain.Pollination">
+        SELECT * from t_pollination
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

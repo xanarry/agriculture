@@ -1,0 +1,36 @@
+#点名 区域ID 是否出口 温度 烟雾 拥塞 邻接点
+#0  1  2  3 4 5  6>>>>>>>
+A  B1  1  1 1 1  J E B
+B  B1  1  2 2 2  A F J C
+C  B2  0  4 4 4  B G H D
+D  B2  1  5 5 5  C H
+E  B1  0  2 2 2  A F L K J
+F  B1  0  3 3 3  B E L
+G  B2  0  3 3 3  B C H P L
+H  B2  0  4 4 4  C D G I Q R
+I  B2  1  5 5 5  H A2 A3
+J  B1  1  1 1 1  A E K
+K  B1  0  1 1 1  J E L M N
+L  B1  0  2 2 2  K E F G P O
+M  B3  1  1 1 1  K N
+N  B3  0  2 2 2  M K O U S
+O  B3  0  3 3 3  L P V U N
+P  B2  0  5 5 5  G L O V Q
+Q  B4  0  5 5 5  P H R W V
+R  B4  1  5 5 5  H Q W X
+S  B3  1  2 2 2  N T
+T  B3  1  3 3 3  S U
+U  B3  0  4 4 4  T N O V Y
+V  B3  0  1 1 1  U O P Q W Z
+W  B4  0  5 5 5  X R Q V Z A1
+X  B4  0  3 3 3  W R
+Y  B3  1  2 2 2  U Z
+Z  B3  0  1 1 1  V Y W A1
+A1 B4  1  3 3 3  Z W
+A2 B2  0  1 1 1  I
+A3 B5  0  2 2 2  I A4 A8 A6 A7
+A4 B5  0  3 3 3  A3 A5 A8
+A5 B5  0  1 1 1  A4 A8
+A6 B5  0  2 2 2  A3 A7
+A7 B5  0  3 3 3  A3 A6
+A8 B5  0  1 1 1  A3 A4 A5

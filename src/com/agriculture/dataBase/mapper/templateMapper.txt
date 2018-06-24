@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.{className}Dao">
+
+    <insert id="add{className}" keyProperty="{varName}.{primaryKey}" keyColumn="{primaryKey}" useGeneratedKeys="{generateKey}" parameterType="com.agriculture.dataBase.domain.{className}">
+        INSERT INTO {tableName}(
+            {properties}
+        )VALUES(
+            {values}
+        )
+    </insert>
+
+    <delete id="delete{className}">
+        DELETE FROM {tableName} WHERE `{primaryKey}` = #{{primaryKey}}
+    </delete>
+
+    <update id="update{className}" parameterType="com.agriculture.dataBase.domain.{className}">
+        UPDATE {tableName} SET
+            {updateString}
+        WHERE `{primaryKey}` = #{{varName}.{primaryKey}}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from {tableName}
+    </select>
+
+
+
+
+    <select id="get{className}"  resultType="com.agriculture.dataBase.domain.{className}">
+        SELECT * FROM {tableName} WHERE `{primaryKey}` = #{{primaryKey}}
+    </select>
+
+
+    <select id="get{className}List"  resultType="com.agriculture.dataBase.domain.{className}">
+        SELECT * from {tableName}
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

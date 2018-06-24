@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.MaterialRemainDao">
+
+    <insert id="addMaterialRemain" keyProperty="materialRemain.materialID" keyColumn="materialID" useGeneratedKeys="false" parameterType="com.agriculture.dataBase.domain.MaterialRemain">
+        INSERT INTO t_material_remain(
+            `materialID`,
+`materialName`,
+`materialType`,
+`amount`,
+`specification`,
+`unit`,
+`model`
+        )VALUES(
+            #{materialRemain.materialID},
+#{materialRemain.materialName},
+#{materialRemain.materialType},
+#{materialRemain.amount},
+#{materialRemain.specification},
+#{materialRemain.unit},
+#{materialRemain.model}
+        )
+    </insert>
+
+    <delete id="deleteMaterialRemain">
+        DELETE FROM t_material_remain WHERE `materialID` = #{materialID}
+    </delete>
+
+    <update id="updateMaterialRemain" parameterType="com.agriculture.dataBase.domain.MaterialRemain">
+        UPDATE t_material_remain SET
+            `materialName` = #{materialRemain.materialName},
+`materialType` = #{materialRemain.materialType},
+`amount` = #{materialRemain.amount},
+`specification` = #{materialRemain.specification},
+`unit` = #{materialRemain.unit},
+`model` = #{materialRemain.model}
+        WHERE `materialID` = #{materialRemain.materialID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_material_remain
+    </select>
+
+
+
+
+    <select id="getMaterialRemain"  resultType="com.agriculture.dataBase.domain.MaterialRemain">
+        SELECT * FROM t_material_remain WHERE `materialID` = #{materialID}
+    </select>
+
+
+    <select id="getMaterialRemainList"  resultType="com.agriculture.dataBase.domain.MaterialRemain">
+        SELECT * from t_material_remain
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

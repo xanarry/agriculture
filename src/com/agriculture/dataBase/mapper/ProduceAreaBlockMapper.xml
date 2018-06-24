@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.ProduceAreaBlockDao">
+
+    <insert id="addProduceAreaBlock" keyProperty="produceAreaBlock.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.ProduceAreaBlock">
+        INSERT INTO t_produce_area_block(
+            `produceTaskID`,
+`areaBlock`
+        )VALUES(
+            #{produceAreaBlock.produceTaskID},
+#{produceAreaBlock.areaBlock}
+        )
+    </insert>
+
+    <delete id="deleteProduceAreaBlock">
+        DELETE FROM t_produce_area_block WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateProduceAreaBlock" parameterType="com.agriculture.dataBase.domain.ProduceAreaBlock">
+        UPDATE t_produce_area_block SET
+            `produceTaskID` = #{produceAreaBlock.produceTaskID},
+`areaBlock` = #{produceAreaBlock.areaBlock}
+        WHERE `ID` = #{produceAreaBlock.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_produce_area_block
+    </select>
+
+
+
+
+    <select id="getProduceAreaBlock"  resultType="com.agriculture.dataBase.domain.ProduceAreaBlock">
+        SELECT * FROM t_produce_area_block WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getProduceAreaBlockList"  resultType="com.agriculture.dataBase.domain.ProduceAreaBlock">
+        SELECT * from t_produce_area_block
+        WHERE 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

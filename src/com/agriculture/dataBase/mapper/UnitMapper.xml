@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.UnitDao">
+
+    <insert id="addUnit" keyProperty="unit.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Unit">
+        INSERT INTO t_unit(
+            `name`,
+`atomic`
+        )VALUES(
+            #{unit.name},
+#{unit.atomic}
+        )
+    </insert>
+
+    <delete id="deleteUnit">
+        DELETE FROM t_unit WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateUnit" parameterType="com.agriculture.dataBase.domain.Unit">
+        UPDATE t_unit SET
+            `name` = #{unit.name},
+`atomic` = #{unit.atomic}
+        WHERE `ID` = #{unit.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_unit
+    </select>
+
+
+
+
+    <select id="getUnit" parameterType="java.lang.Integer"  resultType="com.agriculture.dataBase.domain.Unit">
+        SELECT * FROM t_unit WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getUnitList"  resultType="com.agriculture.dataBase.domain.Unit">
+        SELECT * from t_unit
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

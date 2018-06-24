@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.ProductPackDao">
+
+    <insert id="addProductPack" keyProperty="productPack.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.ProductPack">
+        INSERT INTO t_product_pack(
+            `produceTaskID`,
+productName,
+`packingNO`,
+`packingCount`,
+`material`,
+`operator`,
+`operateTime`
+        )VALUES(
+            #{productPack.produceTaskID},
+#{productPack.productName},
+#{productPack.packingNO},
+#{productPack.packingCount},
+#{productPack.material},
+#{productPack.operator},
+#{productPack.operateTime}
+        )
+    </insert>
+
+    <delete id="deleteProductPack">
+        DELETE FROM t_product_pack WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateProductPack" parameterType="com.agriculture.dataBase.domain.ProductPack">
+        UPDATE t_product_pack SET
+            `produceTaskID` = #{productPack.produceTaskID},
+productName = #{productPack.productName},
+`packingNO` = #{productPack.packingNO},
+`packingCount` = #{productPack.packingCount},
+`material` = #{productPack.material},
+`operator` = #{productPack.operator},
+`operateTime` = #{productPack.operateTime}
+        WHERE `ID` = #{productPack.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_product_pack
+    </select>
+
+
+
+
+    <select id="getProductPack"  resultType="com.agriculture.dataBase.domain.ProductPack">
+        SELECT * FROM t_product_pack WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getProductPackList"  resultType="com.agriculture.dataBase.domain.ProductPack">
+        SELECT * from t_product_pack
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

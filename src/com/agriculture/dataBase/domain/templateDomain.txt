@@ -1,0 +1,5 @@
+package com.agriculture.dataBase.domain;
+
+public class {className} {
+{code}
+}

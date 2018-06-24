@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.ProductPickDao">
+
+    <insert id="addProductPick" keyProperty="productPick.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.ProductPick">
+        INSERT INTO t_product_pick(
+            `produceTaskID`,
+`method`,
+`operator`,
+`pickCount`,
+`unit`,
+`operateTime`
+        )VALUES(
+            #{productPick.produceTaskID},
+#{productPick.method},
+#{productPick.operator},
+#{productPick.pickCount},
+#{productPick.unit},
+#{productPick.operateTime}
+        )
+    </insert>
+
+    <delete id="deleteProductPick">
+        DELETE FROM t_product_pick WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateProductPick" parameterType="com.agriculture.dataBase.domain.ProductPick">
+        UPDATE t_product_pick SET
+            `produceTaskID` = #{productPick.produceTaskID},
+`method` = #{productPick.method},
+`operator` = #{productPick.operator},
+`pickCount` = #{productPick.pickCount},
+`unit` = #{productPick.unit},
+`operateTime` = #{productPick.operateTime}
+        WHERE `ID` = #{productPick.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_product_pick
+    </select>
+
+
+
+
+    <select id="getProductPick"  resultType="com.agriculture.dataBase.domain.ProductPick">
+        SELECT * FROM t_product_pick WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getProductPickList"  resultType="com.agriculture.dataBase.domain.ProductPick">
+        SELECT * from t_product_pick
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

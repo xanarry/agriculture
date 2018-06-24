@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.VeterinaryDrugDao">
+
+    <insert id="addVeterinaryDrug" keyProperty="veterinaryDrug.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.VeterinaryDrug">
+        INSERT INTO t_veterinary_drug(
+            `NO`,
+`name`,
+`producer`,
+`specification`,
+`unit`,
+`model`,
+`suitFor`,
+`licenseNO`,
+`aimTo`,
+`remark`
+        )VALUES(
+            #{veterinaryDrug.NO},
+#{veterinaryDrug.name},
+#{veterinaryDrug.producer},
+#{veterinaryDrug.specification},
+#{veterinaryDrug.unit},
+#{veterinaryDrug.model},
+#{veterinaryDrug.suitFor},
+#{veterinaryDrug.licenseNO},
+#{veterinaryDrug.aimTo},
+#{veterinaryDrug.remark}
+        )
+    </insert>
+
+    <delete id="deleteVeterinaryDrug">
+        DELETE FROM t_veterinary_drug WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateVeterinaryDrug" parameterType="com.agriculture.dataBase.domain.VeterinaryDrug">
+        UPDATE t_veterinary_drug SET
+            `NO` = #{veterinaryDrug.NO},
+`name` = #{veterinaryDrug.name},
+`producer` = #{veterinaryDrug.producer},
+`specification` = #{veterinaryDrug.specification},
+`unit` = #{veterinaryDrug.unit},
+`model` = #{veterinaryDrug.model},
+`suitFor` = #{veterinaryDrug.suitFor},
+`licenseNO` = #{veterinaryDrug.licenseNO},
+`aimTo` = #{veterinaryDrug.aimTo},
+`remark` = #{veterinaryDrug.remark}
+        WHERE `ID` = #{veterinaryDrug.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_veterinary_drug
+    </select>
+
+
+
+
+    <select id="getVeterinaryDrug"  resultType="com.agriculture.dataBase.domain.VeterinaryDrug">
+        SELECT * FROM t_veterinary_drug WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getVeterinaryDrugList"  resultType="com.agriculture.dataBase.domain.VeterinaryDrug">
+        SELECT * from t_veterinary_drug
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

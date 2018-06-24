@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.CheckReportDao">
+
+    <insert id="addCheckReport" keyProperty="checkReport.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.CheckReport">
+        INSERT INTO t_check_report(
+            `produceTaskID`,
+`sampleID`,
+`sampleName`,
+`institution`,
+`checkType`,
+`accordingTo`,
+`result`,
+`operator`,
+`operateTime`
+        )VALUES(
+            #{checkReport.produceTaskID},
+#{checkReport.sampleID},
+#{checkReport.sampleName},
+#{checkReport.institution},
+#{checkReport.checkType},
+#{checkReport.accordingTo},
+#{checkReport.result},
+#{checkReport.operator},
+#{checkReport.operateTime}
+        )
+    </insert>
+
+    <delete id="deleteCheckReport">
+        DELETE FROM t_check_report WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateCheckReport" parameterType="com.agriculture.dataBase.domain.CheckReport">
+        UPDATE t_check_report SET
+            `produceTaskID` = #{checkReport.produceTaskID},
+`sampleID` = #{checkReport.sampleID},
+`sampleName` = #{checkReport.sampleName},
+`institution` = #{checkReport.institution},
+`checkType` = #{checkReport.checkType},
+`accordingTo` = #{checkReport.accordingTo},
+`result` = #{checkReport.result},
+`operator` = #{checkReport.operator},
+`operateTime` = #{checkReport.operateTime}
+        WHERE `ID` = #{checkReport.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_check_report
+    </select>
+
+
+
+
+    <select id="getCheckReport"  resultType="com.agriculture.dataBase.domain.CheckReport">
+        SELECT * FROM t_check_report WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getCheckReportList"  resultType="com.agriculture.dataBase.domain.CheckReport">
+        SELECT * from t_check_report
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.ProductCheckDao">
+
+    <insert id="addProductCheck" keyProperty="productCheck.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.ProductCheck">
+        INSERT INTO t_product_check(
+            `produceTaskID`,
+`item`,
+`result`,
+`operator`,
+`operateTime`
+        )VALUES(
+            #{productCheck.produceTaskID},
+#{productCheck.item},
+#{productCheck.result},
+#{productCheck.operator},
+#{productCheck.operateTime}
+        )
+    </insert>
+
+    <delete id="deleteProductCheck">
+        DELETE FROM t_product_check WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateProductCheck" parameterType="com.agriculture.dataBase.domain.ProductCheck">
+        UPDATE t_product_check SET
+            `produceTaskID` = #{productCheck.produceTaskID},
+`item` = #{productCheck.item},
+`result` = #{productCheck.result},
+`operator` = #{productCheck.operator},
+`operateTime` = #{productCheck.operateTime}
+        WHERE `ID` = #{productCheck.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_product_check
+    </select>
+
+
+
+
+    <select id="getProductCheck"  resultType="com.agriculture.dataBase.domain.ProductCheck">
+        SELECT * FROM t_product_check WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getProductCheckList"  resultType="com.agriculture.dataBase.domain.ProductCheck">
+        SELECT * from t_product_check
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

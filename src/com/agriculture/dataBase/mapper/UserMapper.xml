@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.UserDao">
+
+    <insert id="addUser" keyProperty="user.ID" keyColumn="ID" useGeneratedKeys="false" parameterType="com.agriculture.dataBase.domain.User">
+        INSERT INTO t_user(
+            `ID`,
+`name`,
+`loginName`,
+`email`,
+`phone`,
+`role`,
+`type`,
+`leaderID`,
+`leaderName`,
+`password`,
+`createTime`,
+`lastLoginTime`,
+`lastUpdateTime`,
+`loginCount`,
+`failureCount`
+        )VALUES(
+            #{user.ID},
+#{user.name},
+#{user.loginName},
+#{user.email},
+#{user.phone},
+#{user.role},
+#{user.type},
+#{user.leaderID},
+#{user.leaderName},
+#{user.password},
+#{user.createTime},
+#{user.lastLoginTime},
+#{user.lastUpdateTime},
+#{user.loginCount},
+#{user.failureCount}
+        )
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM t_user WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateUser" parameterType="com.agriculture.dataBase.domain.User">
+        UPDATE t_user SET
+            `name` = #{user.name},
+`loginName` = #{user.loginName},
+`email` = #{user.email},
+`phone` = #{user.phone},
+`role` = #{user.role},
+`type` = #{user.type},
+`leaderID` = #{user.leaderID},
+`leaderName` = #{user.leaderName},
+`password` = #{user.password},
+`createTime` = #{user.createTime},
+`lastLoginTime` = #{user.lastLoginTime},
+`lastUpdateTime` = #{user.lastUpdateTime},
+`loginCount` = #{user.loginCount},
+`failureCount` = #{user.failureCount}
+        WHERE `ID` = #{user.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_user
+    </select>
+
+
+
+
+    <select id="getUser"  resultType="com.agriculture.dataBase.domain.User">
+        SELECT * FROM t_user WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getUserByLoginName" resultType="com.agriculture.dataBase.domain.User">
+        SELECT * FROM t_user WHERE `loginName` = #{loginName}
+    </select>
+
+
+
+    <select id="getUserList"  resultType="com.agriculture.dataBase.domain.User">
+        SELECT * from t_user
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.PurchaseRecordDao">
+
+    <insert id="addPurchaseRecord" keyProperty="purchaseRecord.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.PurchaseRecord">
+        INSERT INTO t_purchase_record(
+            `orderNO`,
+`materialID`,
+`materialName`,
+`provider`,
+`producer`,
+`purchaseCount`,
+`unit`,
+`purchaseTime`,
+`produceTime`,
+`produceNO`,
+`validDate`,
+`validDateUnit`,
+`operator`,
+`remark`
+        )VALUES(
+            #{purchaseRecord.orderNO},
+#{purchaseRecord.materialID},
+#{purchaseRecord.materialName},
+#{purchaseRecord.provider},
+#{purchaseRecord.producer},
+#{purchaseRecord.purchaseCount},
+#{purchaseRecord.unit},
+#{purchaseRecord.purchaseTime},
+#{purchaseRecord.produceTime},
+#{purchaseRecord.produceNO},
+#{purchaseRecord.validDate},
+#{purchaseRecord.validDateUnit},
+#{purchaseRecord.operator},
+#{purchaseRecord.remark}
+        )
+    </insert>
+
+    <delete id="deletePurchaseRecord">
+        DELETE FROM t_purchase_record WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updatePurchaseRecord" parameterType="com.agriculture.dataBase.domain.PurchaseRecord">
+        UPDATE t_purchase_record SET
+            `orderNO` = #{purchaseRecord.orderNO},
+`materialID` = #{purchaseRecord.materialID},
+`materialName` = #{purchaseRecord.materialName},
+`provider` = #{purchaseRecord.provider},
+`producer` = #{purchaseRecord.producer},
+`purchaseCount` = #{purchaseRecord.purchaseCount},
+`unit` = #{purchaseRecord.unit},
+`purchaseTime` = #{purchaseRecord.purchaseTime},
+`produceTime` = #{purchaseRecord.produceTime},
+`produceNO` = #{purchaseRecord.produceNO},
+`validDate` = #{purchaseRecord.validDate},
+`validDateUnit` = #{purchaseRecord.validDateUnit},
+`operator` = #{purchaseRecord.operator},
+`remark` = #{purchaseRecord.remark}
+        WHERE `ID` = #{purchaseRecord.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_purchase_record
+    </select>
+
+
+
+
+    <select id="getPurchaseRecord"  resultType="com.agriculture.dataBase.domain.PurchaseRecord">
+        SELECT * FROM t_purchase_record WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getPurchaseRecordList"  resultType="com.agriculture.dataBase.domain.PurchaseRecord">
+        SELECT * from t_purchase_record
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

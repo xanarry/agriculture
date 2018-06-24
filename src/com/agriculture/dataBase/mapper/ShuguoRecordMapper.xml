@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.ShuguoRecordDao">
+
+    <insert id="addShuguoRecord" keyProperty="shuguoRecord.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.ShuguoRecord">
+        INSERT INTO t_shuguo_record(
+            `produceTaskID`,
+`cropName`,
+`method`,
+`operator`,
+`operateTime`
+        )VALUES(
+            #{shuguoRecord.produceTaskID},
+#{shuguoRecord.cropName},
+#{shuguoRecord.method},
+#{shuguoRecord.operator},
+#{shuguoRecord.operateTime}
+        )
+    </insert>
+
+    <delete id="deleteShuguoRecord">
+        DELETE FROM t_shuguo_record WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateShuguoRecord" parameterType="com.agriculture.dataBase.domain.ShuguoRecord">
+        UPDATE t_shuguo_record SET
+            `produceTaskID` = #{shuguoRecord.produceTaskID},
+`cropName` = #{shuguoRecord.cropName},
+`method` = #{shuguoRecord.method},
+`operator` = #{shuguoRecord.operator},
+`operateTime` = #{shuguoRecord.operateTime}
+        WHERE `ID` = #{shugu        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>oRecord.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_shuguo_record
+    </select>
+
+
+
+
+    <select id="getShuguoRecord"  resultType="com.agriculture.dataBase.domain.ShuguoRecord">
+        SELECT * FROM t_shuguo_record WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getShuguoRecordList"  resultType="com.agriculture.dataBase.domain.ShuguoRecord">
+        SELECT * from t_shuguo_record
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

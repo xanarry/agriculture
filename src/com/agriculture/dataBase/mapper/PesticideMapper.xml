@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.PesticideDao">
+
+    <insert id="addPesticide" keyProperty="pesticide.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Pesticide">
+        INSERT INTO t_pesticide(
+            `NO`,
+`name`,
+`producer`,
+`specification`,
+`unit`,
+`model`,
+`suitFor`,
+`toxicityLevel`,
+`aimTo`,
+`recommendDilute`,
+`preparation`,
+`recommendUseAmount`,
+`licenseNO`,
+`stopdays`,
+`remark`
+        )VALUES(
+            #{pesticide.NO},
+#{pesticide.name},
+#{pesticide.producer},
+#{pesticide.specification},
+#{pesticide.unit},
+#{pesticide.model},
+#{pesticide.suitFor},
+#{pesticide.toxicityLevel},
+#{pesticide.aimTo},
+#{pesticide.recommendDilute},
+#{pesticide.preparation},
+#{pesticide.recommendUseAmount},
+#{pesticide.licenseNO},
+#{pesticide.stopdays},
+#{pesticide.remark}
+        )
+    </insert>
+
+    <delete id="deletePesticide">
+        DELETE FROM t_pesticide WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updatePesticide" parameterType="com.agriculture.dataBase.domain.Pesticide">
+        UPDATE t_pesticide SET
+            `NO` = #{pesticide.NO},
+`name` = #{pesticide.name},
+`producer` = #{pesticide.producer},
+`specification` = #{pesticide.specification},
+`unit` = #{pesticide.unit},
+`model` = #{pesticide.model},
+`suitFor` = #{pesticide.suitFor},
+`toxicityLevel` = #{pesticide.toxicityLevel},
+`aimTo` = #{pesticide.aimTo},
+`recommendDilute` = #{pesticide.recommendDilute},
+`preparation` = #{pesticide.preparation},
+`recommendUseAmount` = #{pesticide.recommendUseAmount},
+`licenseNO` = #{pesticide.licenseNO},
+`stopdays` = #{pesticide.stopdays},
+`remark` = #{pesticide.remark}
+        WHERE `ID` = #{pesticide.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_pesticide
+    </select>
+
+
+
+
+    <select id="getPesticide"  resultType="com.agriculture.dataBase.domain.Pesticide">
+        SELECT * FROM t_pesticide WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getPesticideList"  resultType="com.agriculture.dataBase.domain.Pesticide">
+        SELECT * from t_pesticide
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

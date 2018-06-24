@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.SowDao">
+
+    <insert id="addSow" keyProperty="sow.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Sow">
+        INSERT INTO t_sow(
+            `produceTaskID`,
+`seed`,
+`source`,
+`handle`,
+`amountPerMu`,
+`sowingDensity`,
+`sowingMethod`,
+`sowingDate`,
+`colonizationTime`,
+`colonizationInfo`,
+`operator`
+        )VALUES(
+            #{sow.produceTaskID},
+#{sow.seed},
+#{sow.source},
+#{sow.handle},
+#{sow.amountPerMu},
+#{sow.sowingDensity},
+#{sow.sowingMethod},
+#{sow.sowingDate},
+#{sow.colonizationTime},
+#{sow.colonizationInfo},
+#{sow.operator}
+        )
+    </insert>
+
+    <delete id="deleteSow">
+        DELETE FROM t_sow WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateSow" parameterType="com.agriculture.dataBase.domain.Sow">
+        UPDATE t_sow SET
+            `produceTaskID` = #{sow.produceTaskID},
+`seed` = #{sow.seed},
+`source` = #{sow.source},
+`handle` = #{sow.handle},
+`amountPerMu` = #{sow.amountPerMu},
+`sowingDensity` = #{sow.sowingDensity},
+`sowingMethod` = #{sow.sowingMethod},
+`sowingDate` = #{sow.sowingDate},
+`colonizationTime` = #{sow.colonizationTime},
+`colonizationInfo` = #{sow.colonizationInfo},
+`operator` = #{sow.operator}
+        WHERE `ID` = #{sow.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_sow
+    </select>
+
+
+
+
+    <select id="getSow"  resultType="com.agriculture.dataBase.domain.Sow">
+        SELECT * FROM t_sow WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getSowList"  resultType="com.agriculture.dataBase.domain.Sow">
+        SELECT * from t_sow
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

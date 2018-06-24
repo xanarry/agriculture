@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.AntiDiseasePestDao">
+
+    <insert id="addAntiDiseasePest" keyProperty="antiDiseasePest.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.AntiDiseasePest">
+        INSERT INTO t_anti_disease_pest(
+            `produceTaskID`,
+`dpName`,
+`harmLevel`,
+`method`,
+`aimTo`,
+`pesticideID`,
+`pesticideName`,
+`operator`,
+`operateTime`
+        )VALUES(
+            #{antiDiseasePest.produceTaskID},
+#{antiDiseasePest.dpName},
+#{antiDiseasePest.harmLevel},
+#{antiDiseasePest.method},
+#{antiDiseasePest.aimTo},
+#{antiDiseasePest.pesticideID},
+#{antiDiseasePest.pesticideName},
+#{antiDiseasePest.operator},
+#{antiDiseasePest.operateTime}
+        )
+    </insert>
+
+    <delete id="deleteAntiDiseasePest">
+        DELETE FROM t_anti_disease_pest WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateAntiDiseasePest" parameterType="com.agriculture.dataBase.domain.AntiDiseasePest">
+        UPDATE t_anti_disease_pest SET
+            `produceTaskID` = #{antiDiseasePest.produceTaskID},
+`dpName` = #{antiDiseasePest.dpName},
+`harmLevel` = #{antiDiseasePest.harmLevel},
+`method` = #{antiDiseasePest.method},
+`aimTo` = #{antiDiseasePest.aimTo},
+`pesticideID` = #{antiDiseasePest.pesticideID},
+`pesticideName` = #{antiDiseasePest.pesticideName},
+`operator` = #{antiDiseasePest.operator},
+`operateTime` = #{antiDiseasePest.operateTime}
+        WHERE `ID` = #{antiDiseasePest.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_anti_disease_pest
+    </select>
+
+
+
+
+    <select id="getAntiDiseasePest"  resultType="com.agriculture.dataBase.domain.AntiDiseasePest">
+        SELECT * FROM t_anti_disease_pest WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getAntiDiseasePestList"  resultType="com.agriculture.dataBase.domain.AntiDiseasePest">
+        SELECT * from t_anti_disease_pest
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.FertilizationDao">
+
+    <insert id="addFertilization" keyProperty="fertilization.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Fertilization">
+        INSERT INTO t_fertilization(
+            `produceTaskID`,
+`fertilizerID`,
+`fertilizerName`,
+`method`,
+`useAmount`,
+`operator`,
+`operateTime`
+        )VALUES(
+            #{fertilization.produceTaskID},
+#{fertilization.fertilizerID},
+#{fertilization.fertilizerName},
+#{fertilization.method},
+#{fertilization.useAmount},
+#{fertilization.operator},
+#{fertilization.operateTime}
+        )
+    </insert>
+
+    <delete id="deleteFertilization">
+        DELETE FROM t_fertilization WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateFertilization" parameterType="com.agriculture.dataBase.domain.Fertilization">
+        UPDATE t_fertilization SET
+            `produceTaskID` = #{fertilization.produceTaskID},
+`fertilizerID` = #{fertilization.fertilizerID},
+`fertilizerName` = #{fertilization.fertilizerName},
+`method` = #{fertilization.method},
+`useAmount` = #{fertilization.useAmount},
+`operator` = #{fertilization.operator},
+`operateTime` = #{fertilization.operateTime}
+        WHERE `ID` = #{fertilization.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_fertilization
+    </select>
+
+
+
+
+    <select id="getFertilization"  resultType="com.agriculture.dataBase.domain.Fertilization">
+        SELECT * FROM t_fertilization WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getFertilizationList"  resultType="com.agriculture.dataBase.domain.Fertilization">
+        SELECT * from t_fertilization
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

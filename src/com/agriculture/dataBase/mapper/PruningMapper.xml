@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.PruningDao">
+
+    <insert id="addPruning" keyProperty="pruning.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Pruning">
+        INSERT INTO t_pruning(
+            `produceTaskID`,
+`method`,
+`operator`,
+`operateTime`
+        )VALUES(
+            #{pruning.produceTaskID},
+#{pruning.method},
+#{pruning.operator},
+#{pruning.operateTime}
+        )
+    </insert>
+
+    <delete id="deletePruning">
+        DELETE FROM t_pruning WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updatePruning" parameterType="com.agriculture.dataBase.domain.Pruning">
+        UPDATE t_pruning SET
+            `produceTaskID` = #{pruning.produceTaskID},
+`method` = #{pruning.method},
+`operator` = #{pruning.operator},
+`operateTime` = #{pruning.operateTime}
+        WHERE `ID` = #{pruning.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_pruning
+    </select>
+
+
+
+
+    <select id="getPruning"  resultType="com.agriculture.dataBase.domain.Pruning">
+        SELECT * FROM t_pruning WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getPruningList"  resultType="com.agriculture.dataBase.domain.Pruning">
+        SELECT * from t_pruning
+        where 1=1
+        <if test="taskID != null">
+            and produceTaskID=#{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>

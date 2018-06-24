@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.agriculture.dataBase.dao.ForageDao">
+
+    <insert id="addForage" keyProperty="forage.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Forage">
+        INSERT INTO t_forage(
+            `NO`,
+`name`,
+`producer`,
+`specification`,
+`unit`,
+`model`,
+`suitFor`,
+`licenseNO`,
+`remark`
+        )VALUES(
+            #{forage.NO},
+#{forage.name},
+#{forage.producer},
+#{forage.specification},
+#{forage.unit},
+#{forage.model},
+#{forage.suitFor},
+#{forage.licenseNO},
+#{forage.remark}
+        )
+    </insert>
+
+    <delete id="deleteForage">
+        DELETE FROM t_forage WHERE `ID` = #{ID}
+    </delete>
+
+    <update id="updateForage" parameterType="com.agriculture.dataBase.domain.Forage">
+        UPDATE t_forage SET
+            `NO` = #{forage.NO},
+`name` = #{forage.name},
+`producer` = #{forage.producer},
+`specification` = #{forage.specification},
+`unit` = #{forage.unit},
+`model` = #{forage.model},
+`suitFor` = #{forage.suitFor},
+`licenseNO` = #{forage.licenseNO},
+`remark` = #{forage.remark}
+        WHERE `ID` = #{forage.ID}
+    </update>
+
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_forage
+    </select>
+
+
+
+
+    <select id="getForage"  resultType="com.agriculture.dataBase.domain.Forage">
+        SELECT * FROM t_forage WHERE `ID` = #{ID}
+    </select>
+
+
+    <select id="getForageList"  resultType="com.agriculture.dataBase.domain.Forage">
+        SELECT * from t_forage
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+</mapper>
