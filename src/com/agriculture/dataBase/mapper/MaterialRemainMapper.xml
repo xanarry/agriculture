@@ -5,9 +5,9 @@
 
 <mapper namespace="com.agriculture.dataBase.dao.MaterialRemainDao">
 
-    <insert id="addMaterialRemain" keyProperty="materialRemain.materialID" keyColumn="materialID" useGeneratedKeys="false" parameterType="com.agriculture.dataBase.domain.MaterialRemain">
+    <insert id="addMaterialRemain" keyProperty="materialRemain.materialNO" keyColumn="materialNO" useGeneratedKeys="false" parameterType="com.agriculture.dataBase.domain.MaterialRemain">
         INSERT INTO t_material_remain(
-            `materialID`,
+            `materialNO`,
 `materialName`,
 `materialType`,
 `amount`,
@@ -15,7 +15,7 @@
 `unit`,
 `model`
         )VALUES(
-            #{materialRemain.materialID},
+            #{materialRemain.materialNO},
 #{materialRemain.materialName},
 #{materialRemain.materialType},
 #{materialRemain.amount},
@@ -26,7 +26,7 @@
     </insert>
 
     <delete id="deleteMaterialRemain">
-        DELETE FROM t_material_remain WHERE `materialID` = #{materialID}
+        DELETE FROM t_material_remain WHERE `materialNO` = #{materialNO}
     </delete>
 
     <update id="updateMaterialRemain" parameterType="com.agriculture.dataBase.domain.MaterialRemain">
@@ -37,7 +37,7 @@
 `specification` = #{materialRemain.specification},
 `unit` = #{materialRemain.unit},
 `model` = #{materialRemain.model}
-        WHERE `materialID` = #{materialRemain.materialID}
+        WHERE `materialNO` = #{materialRemain.materialNO}
     </update>
 
 
@@ -49,7 +49,7 @@
 
 
     <select id="getMaterialRemain"  resultType="com.agriculture.dataBase.domain.MaterialRemain">
-        SELECT * FROM t_material_remain WHERE `materialID` = #{materialID}
+        SELECT * FROM t_material_remain WHERE `materialNO` = #{materialNO}
     </select>
 
 

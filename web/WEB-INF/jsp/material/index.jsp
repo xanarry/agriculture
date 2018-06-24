@@ -26,15 +26,15 @@
 
 
     <script>
-        function editmaterial(materialID) {
+        function editmaterial(materialNO) {
             $.ajax({
                 method: "POST",
                 url: "/material/json",
-                data: {materialID: materialID},
+                data: {materialNO: materialNO},
                 dataType: "json",
                 success: function (material) {
                     console.log(JSON.stringify(material));
-                    $("#materialID").val(material.ID);
+                    $("#materialNO").val(material.ID);
                     $("#name").val(material.name);
                     $("#NO").val(material.NO);
                     $("#model").val(material.model);
@@ -89,7 +89,7 @@
                 <c:forEach items="${materialRemainList}" var="material" varStatus="pos">
                     <tr>
                         <td class="text-center" style="vertical-align: middle">${pos.count}</td>
-                        <td class="text-center" style="vertical-align: middle">${material.materialID}</td>
+                        <td class="text-center" style="vertical-align: middle">${material.materialNO}</td>
                         <td class="text-center" style="vertical-align: middle">${material.materialName}</td>
                         <td class="text-center" style="vertical-align: middle">${material.materialType}</td>
                         <td class="text-center" style="vertical-align: middle">${material.model}</td>
@@ -97,7 +97,7 @@
                         <td class="text-center" style="vertical-align: middle">${material.amount}</td>
                         <td class="text-center" style="vertical-align: middle">${material.unit}</td>
                         <td class="text-center" style="vertical-align: middle">
-                            <a href="#" onclick="editmaterial('${material.ID}')">编辑</a>
+                            <a href="#" onclick="editmaterial('${material.materialNO}')">编辑</a>
                             <a href="#">删除</a>
                         </td>
                     </tr>

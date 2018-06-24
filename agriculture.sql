@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS t_purchase_record;
 CREATE TABLE t_purchase_record (
   `ID`            INT PRIMARY KEY      AUTO_INCREMENT,
   `orderNO`       VARCHAR(20) NOT NULL, /*采购订单编号*/
-  `materialID`    VARCHAR(20) NOT NULL, /*投入品编号*/
+  `materialNO`    VARCHAR(20) NOT NULL, /*投入品编号*/
   `materialName`  VARCHAR(20) NOT NULL, /*投入品名称*/
   `provider`      VARCHAR(30), /*供应商*/
   `producer`      varchar(30), /*生产厂家*/
@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS t_material_use_record;
 CREATE TABLE t_material_use_record (
   `ID`              INT PRIMARY KEY AUTO_INCREMENT,
   `produceTaskID`   VARCHAR(15) NOT NULL, /*生产任务批次号: 2018060841766, 年月日+64位微秒时间戳后5位*/
-  `materialID`      VARCHAR(20) NOT NULL, /*投入品编号*/
+  `materialNO`      VARCHAR(20) NOT NULL, /*投入品编号*/
   `materialName`    VARCHAR(20) NOT NULL, /*投入品名称*/
   `product`         varchar(10), /*农产品名称*/
   `area`            VARCHAR(20), /*生产区*/
@@ -100,7 +100,7 @@ CREATE TABLE t_material_use_record (
 /*投入品库存[企业名称,投入品编号,投入品类型,投入品名称,单位,型号,规格,数量]*/
 DROP TABLE IF EXISTS t_material_remain;
 CREATE TABLE t_material_remain (
-  `materialID`    VARCHAR(20) primary key NOT NULL, /*投入品编号*/
+  `materialNO`    VARCHAR(20) primary key NOT NULL, /*投入品编号*/
   `materialName`  VARCHAR(20)             NOT NULL, /*投入品名称*/
   `materialType`  VARCHAR(30), /*投入品类型*/
   `amount`        DOUBLE DEFAULT 0, /*数量*/

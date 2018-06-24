@@ -1,12 +1,14 @@
 package com.agriculture.controller;
 
-import com.agriculture.dataBase.dao.MaterialRemainDao;
-import com.agriculture.dataBase.domain.MaterialRemain;
+import com.agriculture.Consts;
+import com.agriculture.dataBase.dao.*;
+import com.agriculture.dataBase.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -17,6 +19,21 @@ public class MaterialController {
     @Autowired
     MaterialRemainDao materialRemainDao;
 
+    @Autowired
+    PesticideDao pesticideDao;
+
+    @Autowired
+    FertilizerDao fertilizerDao;
+
+    @Autowired
+    SeedDao seedDao;
+
+    @Autowired
+    VeterinaryDrugDao veterinaryDrugDao;
+
+    @Autowired
+    ForageDao forageDao;
+
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
         List<MaterialRemain> materialRemainList = materialRemainDao.getMaterialRemainList(null, null);
@@ -24,9 +41,119 @@ public class MaterialController {
         return "material/index";
     }
 
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAddPage() {
         return "material/edit";
     }
+
+
+    @RequestMapping(value = "/pesticide/add", method = RequestMethod.POST)
+    @ResponseBody
+    public String addPesticide(Pesticide pesticide) {
+        System.out.println(pesticide);
+
+        MaterialRemain mr = new MaterialRemain();
+        mr.setMaterialNO(pesticide.getNO());
+        mr.setMaterialName(pesticide.getName());
+        mr.setAmount(0);
+        mr.setMaterialType("农药");
+        mr.setModel(pesticide.getModel());
+        mr.setSpecification(pesticide.getSpecification());
+        mr.setUnit(pesticide.getUnit());
+
+
+
+        materialRemainDao.addMaterialRemain(mr);
+        pesticideDao.addPesticide(pesticide);
+        return Consts.SUCCESS;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/fertilizer/add", method = RequestMethod.POST)
+    public String addFertilizer(Fertilizer fertilizer) {
+        System.out.println(fertilizer);
+
+        MaterialRemain mr = new MaterialRemain();
+        mr.setMaterialNO(fertilizer.getNO());
+        mr.setMaterialName(fertilizer.getName());
+        mr.setAmount(0);
+        mr.setMaterialType("农药");
+        mr.setModel(fertilizer.getModel());
+        mr.setSpecification(fertilizer.getSpecification());
+        mr.setUnit(fertilizer.getUnit());
+
+
+
+        materialRemainDao.addMaterialRemain(mr);
+        fertilizerDao.addFertilizer(fertilizer);
+        return Consts.SUCCESS;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/seed/add", method = RequestMethod.POST)
+    public String addSeed(Seed seed) {
+        System.out.println(seed);
+
+        MaterialRemain mr = new MaterialRemain();
+        mr.setMaterialNO(seed.getNO());
+        mr.setMaterialName(seed.getName());
+        mr.setAmount(0);
+        mr.setMaterialType("农药");
+        mr.setModel(seed.getModel());
+        mr.setSpecification(seed.getSpecification());
+        mr.setUnit(seed.getUnit());
+
+
+
+        materialRemainDao.addMaterialRemain(mr);
+        seedDao.addSeed(seed);
+        return Consts.SUCCESS;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/veterinary-drug/add", method = RequestMethod.POST)
+    public String addVeterinaryDrug(VeterinaryDrug veterinaryDrug) {
+        System.out.println(veterinaryDrug);
+
+        MaterialRemain mr = new MaterialRemain();
+        mr.setMaterialNO(veterinaryDrug.getNO());
+        mr.setMaterialName(veterinaryDrug.getName());
+        mr.setAmount(0);
+        mr.setMaterialType("农药");
+        mr.setModel(veterinaryDrug.getModel());
+        mr.setSpecification(veterinaryDrug.getSpecification());
+        mr.setUnit(veterinaryDrug.getUnit());
+
+
+
+        materialRemainDao.addMaterialRemain(mr);
+        veterinaryDrugDao.addVeterinaryDrug(veterinaryDrug);
+        return Consts.SUCCESS;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/forage/add", method = RequestMethod.POST)
+    public String addForage(Forage forage) {
+        System.out.println(forage);
+        MaterialRemain mr = new MaterialRemain();
+        mr.setMaterialNO(forage.getNO());
+        mr.setMaterialName(forage.getName());
+        mr.setAmount(0);
+        mr.setMaterialType("农药");
+        mr.setModel(forage.getModel());
+        mr.setSpecification(forage.getSpecification());
+        mr.setUnit(forage.getUnit());
+
+
+
+        materialRemainDao.addMaterialRemain(mr);
+        forageDao.addForage(forage);
+        return Consts.SUCCESS;
+    }
+
 
 }

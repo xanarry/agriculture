@@ -1,7 +1,7 @@
 package com.agriculture.dataBase.domain;
 
 public class MaterialRemain {
-    private String materialID;
+    private String materialNO;
     private String materialName;
     private String materialType;
     private double amount;
@@ -10,12 +10,12 @@ public class MaterialRemain {
     private String model;
 
 
-    public void setMaterialID(String materialID) {
-        this.materialID = materialID;
+    public void setMaterialNO(String materialNO) {
+        this.materialNO = materialNO;
     }
 
-    public String getMaterialID() {
-        return materialID;
+    public String getMaterialNO() {
+        return materialNO;
     }
 
     public void setMaterialName(String materialName) {
@@ -69,6 +69,6 @@ public class MaterialRemain {
 
 
     public String toString() {
-        return "MaterialRemain{" + "materialID=" + materialID + "materialName=" + materialName + "materialType=" + materialType + "amount=" + amount + "specification=" + specification + "unit=" + unit + "model=" + model + "}";
+        return "MaterialRemain{" + "materialNO=" + materialNO + "materialName=" + materialName + "materialType=" + materialType + "amount=" + amount + "specification=" + specification + "unit=" + unit + "model=" + model + "}";
     }
 }

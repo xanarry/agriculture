@@ -8,7 +8,7 @@
     <insert id="addPurchaseRecord" keyProperty="purchaseRecord.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.PurchaseRecord">
         INSERT INTO t_purchase_record(
             `orderNO`,
-`materialID`,
+`materialNO`,
 `materialName`,
 `provider`,
 `producer`,
@@ -23,7 +23,7 @@
 `remark`
         )VALUES(
             #{purchaseRecord.orderNO},
-#{purchaseRecord.materialID},
+#{purchaseRecord.materialNO},
 #{purchaseRecord.materialName},
 #{purchaseRecord.provider},
 #{purchaseRecord.producer},
@@ -46,7 +46,7 @@
     <update id="updatePurchaseRecord" parameterType="com.agriculture.dataBase.domain.PurchaseRecord">
         UPDATE t_purchase_record SET
             `orderNO` = #{purchaseRecord.orderNO},
-`materialID` = #{purchaseRecord.materialID},
+`materialNO` = #{purchaseRecord.materialNO},
 `materialName` = #{purchaseRecord.materialName},
 `provider` = #{purchaseRecord.provider},
 `producer` = #{purchaseRecord.producer},

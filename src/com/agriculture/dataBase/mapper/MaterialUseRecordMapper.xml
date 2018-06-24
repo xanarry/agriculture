@@ -8,7 +8,7 @@
     <insert id="addMaterialUseRecord" keyProperty="materialUseRecord.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.MaterialUseRecord">
         INSERT INTO t_material_use_record(
             `produceTaskID`,
-`materialID`,
+`materialNO`,
 `materialName`,
 `product`,
 `area`,
@@ -20,7 +20,7 @@
 `remark`
         )VALUES(
             #{materialUseRecord.produceTaskID},
-#{materialUseRecord.materialID},
+#{materialUseRecord.materialNO},
 #{materialUseRecord.materialName},
 #{materialUseRecord.product},
 #{materialUseRecord.area},
@@ -40,7 +40,7 @@
     <update id="updateMaterialUseRecord" parameterType="com.agriculture.dataBase.domain.MaterialUseRecord">
         UPDATE t_material_use_record SET
             `produceTaskID` = #{materialUseRecord.produceTaskID},
-`materialID` = #{materialUseRecord.materialID},
+`materialNO` = #{materialUseRecord.materialNO},
 `materialName` = #{materialUseRecord.materialName},
 `product` = #{materialUseRecord.product},
 `area` = #{materialUseRecord.area},
