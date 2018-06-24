@@ -55,7 +55,10 @@
 
 
     <select id="getFertilizationList"  resultType="com.agriculture.dataBase.domain.Fertilization">
-        SELECT * from t_fertilization
+        SELECT * from t_fertilization where 1=1
+        <if test="taskID != null">
+            and `produceTaskID` = #{taskID}
+        </if>
         <if test="start != null and count != null">
             limit #{start}, #{count}
         </if>

@@ -10,6 +10,6 @@ public interface FertilizationDao {
     void deleteFertilization(int ID);
     void updateFertilization(@Param("fertilization") Fertilization fertilization);
     Fertilization getFertilization(int ID);
-    List<Fertilization> getFertilizationList(@Param("start") Integer start, @Param("count") Integer count);
+    List<Fertilization> getFertilizationList(@Param("start") Integer start, @Param("count") Integer count, @Param("taskID") String taskID);
     int getCount();
 }

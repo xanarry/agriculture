@@ -89,20 +89,6 @@ public class produceTaskController {
     public String getDetail(@RequestParam("ID") String taskID, ModelMap modelMap) {
         ProduceTask produceTask = produceTaskDao.getProduceTask(taskID);
         List<ProduceAreaBlock> areaBlockList = produceAreaBlockDao.getProduceAreaBlockList(null, null, taskID);
-        List<Plough> ploughList = ploughDao.getPloughList(null, null, taskID);
-        List<Sow> sowList = sowDao.getSowList(null, null, taskID);
-        List<Pruning> pruningList = pruningDao.getPruningList(null, null, taskID);
-        List<ShuguoRecord> shuguoRecordList = shuguoRecordDao.getShuguoRecordList(null, null, taskID);
-        List<Pollination> pollinationList = pollinationDao.getPollinationList(null, null, taskID);
-        List<Fertilization> fertilizationList = fertilizationDao.getFertilizationList(null, null);
-        List<AntiDiseasePest> antiDiseasePestList = antiDiseasePestDao.getAntiDiseasePestList(null, null, taskID);
-        List<Weed> weedList = weedDao.getWeedList(null, null, taskID);
-        List<Irrigation> irrigationList = irrigationDao.getIrrigationList(null, null, taskID);
-        List<ProductPick> productPickList = productPickDao.getProductPickList(null, null, taskID);
-        List<ProductPack> productPackList = productPackDao.getProductPackList(null, null, taskID);
-        List<ProductCheck> productCheckList = productCheckDao.getProductCheckList(null, null, taskID);
-        List<CheckReport> checkReportList = checkReportDao.getCheckReportList(null, null, taskID);
-        List<SellInfo> sellInfoList = sellInfoDao.getSellInfoList(null, null, taskID);
 
         List<String> selectedAreaBlock = new ArrayList<>();
         List<String> selectableAreaBlock = new ArrayList<>();
@@ -122,22 +108,9 @@ public class produceTaskController {
 
         //modelMap.put("areaBlockList", areaBlockList);
 
-        modelMap.put("ploughList", ploughList);
-        modelMap.put("sowList", sowList);
-        modelMap.put("pruningList", pruningList);
-        modelMap.put("shuguoRecordList", shuguoRecordList);
-        modelMap.put("pollinationList", pollinationList);
-        modelMap.put("fertilizationList", fertilizationList);
-        modelMap.put("antiDiseasePestList", antiDiseasePestList);
-        modelMap.put("weedList", weedList);
-        modelMap.put("irrigationList", irrigationList);
-        modelMap.put("productPickList", productPickList);
-        modelMap.put("productPackList", productPackList);
-        modelMap.put("productCheckList", productCheckList);
-        modelMap.put("checkReportList", checkReportList);
-        modelMap.put("sellInfoList", sellInfoList);
 
-        return "produceTask/taskDetail";
+
+        return "produceTask/detail";
     }
 
 
@@ -161,6 +134,8 @@ public class produceTaskController {
     }
 
 
+
+
     @RequestMapping(value = "/updateTaskState", method = RequestMethod.POST)
     private String updateTaskState(@RequestParam("produceTaskID") String produceTaskID, @RequestParam(name = "state") String state) {
         if (state != null && state.trim().length() > 0) {
@@ -171,6 +146,21 @@ public class produceTaskController {
         return "redirect:/produce-task/detail?ID=" + produceTaskID;
     }
 
+
+
+
+
+
+
+    @RequestMapping(value = "/plough", method = RequestMethod.GET)
+    private String plough(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<Plough> ploughList = ploughDao.getPloughList(null, null, taskID);
+        modelMap.put("ploughList", ploughList);
+        return  "produceTask/plough";
+    }
+
+
+
     @RequestMapping(value = "/addPlough", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     private String addPlough(Plough plough) {
@@ -178,6 +168,20 @@ public class produceTaskController {
         ploughDao.addPlough(plough);
         return  Consts.SUCCESS;
     }
+
+
+
+
+
+
+    @RequestMapping(value = "/sow", method = RequestMethod.GET)
+    private String sow(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<Sow> sowList = sowDao.getSowList(null, null, taskID);
+        modelMap.put("sowList", sowList);
+        return  "produceTask/sow";
+    }
+
+
 
     @RequestMapping(value = "/addSow", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
@@ -187,6 +191,18 @@ public class produceTaskController {
         return  Consts.SUCCESS;
     }
 
+
+
+
+
+    @RequestMapping(value = "/pruning", method = RequestMethod.GET)
+    private String pruning(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<Pruning> pruningList = pruningDao.getPruningList(null, null, taskID);
+        modelMap.put("pruningList", pruningList);
+        return  "produceTask/pruning";
+    }
+
+
     @RequestMapping(value = "/addPruning", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     private String addPruning(Pruning pruning) {
@@ -194,6 +210,20 @@ public class produceTaskController {
         pruningDao.addPruning(pruning);
         return  Consts.SUCCESS;
     }
+
+
+
+
+
+
+
+    @RequestMapping(value = "/shuguo-record", method = RequestMethod.GET)
+    private String shuguoRecord(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<ShuguoRecord> shuguoRecordList = shuguoRecordDao.getShuguoRecordList(null, null, taskID);
+        modelMap.put("shuguoRecordList", shuguoRecordList);
+        return  "produceTask/shuguoRecord";
+    }
+
 
     @RequestMapping(value = "/addShuguoRecord", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
@@ -204,6 +234,17 @@ public class produceTaskController {
         return  Consts.SUCCESS;
     }
 
+
+
+
+
+    @RequestMapping(value = "/pollination", method = RequestMethod.GET)
+    private String pollination(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<Pollination> pollinationList = pollinationDao.getPollinationList(null, null, taskID);
+        modelMap.put("pollinationList", pollinationList);
+        return  "produceTask/pollination";
+    }
+    
     @RequestMapping(value = "/addPollination", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     private String addPollination(Pollination pollination) {
@@ -212,12 +253,55 @@ public class produceTaskController {
         return  Consts.SUCCESS;
     }
 
+
+
+
+
+    @RequestMapping(value = "/fertilization", method = RequestMethod.GET)
+    private String fertilization(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<Fertilization> fertilizationList = fertilizationDao.getFertilizationList(null, null, taskID);
+        modelMap.put("fertilizationList", fertilizationList);
+        return  "produceTask/fertilization";
+    }
+
+    @RequestMapping(value = "/addFertilization", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    @ResponseBody
+    private String addPollination(Fertilization fertilization) {
+        System.out.println(fertilization);
+        fertilizationDao.addFertilization(fertilization);
+        return  Consts.SUCCESS;
+    }
+
+
+
+
+
+    @RequestMapping(value = "/anti-disease-pest", method = RequestMethod.GET)
+    private String antiDiseasePest(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<AntiDiseasePest> antiDiseasePestList = antiDiseasePestDao.getAntiDiseasePestList(null, null, taskID);
+        modelMap.put("antiDiseasePestList", antiDiseasePestList);
+        return  "produceTask/antiDiseasePest";
+    }
+
+
     @RequestMapping(value = "/addAntiDiseasePest", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     private String addAntiDiseasePest(AntiDiseasePest antiDiseasePest) {
         System.out.println(antiDiseasePest);
         antiDiseasePestDao.addAntiDiseasePest(antiDiseasePest);
         return  Consts.SUCCESS;
+    }
+
+
+
+
+
+
+    @RequestMapping(value = "/weed", method = RequestMethod.GET)
+    private String weed(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<Weed> weedList = weedDao.getWeedList(null, null, taskID);
+        modelMap.put("weedList", weedList);
+        return  "produceTask/weed";
     }
 
 
@@ -231,6 +315,16 @@ public class produceTaskController {
 
 
 
+
+
+    @RequestMapping(value = "/irrigation", method = RequestMethod.GET)
+    private String irrigation(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<Irrigation> irrigationList = irrigationDao.getIrrigationList(null, null, taskID);
+        modelMap.put("irrigationList", irrigationList);
+        return  "produceTask/irrigation";
+    }
+
+
     @RequestMapping(value = "/addIrrigation", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     private String addIrrigation(Irrigation irrigation) {
@@ -241,12 +335,34 @@ public class produceTaskController {
 
 
 
+
+
+    @RequestMapping(value = "/product-pick", method = RequestMethod.GET)
+    private String productPick(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<ProductPick> productPickList = productPickDao.getProductPickList(null, null, taskID);
+        modelMap.put("productPickList", productPickList);
+        return  "produceTask/productPick";
+    }
+
     @RequestMapping(value = "/addProductPick", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     private String addProductPick(ProductPick productPick) {
         System.out.println(productPick);
         productPickDao.addProductPick(productPick);
         return  Consts.SUCCESS;
+    }
+
+
+
+
+
+
+
+    @RequestMapping(value = "/product-pack", method = RequestMethod.GET)
+    private String productPack(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<ProductPack> productPackList = productPackDao.getProductPackList(null, null, taskID);
+        modelMap.put("productPackList", productPackList);
+        return  "produceTask/productPack";
     }
 
 
@@ -258,6 +374,18 @@ public class produceTaskController {
         return  Consts.SUCCESS;
     }
 
+
+
+
+
+
+    @RequestMapping(value = "/product-check", method = RequestMethod.GET)
+    private String productCheck(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<ProductCheck> productCheckList = productCheckDao.getProductCheckList(null, null, taskID);
+        modelMap.put("productCheckList", productCheckList);
+        return  "produceTask/productCheck";
+    }
+
     @RequestMapping(value = "/addProductCheck", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     private String addProductCheck(ProductCheck productCheck) {
@@ -266,12 +394,34 @@ public class produceTaskController {
         return  Consts.SUCCESS;
     }
 
+
+
+
+
+    @RequestMapping(value = "/check-report", method = RequestMethod.GET)
+    private String checkReport(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<CheckReport> checkReportList = checkReportDao.getCheckReportList(null, null, taskID);
+        modelMap.put("checkReportList", checkReportList);
+        return  "produceTask/checkReport";
+    }
+
     @RequestMapping(value = "/addCheckReport", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     private String addCheckReport(CheckReport checkReport) {
         System.out.println(checkReport);
         checkReportDao.addCheckReport(checkReport);
         return  Consts.SUCCESS;
+    }
+
+
+
+
+
+    @RequestMapping(value = "/sell-info", method = RequestMethod.GET)
+    private String sellInfo(@RequestParam("ID") String taskID, ModelMap modelMap) {
+        List<SellInfo> sellInfoList = sellInfoDao.getSellInfoList(null, null, taskID);
+        modelMap.put("sellInfoList", sellInfoList);
+        return  "produceTask/sellInfo";
     }
 
 
