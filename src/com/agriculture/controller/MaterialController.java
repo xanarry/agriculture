@@ -1,15 +1,20 @@
 package com.agriculture.controller;
 
 import com.agriculture.Consts;
+import com.agriculture.controller.beans.ErrorMessageBean;
 import com.agriculture.dataBase.dao.*;
 import com.agriculture.dataBase.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -34,6 +39,11 @@ public class MaterialController {
     @Autowired
     ForageDao forageDao;
 
+
+
+    @Autowired
+    PurchaseRecordDao purchaseRecordDao;
+
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
         List<MaterialRemain> materialRemainList = materialRemainDao.getMaterialRemainList(null, null);
@@ -45,6 +55,52 @@ public class MaterialController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAddPage() {
         return "material/edit";
+    }
+
+
+
+    @RequestMapping(value = "/purchase", method = RequestMethod.GET)
+    public String getPurcaseRecordPage(ModelMap modelMap) {
+        List<PurchaseRecord> purchaseRecordList = purchaseRecordDao.getPurchaseRecordList(null, null);
+        modelMap.put("purchaseRecordList", purchaseRecordList);
+        return "material/purchase";
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/purchase/add/complete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getCompleteHint(@RequestParam("query") String keyword) {
+        System.out.println(keyword);
+        List<MaterialRemain> materialRemainList = materialRemainDao.getMaterialRemainList(null, null);
+        Iterator<MaterialRemain> iter = materialRemainList.iterator();
+
+
+        List<String> values = new ArrayList<>();
+        while (iter.hasNext()) {
+            MaterialRemain tmp = iter.next();
+            if (tmp.getMaterialNO().trim().startsWith(keyword)) {
+                values.add("\"" + tmp.getMaterialNO() + " " + tmp.getMaterialName() + "\"");
+            }
+        }
+        return String.format("{\"query\": \"Unit\",\"suggestions\": [%s]}", String.join(",",  values));
+    }
+    
+
+    @RequestMapping(value = "/purchase/add", method = RequestMethod.POST)
+    public String addPurchaseRecord(PurchaseRecord purchaseRecord) {
+        System.out.println(purchaseRecord);
+        if (materialRemainDao.getMaterialRemain(purchaseRecord.getMaterialNO()) == null) {
+            ErrorMessageBean bean = new ErrorMessageBean();
+            bean.setTitle("错误");
+            bean.setHeader("错误");
+            bean.setMessage("投入品编号不存在, 请检查!");
+            bean.setUrl("/material/purchase");
+            bean.setLinkText("返回");
+            return "redirect:/error?" + bean.toURLParamDecode();
+        } else {
+            purchaseRecordDao.addPurchaseRecord(purchaseRecord);
+            return "redirect:/material/purchase";
+        }
     }
 
 

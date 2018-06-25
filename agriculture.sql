@@ -65,10 +65,10 @@ CREATE TABLE t_purchase_record (
   `producer`      varchar(30), /*生产厂家*/
   `purchaseCount` DOUBLE      NOT NULL, /*采购数量*/
   `unit`          VARCHAR(10), /*单位*/
-  `purchaseTime`  BIGINT, /*采购日期*/
-  `produceTime`   BIGINT, /*生产日期*/
+  `purchaseDate`  date, /*采购日期*/
+  `produceDate`   date, /*生产日期*/
   `produceNO`     VARCHAR(20), /*生产批号*/
-  `validDate`     MEDIUMINT            DEFAULT 0, /*有效期*/
+  `validDate`     date, /*有效期*/
   `validDateUnit` ENUM ("年", "月", "日") DEFAULT "月", /*有效期单位*/
   `operator`      varchar(10), /*责任人*/
   `remark`        VARCHAR(100) /*备注*/
@@ -554,7 +554,7 @@ CREATE TABLE t_goods (
   `producer`        VARCHAR(20), /*生产商*/
   `remain`          DOUBLE, /*余量*/
   `unit`            VARCHAR(10), /*计量单位*/
-  `purchaseTime`    BIGINT      NOT NULL, /*采购时间*/
+  `purchaseDate`    BIGINT      NOT NULL, /*采购时间*/
   `priceAllocRate`  DOUBLE      DEFAULT -1.0, /*是否调配, 可调配的话设置价格正值概率*/
   `amountAllocRate` DOUBLE      DEFAULT -1.0 /*是否调配, 可调配的话设置数量正值概率*/
 )
@@ -573,7 +573,7 @@ CREATE TABLE t_purchase (
   `name`         VARCHAR(10), /*单位*/
   `unitPrice`    DOUBLE, /*单价*/
   `totalPrice`   DOUBLE, /*总价*/
-  `purchaseTime` BIGINT      NOT NULL, /*采购时间*/
+  `purchaseDate` BIGINT      NOT NULL, /*采购时间*/
   `operator`     VARCHAR(10) NOT NULL /*采购人*/
 )
   DEFAULT charset = "utf8"

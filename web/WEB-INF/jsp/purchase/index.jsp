@@ -90,10 +90,10 @@
                         <td class="text-center" style="vertical-align: middle">${purchase.unitPrice}</td>
                         <td class="text-center" style="vertical-align: middle">${purchase.totalPrice}</td>
                         <td class="text-center" style="vertical-align: middle">${purchase.seller}</td>
-                        <jsp:useBean id="purchaseTime" class="java.util.Date"/>
-                        <c:set target="${purchaseTime}" property="time" value="${purchase.purchaseTime}"/>
+                        <jsp:useBean id="purchaseDate" class="java.util.Date"/>
+                        <c:set target="${purchaseDate}" property="time" value="${purchase.purchaseDate}"/>
                         <td class="text-center" style="vertical-align: middle">
-                            <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${purchaseTime}"/>
+                            <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${purchaseDate}"/>
                         </td>
                         <td class="text-center" style="vertical-align: middle">${purchase.operator}</td>
                     </tr>

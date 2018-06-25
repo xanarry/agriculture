@@ -1,5 +1,3 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: xanarry
@@ -7,6 +5,8 @@
   Time: 上午10:54
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -41,7 +41,7 @@
                     $("#type").val(material.type);
                     $("#producer").val(material.producer);
                     $("#remain").val(material.remain);
-                    $("#purchaseTime").val(material.purchaseTime);
+                    $("#purchaseDate").val(material.purchaseDate);
                     $("#unit").val(material.unit);
                     $("#priceAllocRate").val(material.priceAllocRate);
                     $("#amountAllocRate").val(material.amountAllocRate);

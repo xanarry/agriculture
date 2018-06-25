@@ -3,14 +3,14 @@ package com.agriculture.dataBase.domain;
 public class PurchaseRecord {
     private int ID;
     private String orderNO;
-    private String materialID;
+    private String materialNO;
     private String materialName;
     private String provider;
     private String producer;
     private Double purchaseCount;
     private String unit;
-    private Long purchaseTime;
-    private Long produceTime;
+    private String purchaseDate;
+    private String produceDate;
     private String produceNO;
     private String validDate;
     private String validDateUnit;
@@ -34,12 +34,12 @@ public class PurchaseRecord {
         return orderNO;
     }
 
-    public void setMaterialID(String materialID) {
-        this.materialID = materialID;
+    public void setMaterialNO(String materialNO) {
+        this.materialNO = materialNO;
     }
 
-    public String getMaterialID() {
-        return materialID;
+    public String getMaterialNO() {
+        return materialNO;
     }
 
     public void setMaterialName(String materialName) {
@@ -82,20 +82,20 @@ public class PurchaseRecord {
         return unit;
     }
 
-    public void setPurchaseTime(Long purchaseTime) {
-        this.purchaseTime = purchaseTime;
+    public String getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public Long getPurchaseTime() {
-        return purchaseTime;
+    public void setPurchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
-    public void setProduceTime(Long produceTime) {
-        this.produceTime = produceTime;
+    public String getProduceDate() {
+        return produceDate;
     }
 
-    public Long getProduceTime() {
-        return produceTime;
+    public void setProduceDate(String produceDate) {
+        this.produceDate = produceDate;
     }
 
     public void setProduceNO(String produceNO) {
@@ -141,6 +141,6 @@ public class PurchaseRecord {
 
 
     public String toString() {
-        return "PurchaseRecord{" + "ID=" + ID + "orderNO=" + orderNO + "materialID=" + materialID + "materialName=" + materialName + "provider=" + provider + "producer=" + producer + "purchaseCount=" + purchaseCount + "unit=" + unit + "purchaseTime=" + purchaseTime + "produceTime=" + produceTime + "produceNO=" + produceNO + "validDate=" + validDate + "validDateUnit=" + validDateUnit + "operator=" + operator + "remark=" + remark + "}";
+        return "PurchaseRecord{" + "ID=" + ID + "orderNO=" + orderNO + "materialNO=" + materialNO + "materialName=" + materialName + "provider=" + provider + "producer=" + producer + "purchaseCount=" + purchaseCount + "unit=" + unit + "purchaseDate=" + purchaseDate + "produceDate=" + produceDate + "produceNO=" + produceNO + "validDate=" + validDate + "validDateUnit=" + validDateUnit + "operator=" + operator + "remark=" + remark + "}";
     }
 }

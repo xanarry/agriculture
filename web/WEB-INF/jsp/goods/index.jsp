@@ -41,7 +41,7 @@
                     $("#type").val(goods.type);
                     $("#producer").val(goods.producer);
                     $("#remain").val(goods.remain);
-                    $("#purchaseTime").val(goods.purchaseTime);
+                    $("#purchaseDate").val(goods.purchaseDate);
                     $("#unit").val(goods.unit);
                     $("#priceAllocRate").val(goods.priceAllocRate);
                     $("#amountAllocRate").val(goods.amountAllocRate);
@@ -93,10 +93,10 @@
                         <td class="text-center" style="vertical-align: middle">${goods.NO}</td>
                         <td class="text-center" style="vertical-align: middle">${goods.model}</td>
                         <td class="text-center" style="vertical-align: middle">${goods.remain}${goods.unit}</td>
-                        <jsp:useBean id="purchaseTime" class="java.util.Date"/>
-                        <c:set target="${purchaseTime}" property="time" value="${goods.purchaseTime}"/>
+                        <jsp:useBean id="purchaseDate" class="java.util.Date"/>
+                        <c:set target="${purchaseDate}" property="time" value="${goods.purchaseDate}"/>
                         <td class="text-center" style="vertical-align: middle">
-                            <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${purchaseTime}"/>
+                            <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${purchaseDate}"/>
                         </td>
                         <td class="text-center" style="vertical-align: middle">
                             <c:choose>
@@ -136,7 +136,7 @@
                             <form id="editForm" method="post" action="/goods/add" style="margin-bottom: 0em">
                                 <input type="text" id="goodsID" name="ID" value="1">
                                 <input type="text" id="remain"  name="remain" value="1">
-                                <input type="text" id="purchaseTime" name="purchaseTime" value="1">
+                                <input type="text" id="purchaseDate" name="purchaseDate" value="1">
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label text-right">物资名</label>
                                     <div class="col-sm-10">
