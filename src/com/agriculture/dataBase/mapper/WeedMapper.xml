@@ -11,13 +11,13 @@
 `weedName`,
 `method`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{weed.produceTaskID},
 #{weed.weedName},
 #{weed.method},
 #{weed.operator},
-#{weed.operateTime}
+#{weed.operateDate}
         )
     </insert>
 
@@ -31,7 +31,7 @@
 `weedName` = #{weed.weedName},
 `method` = #{weed.method},
 `operator` = #{weed.operator},
-`operateTime` = #{weed.operateTime}
+`operateDate` = #{weed.operateDate}
         WHERE `ID` = #{weed.ID}
     </update>
 

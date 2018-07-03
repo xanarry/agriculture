@@ -10,12 +10,12 @@
             `produceTaskID`,
 `method`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{pruning.produceTaskID},
 #{pruning.method},
 #{pruning.operator},
-#{pruning.operateTime}
+#{pruning.operateDate}
         )
     </insert>
 
@@ -28,7 +28,7 @@
             `produceTaskID` = #{pruning.produceTaskID},
 `method` = #{pruning.method},
 `operator` = #{pruning.operator},
-`operateTime` = #{pruning.operateTime}
+`operateDate` = #{pruning.operateDate}
         WHERE `ID` = #{pruning.ID}
     </update>
 

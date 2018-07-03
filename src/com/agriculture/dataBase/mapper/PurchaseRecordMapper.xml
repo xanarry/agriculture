@@ -18,7 +18,6 @@
 `produceDate`,
 `produceNO`,
 `validDate`,
-`validDateUnit`,
 `operator`,
 `remark`
         )VALUES(
@@ -33,7 +32,6 @@
 #{purchaseRecord.produceDate},
 #{purchaseRecord.produceNO},
 #{purchaseRecord.validDate},
-#{purchaseRecord.validDateUnit},
 #{purchaseRecord.operator},
 #{purchaseRecord.remark}
         )
@@ -56,7 +54,6 @@
 `produceDate` = #{purchaseRecord.produceDate},
 `produceNO` = #{purchaseRecord.produceNO},
 `validDate` = #{purchaseRecord.validDate},
-`validDateUnit` = #{purchaseRecord.validDateUnit},
 `operator` = #{purchaseRecord.operator},
 `remark` = #{purchaseRecord.remark}
         WHERE `ID` = #{purchaseRecord.ID}

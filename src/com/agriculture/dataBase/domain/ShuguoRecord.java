@@ -6,7 +6,7 @@ public class ShuguoRecord {
     private String cropName;
     private String method;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
     public ShuguoRecord() {
     }
@@ -51,12 +51,12 @@ public class ShuguoRecord {
         this.operator = operator;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ShuguoRecord {
                 ", cropName='" + cropName + '\'' +
                 ", method='" + method + '\'' +
                 ", operator='" + operator + '\'' +
-                ", operateTime=" + operateTime +
+                ", operateDate=" + operateDate +
                 '}';
     }
 }

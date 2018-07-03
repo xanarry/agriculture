@@ -9,7 +9,7 @@ public class Sow {
     private Double amountPerMu;
     private Double sowingDensity;
     private String sowingMethod;
-    private Long sowingDate;
+    private String operateDate;
     private Long colonizationTime;
     private String colonizationInfo;
     private String operator;
@@ -81,12 +81,12 @@ public class Sow {
         this.sowingMethod = sowingMethod;
     }
 
-    public Long getSowingDate() {
-        return sowingDate;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public void setSowingDate(Long sowingDate) {
-        this.sowingDate = sowingDate;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
     public Long getColonizationTime() {
@@ -124,7 +124,7 @@ public class Sow {
                 ", amountPerMu=" + amountPerMu +
                 ", sowingDensity=" + sowingDensity +
                 ", sowingMethod='" + sowingMethod + '\'' +
-                ", sowingDate=" + sowingDate +
+                ", operateDate=" + operateDate +
                 ", colonizationTime=" + colonizationTime +
                 ", colonizationInfo='" + colonizationInfo + '\'' +
                 ", operator='" + operator + '\'' +

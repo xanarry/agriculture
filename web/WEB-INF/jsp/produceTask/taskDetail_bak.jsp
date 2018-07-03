@@ -131,7 +131,7 @@
 
 
                             <form action="/produce-task/updateTaskState" method="post">
-                                <input type="text" name="produceTaskID" value="${task.ID}" hidden>
+                                <input type="text" name="produceTaskID" value="${param.ID}" hidden>
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">更新任务状态</h5>
@@ -217,7 +217,7 @@
 
 
                     <form action="/produce-task/addAreaBlock" method="post">
-                        <input type="text" name="produceTaskID" value="${task.ID}" hidden>
+                        <input type="text" name="produceTaskID" value="${param.ID}" hidden>
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">新增区块</h5>
@@ -287,11 +287,11 @@
                                 <tbody id="plouthTbody">
                                 <c:forEach items="${ploughList}" var="plough" varStatus="pos">
                                     <tr>
-                                        <th scope="row">${pos.count}</th>
+                                        <th>${pos.count}</th>
                                         <td>${plough.method}</td>
                                         <td>${plough.operator}</td>
                                         <jsp:useBean id="ploughTime" class="java.util.Date"/>
-                                        <c:set target="${ploughTime}" property="time" value="${plough.operateTime}"/>
+                                        <c:set target="${ploughTime}" property="time" value="${plough.operateDate}"/>
                                         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${ploughTime}"/></td>
                                     </tr>
                                 </c:forEach>
@@ -316,7 +316,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form id="ploughForm" action="/produce-task/addPlough">
-                                                <input type="text" name="produceTaskID" value="${task.ID}" hidden>
+                                                <input type="text" name="produceTaskID" value="${param.ID}" hidden>
                                                 <div class="form-group">
                                                     <label class="col-form-label">翻耕方式:</label>
                                                     <input type="text" class="form-control" alt="翻耕方式" name="method">
@@ -327,7 +327,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -378,7 +378,7 @@
                                 <tbody id="sowTbody">
                                 <c:forEach items="${sowList}" var="sow" varStatus="pos">
                                     <tr>
-                                        <th scope="row">${pos.count}</th>
+                                        <td>${pos.count}</td>
                                         <td>${sow.seed}</td>
                                         <td>${sow.source}</td>
                                         <td>${sow.handle}</td>
@@ -389,7 +389,7 @@
                                         <td>${sow.colonizationInfo}</td>
                                         <td>${sow.operator}</td>
                                         <jsp:useBean id="sowTime" class="java.util.Date"/>
-                                        <c:set target="${sowTime}" property="time" value="${sow.sowingDate}"/>
+                                        <c:set target="${sowTime}" property="time" value="${sow.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${sowTime}"/>
                                         </td>
@@ -416,7 +416,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form id="sowForm" action="/produce-task/addSow">
-                                                <input name="produceTaskID" value="${task.ID}"/>
+                                                <input name="produceTaskID" value="${param.ID}"/>
                                                 <div class="form-group">
                                                     <label class="col-form-label">种子:</label>
                                                     <input type="text" class="form-control" alt="种子" name="seed">
@@ -458,7 +458,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input class="form-control" name="sowingDate" alt="日期">
+                                                    <input class="form-control" name="operateDate" alt="日期">
                                                 </div>
                                             </form>
                                         </div>
@@ -501,11 +501,11 @@
                                 <tbody id="pruningTbody">
                                 <c:forEach items="${pruningList}" var="pruning" varStatus="pos">
                                     <tr>
-                                        <th scope="row">${pos.count}</th>
+                                        <td>${pos.count}</td>
                                         <td>${pruning.method}</td>
                                         <td>${pruning.operator}</td>
                                         <jsp:useBean id="pruningTime" class="java.util.Date"/>
-                                        <c:set target="${pruningTime}" property="time" value="${pruning.operateTime}"/>
+                                        <c:set target="${pruningTime}" property="time" value="${pruning.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${pruningTime}"/>
                                         </td>
@@ -532,7 +532,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form id="pruningForm" action="/produce-task/addPruning">
-                                                <input name="produceTaskID" value="${task.ID}"/>
+                                                <input name="produceTaskID" value="${param.ID}"/>
                                                 <div class="form-group">
                                                     <label class="col-form-label">整枝方式:</label>
                                                     <input type="text" class="form-control" name="method">
@@ -543,7 +543,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" name="operateTime">
+                                                    <input type="text" class="form-control" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -590,11 +590,11 @@
                                 <tbody id="shuguoTbody">
                                 <c:forEach items="${shuguoRecordList}" var="shuguo" varStatus="pos">
                                     <tr>
-                                        <th scope="row">${pos.count}</th>
+                                        <td>${pos.count}</td>
                                         <td>${shuguo.method}</td>
                                         <td>${shuguo.operator}</td>
                                         <jsp:useBean id="shuguoTime" class="java.util.Date"/>
-                                        <c:set target="${shuguoTime}" property="time" value="${shuguo.operateTime}"/>
+                                        <c:set target="${shuguoTime}" property="time" value="${shuguo.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${shuguoTime}"/>
                                         </td>
@@ -621,7 +621,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form id="shuguoForm" action="/produce-task/addShuguoRecord">
-                                                <input name="produceTaskID" value="${task.ID}"/>
+                                                <input name="produceTaskID" value="${param.ID}"/>
                                                 <div class="form-group">
                                                     <label class="col-form-label">蔬果方式:</label>
                                                     <input type="text" class="form-control" name="method">
@@ -632,7 +632,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" name="operateTime">
+                                                    <input type="text" class="form-control" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -682,12 +682,12 @@
                                 <tbody id="pollinationTbody">
                                 <c:forEach items="${pollinationList}" var="pollination" varStatus="pos">
                                     <tr>
-                                        <th scope="row">${pos.count}</th>
+                                        <td>${pos.count}</td>
                                         <td>${pollination.method}</td>
                                         <td>${pollination.operator}</td>
                                         <jsp:useBean id="pollinationTime" class="java.util.Date"/>
                                         <c:set target="${pollinationTime}" property="time"
-                                               value="${pollination.operateTime}"/>
+                                               value="${pollination.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${pollinationTime}"/>
                                         </td>
@@ -714,7 +714,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form id="pollinationForm" action="/produce-task/addPollination">
-                                                <input name="produceTaskID" value="${task.ID}"/>
+                                                <input name="produceTaskID" value="${param.ID}"/>
                                                 <div class="form-group">
                                                     <label class="col-form-label">授粉方式:</label>
                                                     <input type="text" class="form-control" name="method">
@@ -725,7 +725,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -781,7 +781,7 @@
                                 <tbody id="fertilizationTbody">
                                 <c:forEach items="${fertilizationList}" var="fertilization" varStatus="pos">
                                     <tr>
-                                        <th scope="row">${pos.count}</th>
+                                        <td>${pos.count}</td>
                                         <td>
                                             <a href="/肥料?fertilizerID=${fertilization.fertilizerID}">${fertilization.fertilizerName}</a>
                                         </td>
@@ -790,7 +790,7 @@
                                         <td>${fertilization.operator}</td>
                                         <jsp:useBean id="fertilizationTime" class="java.util.Date"/>
                                         <c:set target="${fertilizationTime}" property="time"
-                                               value="${fertilization.operateTime}"/>
+                                               value="${fertilization.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${fertilizationTime}"/>
                                         </td>
@@ -817,7 +817,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form id="fertilizationForm" action="/produce-task/addShuguoRecord">
-                                                <input name="produceTaskID" value="${task.ID}"/>
+                                                <input name="produceTaskID" value="${param.ID}"/>
                                                 <div class="form-group">
                                                     <label class="col-form-label">使用肥料:</label>
                                                     <input type="text" class="form-control" alt="使用肥料" name="fertilizerName">
@@ -836,7 +836,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -894,7 +894,7 @@
                                 <tbody id="antiDiseasePestTbody">
                                 <c:forEach items="${antiDiseasePestList}" var="antiDiseasePest" varStatus="pos">
                                     <tr>
-                                        <th scope="row">${pos.count}</th>
+                                        <td>${pos.count}</td>
                                         <td>${antiDiseasePest.dpName}</td>
                                         <td>${antiDiseasePest.harmLevel}</td>
                                         <td>
@@ -904,7 +904,7 @@
                                         <td>${antiDiseasePest.operator}</td>
                                         <jsp:useBean id="antiDiseasePestTime" class="java.util.Date"/>
                                         <c:set target="${antiDiseasePestTime}" property="time"
-                                               value="${antiDiseasePest.operateTime}"/>
+                                               value="${antiDiseasePest.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${antiDiseasePestTime}"/>
                                         </td>
@@ -969,7 +969,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -1017,12 +1017,12 @@
                                 <tbody id="weedTbody">
                                 <c:forEach items="${weedList}" var="weed" varStatus="pos">
                                     <tr>
-                                        <th scope="row">${pos.count}</th>
+                                        <td>${pos.count}</td>
                                         <td>${weed.weedName}</td>
                                         <td>${weed.method}</td>
                                         <td>${weed.operator}</td>
                                         <jsp:useBean id="weedTime" class="java.util.Date"/>
-                                        <c:set target="${weedTime}" property="time" value="${weed.operateTime}"/>
+                                        <c:set target="${weedTime}" property="time" value="${weed.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${weedTime}"/>
                                         </td>
@@ -1064,7 +1064,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -1120,14 +1120,14 @@
                                 <tbody id="irrigationTbody">
                                 <c:forEach items="${irrigationList}" var="irrigation" varStatus="pos">
                                     <tr>
-                                        <th scope="row">${pos.count}</th>
+                                        <td>${pos.count}</td>
                                         <td>${irrigation.waterSource}</td>
                                         <td>${irrigation.method}</td>
                                         <td>${irrigation.otherWay}</td>
                                         <td>${irrigation.operator}</td>
                                         <jsp:useBean id="irrigationTime" class="java.util.Date"/>
                                         <c:set target="${irrigationTime}" property="time"
-                                               value="${irrigation.operateTime}"/>
+                                               value="${irrigation.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${irrigationTime}"/>
                                         </td>
@@ -1173,7 +1173,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -1236,7 +1236,7 @@
                                         <td>${productPick.operator}</td>
                                         <jsp:useBean id="productPickTime" class="java.util.Date"/>
                                         <c:set target="${productPickTime}" property="time"
-                                               value="${productPick.operateTime}"/>
+                                               value="${productPick.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${productPickTime}"/>
                                         </td>
@@ -1288,7 +1288,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -1351,7 +1351,7 @@
                                         <td>${productPack.operator}</td>
                                         <jsp:useBean id="productPackTime" class="java.util.Date"/>
                                         <c:set target="${productPackTime}" property="time"
-                                               value="${productPack.operateTime}"/>
+                                               value="${productPack.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${productPackTime}"/>
                                         </td>
@@ -1401,7 +1401,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -1462,7 +1462,7 @@
                                         <td>${productCheck.operator}</td>
                                         <jsp:useBean id="productCheckTime" class="java.util.Date"/>
                                         <c:set target="${productCheckTime}" property="time"
-                                               value="${productCheck.operateTime}"/>
+                                               value="${productCheck.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${productCheckTime}"/>
                                         </td>
@@ -1504,7 +1504,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -1569,7 +1569,7 @@
                                         <td>${checkReport.operator}</td>
                                         <jsp:useBean id="checkReportTime" class="java.util.Date"/>
                                         <c:set target="${checkReportTime}" property="time"
-                                               value="${checkReport.operateTime}"/>
+                                               value="${checkReport.operateDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${checkReportTime}"/>
                                         </td>
@@ -1627,7 +1627,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>
@@ -1691,7 +1691,7 @@
                                         <td>${sellInfo.conveyMethod}</td>
                                         <td>${sellInfo.operator}</td>
                                         <jsp:useBean id="sellInfoTime" class="java.util.Date"/>
-                                        <c:set target="${sellInfoTime}" property="time" value="${sellInfo.sellTime}"/>
+                                        <c:set target="${sellInfoTime}" property="time" value="${sellInfo.sellDate}"/>
                                         <td>
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${sellInfoTime}"/>
                                         </td>
@@ -1749,7 +1749,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">日期:</label>
-                                                    <input type="text" class="form-control" alt="日期" name="operateTime">
+                                                    <input type="text" class="form-control" alt="日期" name="operateDate">
                                                 </div>
                                             </form>
                                         </div>

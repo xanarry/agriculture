@@ -10,7 +10,7 @@ public class CheckReport {
     private String accordingTo;
     private String result;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
 
 
@@ -87,15 +87,15 @@ public class CheckReport {
         this.ID = ID;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
     public String toString() {
-        return "CheckReport{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "sampleID=" + sampleID + "sampleName=" + sampleName + "institution=" + institution + "checkType=" + checkType + "accordingTo=" + accordingTo + "result=" + result + "operator=" + operator + "operateTime=" + operateTime + "}";
+        return "CheckReport{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "sampleID=" + sampleID + "sampleName=" + sampleName + "institution=" + institution + "checkType=" + checkType + "accordingTo=" + accordingTo + "result=" + result + "operator=" + operator + "operateDate=" + operateDate + "}";
     }
 }

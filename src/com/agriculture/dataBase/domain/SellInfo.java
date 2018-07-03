@@ -10,7 +10,7 @@ public class SellInfo {
     private String wrapMethod;
     private String conveyMethod;
     private String operator;
-    private long sellTime;
+    private String sellDate;
 
 
     public void setID(int ID) {
@@ -85,14 +85,13 @@ public class SellInfo {
         return operator;
     }
 
-    public void setSellTime(long sellTime) {
-        this.sellTime = sellTime;
+    public String getSellDate() {
+        return sellDate;
     }
 
-    public long getSellTime() {
-        return sellTime;
+    public void setSellDate(String sellDate) {
+        this.sellDate = sellDate;
     }
-
 
     @Override
     public String toString() {
@@ -106,7 +105,7 @@ public class SellInfo {
                 ", wrapMethod='" + wrapMethod + '\'' +
                 ", conveyMethod='" + conveyMethod + '\'' +
                 ", operator='" + operator + '\'' +
-                ", sellTime=" + sellTime +
+                ", sellDate=" + sellDate +
                 '}';
     }
 }

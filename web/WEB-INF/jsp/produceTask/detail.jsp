@@ -130,7 +130,7 @@
                         <div class="col-6">
                             <div class="form-group row" style="margin-bottom: .3rem;">
                                 <label class="col-3 text-right"><b>任务ID:</b></label>
-                                <label class="col-8 text-left">${task.ID}</label>
+                                <label class="col-8 text-left">${param.ID}</label>
                             </div>
                             <div class="form-group row" style="margin-bottom: .3rem;">
                                 <label class="col-3 text-right"><b>创建时间:</b></label>
@@ -165,7 +165,7 @@
                 <div class="modal-dialog" role="document">
 
                     <form action="/produce-task/addAreaBlock" method="post">
-                        <input type="text" name="produceTaskID" value="${task.ID}" hidden>
+                        <input type="text" name="produceTaskID" value="${param.ID}" hidden>
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">新增区块</h5>

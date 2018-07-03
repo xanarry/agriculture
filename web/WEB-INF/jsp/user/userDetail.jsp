@@ -45,7 +45,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <jsp:include page="../common/nav-left.jsp"/>
+        <jsp:include page="leftMenu.jsp"/>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="card">
                 <div class="card-body" style="padding-bottom: 0rem">

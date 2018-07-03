@@ -5,7 +5,7 @@ public class Pollination {
     private String produceTaskID;
     private String method;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
 
     public Pollination() {
@@ -43,12 +43,12 @@ public class Pollination {
         this.operator = operator;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Pollination {
                 ", produceTaskID='" + produceTaskID + '\'' +
                 ", method='" + method + '\'' +
                 ", operator='" + operator + '\'' +
-                ", operateTime=" + operateTime +
+                ", operateDate=" + operateDate +
                 '}';
     }
 }

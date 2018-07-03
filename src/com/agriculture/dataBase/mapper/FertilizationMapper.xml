@@ -13,7 +13,7 @@
 `method`,
 `useAmount`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{fertilization.produceTaskID},
 #{fertilization.fertilizerID},
@@ -21,7 +21,7 @@
 #{fertilization.method},
 #{fertilization.useAmount},
 #{fertilization.operator},
-#{fertilization.operateTime}
+#{fertilization.operateDate}
         )
     </insert>
 
@@ -37,7 +37,7 @@
 `method` = #{fertilization.method},
 `useAmount` = #{fertilization.useAmount},
 `operator` = #{fertilization.operator},
-`operateTime` = #{fertilization.operateTime}
+`operateDate` = #{fertilization.operateDate}
         WHERE `ID` = #{fertilization.ID}
     </update>
 

@@ -15,7 +15,7 @@
 `accordingTo`,
 `result`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{checkReport.produceTaskID},
 #{checkReport.sampleID},
@@ -25,7 +25,7 @@
 #{checkReport.accordingTo},
 #{checkReport.result},
 #{checkReport.operator},
-#{checkReport.operateTime}
+#{checkReport.operateDate}
         )
     </insert>
 
@@ -43,7 +43,7 @@
 `accordingTo` = #{checkReport.accordingTo},
 `result` = #{checkReport.result},
 `operator` = #{checkReport.operator},
-`operateTime` = #{checkReport.operateTime}
+`operateDate` = #{checkReport.operateDate}
         WHERE `ID` = #{checkReport.ID}
     </update>
 

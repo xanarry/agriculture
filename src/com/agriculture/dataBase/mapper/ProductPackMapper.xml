@@ -13,7 +13,7 @@ productName,
 `packingCount`,
 `material`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{productPack.produceTaskID},
 #{productPack.productName},
@@ -21,7 +21,7 @@ productName,
 #{productPack.packingCount},
 #{productPack.material},
 #{productPack.operator},
-#{productPack.operateTime}
+#{productPack.operateDate}
         )
     </insert>
 
@@ -37,7 +37,7 @@ productName = #{productPack.productName},
 `packingCount` = #{productPack.packingCount},
 `material` = #{productPack.material},
 `operator` = #{productPack.operator},
-`operateTime` = #{productPack.operateTime}
+`operateDate` = #{productPack.operateDate}
         WHERE `ID` = #{productPack.ID}
     </update>
 

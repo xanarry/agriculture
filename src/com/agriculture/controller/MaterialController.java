@@ -58,6 +58,27 @@ public class MaterialController {
     }
 
 
+    @RequestMapping(value = "/stock", method = RequestMethod.GET)
+    public String materialStock(ModelMap modelMap) {
+        List<PurchaseRecord> purchaseRecordList = purchaseRecordDao.getPurchaseRecordList(null, null);
+        modelMap.put("purchaseRecordList", purchaseRecordList);
+        return "material/stock";
+    }
+
+
+    @RequestMapping(value = "/use-record", method = RequestMethod.GET)
+    public String materialUserRecord(ModelMap modelMap) {
+        List<PurchaseRecord> purchaseRecordList = purchaseRecordDao.getPurchaseRecordList(null, null);
+        modelMap.put("purchaseRecordList", purchaseRecordList);
+        return "material/useRecord";
+    }
+
+
+
+
+
+
+
 
     @RequestMapping(value = "/purchase", method = RequestMethod.GET)
     public String getPurcaseRecordPage(ModelMap modelMap) {

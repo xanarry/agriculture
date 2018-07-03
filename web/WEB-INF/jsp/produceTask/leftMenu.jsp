@@ -7,6 +7,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<link rel="stylesheet" href="/css/fontawesome/fontawesome-all.min.css">
+<link rel="stylesheet" href="/plugin/datetimepicker/css/tempusdominus-bootstrap-4.min.css"/>
+
+<script src="/plugin/datetimepicker/js/moment-with-locales.min.js"></script>
+<script src="/plugin/datetimepicker/js/tempusdominus-bootstrap-4.min.js"></script>
+
 <c:set var="uri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">

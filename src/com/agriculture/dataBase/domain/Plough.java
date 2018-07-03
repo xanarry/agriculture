@@ -5,7 +5,7 @@ public class Plough {
     private String produceTaskID;
     private String method;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
 
     public void setID(int ID) {
@@ -40,17 +40,15 @@ public class Plough {
         return operator;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
-
-
 
     public String toString() {
-        return "Plough{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "method=" + method + "operator=" + operator + "operateTime=" + operateTime + "}";
+        return "Plough{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "method=" + method + "operator=" + operator + "operateDate=" + operateDate + "}";
     }
 }

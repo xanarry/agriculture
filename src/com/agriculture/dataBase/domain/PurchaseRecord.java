@@ -13,7 +13,6 @@ public class PurchaseRecord {
     private String produceDate;
     private String produceNO;
     private String validDate;
-    private String validDateUnit;
     private String operator;
     private String remark;
 
@@ -114,14 +113,6 @@ public class PurchaseRecord {
         return validDate;
     }
 
-    public void setValidDateUnit(String validDateUnit) {
-        this.validDateUnit = validDateUnit;
-    }
-
-    public String getValidDateUnit() {
-        return validDateUnit;
-    }
-
     public void setOperator(String operator) {
         this.operator = operator;
     }
@@ -139,8 +130,23 @@ public class PurchaseRecord {
     }
 
 
-
+    @Override
     public String toString() {
-        return "PurchaseRecord{" + "ID=" + ID + "orderNO=" + orderNO + "materialNO=" + materialNO + "materialName=" + materialName + "provider=" + provider + "producer=" + producer + "purchaseCount=" + purchaseCount + "unit=" + unit + "purchaseDate=" + purchaseDate + "produceDate=" + produceDate + "produceNO=" + produceNO + "validDate=" + validDate + "validDateUnit=" + validDateUnit + "operator=" + operator + "remark=" + remark + "}";
+        return "PurchaseRecord{" +
+                "ID=" + ID +
+                ", orderNO='" + orderNO + '\'' +
+                ", materialNO='" + materialNO + '\'' +
+                ", materialName='" + materialName + '\'' +
+                ", provider='" + provider + '\'' +
+                ", producer='" + producer + '\'' +
+                ", purchaseCount=" + purchaseCount +
+                ", unit='" + unit + '\'' +
+                ", purchaseDate='" + purchaseDate + '\'' +
+                ", produceDate='" + produceDate + '\'' +
+                ", produceNO='" + produceNO + '\'' +
+                ", validDate='" + validDate + '\'' +
+                ", operator='" + operator + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
     }
 }

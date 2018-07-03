@@ -11,13 +11,13 @@
 `cropName`,
 `method`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{shuguoRecord.produceTaskID},
 #{shuguoRecord.cropName},
 #{shuguoRecord.method},
 #{shuguoRecord.operator},
-#{shuguoRecord.operateTime}
+#{shuguoRecord.operateDate}
         )
     </insert>
 
@@ -31,7 +31,7 @@
 `cropName` = #{shuguoRecord.cropName},
 `method` = #{shuguoRecord.method},
 `operator` = #{shuguoRecord.operator},
-`operateTime` = #{shuguoRecord.operateTime}
+`operateDate` = #{shuguoRecord.operateDate}
         WHERE `ID` = #{shugu        where 1=1
         <if test="taskID != null">
             and produceTaskID=#{taskID}

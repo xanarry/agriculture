@@ -11,6 +11,6 @@ public interface UserDao {
     void updateUser(@Param("user") User user);
     User getUser(String ID);
     User getUserByLoginName(String loginName);
-    List<User> getUserList(@Param("start") Integer start, @Param("count") Integer count);
+    List<User> getUserList(@Param("start") Integer start, @Param("count") Integer count, @Param("role") String role);
     int getCount();
 }

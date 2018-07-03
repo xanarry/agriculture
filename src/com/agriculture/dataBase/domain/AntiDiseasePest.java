@@ -10,7 +10,7 @@ public class AntiDiseasePest {
     private Integer pesticideID;
     private String pesticideName;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
     public AntiDiseasePest() {
     }
@@ -87,12 +87,12 @@ public class AntiDiseasePest {
         this.operator = operator;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
     @Override
@@ -107,7 +107,7 @@ public class AntiDiseasePest {
                 ", pesticideID=" + pesticideID +
                 ", pesticideName='" + pesticideName + '\'' +
                 ", operator='" + operator + '\'' +
-                ", operateTime=" + operateTime +
+                ", operateDate=" +  +
                 '}';
     }
 }

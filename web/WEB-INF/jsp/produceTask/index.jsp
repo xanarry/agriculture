@@ -30,6 +30,16 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
+
+
+    <style>
+        .form-label {
+            font-weight: bold;
+            padding-top: 7px;
+            margin-bottom: 0;
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body>
@@ -57,7 +67,7 @@
                 <th class="text-center">生产区</th>
                 <th class="text-center">状态</th>
                 <th class="text-center">创建人</th>
-                <td class="text-center">创建时间</td>
+                <th class="text-center">创建时间</th>
                 <th class="text-center">操作</th>
             </tr>
             </thead>
@@ -77,7 +87,8 @@
                         <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${createTime}"/>
                     </td>
                     <td class="text-center" style="vertical-align: middle">
-                        <a href="/purchase/list?taskID=${task.ID}">编辑</a>
+                        <a href="/purchase/list?taskID=${param.ID}">身份码管理</a>
+                        <a href="/purchase/list?taskID=${param.ID}">编辑</a>
                         <a href="#">删除</a>
                     </td>
                 </tr>
@@ -98,18 +109,18 @@
                 </div>
                 <div class="modal-body">
                     <form id="editForm" method="post" action="/produce-task/add" style="margin-bottom: 0em">
-                        <input type="text" id="creator" name="creator" value="${sessionScope.user.name}">
+                        <input type="text" id="creator" name="creator" hidden value="${sessionScope.user.name}">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label text-right">产品名称</label>
-                            <div class="col-sm-10">
+                            <label class="col-3 form-label">产品名称</label>
+                            <div class="col-9">
                                 <input type="text" class="form-control" id="productName" name="productName"
-                                       placeholder="任务名, 不允许为空">
+                                       placeholder="产品名称, 不允许为空">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label text-right">产品类别</label>
-                            <div class="col-sm-10">
+                            <label class="col-3 form-label">产品类别</label>
+                            <div class="col-9">
                                 <select class="form-control" id="productType" name="productType">
                                     <option value="水果">水果</option>
                                     <option value="蔬菜">蔬菜</option>
@@ -119,15 +130,15 @@
 
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label text-right">生产区</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="area" name="area" placeholder="任务名, 不允许为空">
+                            <label class="col-3 form-label">生产区</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="area" name="area" placeholder="生产区, 不允许为空">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label text-right">生产区块</label>
-                            <div class="col-sm-10">
+                            <label class="col-3 form-label">生产区块</label>
+                            <div class="col-9">
                                 <select class="form-control" name="productionAreaBlock" id="productionAreaBlock"
                                         multiple>
                                     <c:forEach items="${produceAreaBlockList}" var="areaBlock" varStatus="pos">
@@ -138,10 +149,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label text-right">产品介绍</label>
-                            <div class="col-sm-10">
+                            <label class="col-3 form-label">产品介绍</label>
+                            <div class="col-9">
                                 <textarea type="text" class="form-control" id="productDetail" name="productDetail"
-                                          placeholder="任务名, 不允许为空"></textarea>
+                                          placeholder="产品介绍"></textarea>
                             </div>
                         </div>
 

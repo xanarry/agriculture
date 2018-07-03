@@ -15,7 +15,7 @@
 `wrapMethod`,
 `conveyMethod`,
 `operator`,
-`sellTime`
+sellDate
         )VALUES(
             #{sellInfo.produceTaskID},
 #{sellInfo.productName},
@@ -25,7 +25,7 @@
 #{sellInfo.wrapMethod},
 #{sellInfo.conveyMethod},
 #{sellInfo.operator},
-#{sellInfo.sellTime}
+#{sellInfo.sellDate}
         )
     </insert>
 
@@ -43,7 +43,7 @@
 `wrapMethod` = #{sellInfo.wrapMethod},
 `conveyMethod` = #{sellInfo.conveyMethod},
 `operator` = #{sellInfo.operator},
-`sellTime` = #{sellInfo.sellTime}
+sellDate = #{sellInfo.sellDate}
         WHERE `ID` = #{sellInfo.ID}
     </update>
 

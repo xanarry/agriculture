@@ -12,14 +12,14 @@
 `operator`,
 `pickCount`,
 `unit`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{productPick.produceTaskID},
 #{productPick.method},
 #{productPick.operator},
 #{productPick.pickCount},
 #{productPick.unit},
-#{productPick.operateTime}
+#{productPick.operateDate}
         )
     </insert>
 
@@ -34,7 +34,7 @@
 `operator` = #{productPick.operator},
 `pickCount` = #{productPick.pickCount},
 `unit` = #{productPick.unit},
-`operateTime` = #{productPick.operateTime}
+`operateDate` = #{productPick.operateDate}
         WHERE `ID` = #{productPick.ID}
     </update>
 

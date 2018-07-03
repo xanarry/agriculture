@@ -18,7 +18,10 @@
 <body>
 
 <div class="container">
-    <div class="row" style="padding-top: 15%">
+    <div class="text-center"  style="padding: 5%">
+        <h1 style="font-size: 3em">智能可追溯绿色蔬菜生产管理系统</h1>
+    </div>
+    <div class="row">
         <div class="col-md-4 offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -29,8 +32,17 @@
                         <div class="form-group">
                             <input class="form-control" placeholder="登录名" name="loginName" type="text">
                         </div>
+
                         <div class="form-group">
                             <input class="form-control" placeholder="登录密码" name="password" type="password">
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>系统管理员</option>
+                                <option>系统操作员</option>
+                                <option>操作员</option>
+                            </select>
                         </div>
 
                         <c:choose>

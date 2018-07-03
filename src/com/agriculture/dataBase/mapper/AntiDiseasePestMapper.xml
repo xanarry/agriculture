@@ -15,7 +15,7 @@
 `pesticideID`,
 `pesticideName`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{antiDiseasePest.produceTaskID},
 #{antiDiseasePest.dpName},
@@ -25,7 +25,7 @@
 #{antiDiseasePest.pesticideID},
 #{antiDiseasePest.pesticideName},
 #{antiDiseasePest.operator},
-#{antiDiseasePest.operateTime}
+#{antiDiseasePest.operateDate}
         )
     </insert>
 
@@ -43,7 +43,7 @@
 `pesticideID` = #{antiDiseasePest.pesticideID},
 `pesticideName` = #{antiDiseasePest.pesticideName},
 `operator` = #{antiDiseasePest.operator},
-`operateTime` = #{antiDiseasePest.operateTime}
+`operateDate` = #{antiDiseasePest.operateDate}
         WHERE `ID` = #{antiDiseasePest.ID}
     </update>
 

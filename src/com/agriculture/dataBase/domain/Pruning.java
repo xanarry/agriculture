@@ -5,7 +5,7 @@ public class Pruning {
     private String produceTaskID;
     private String method;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
     public Pruning() {
     }
@@ -42,12 +42,13 @@ public class Pruning {
         this.operator = operator;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
     @Override
@@ -57,7 +58,7 @@ public class Pruning {
                 ", produceTaskID='" + produceTaskID + '\'' +
                 ", method='" + method + '\'' +
                 ", operator='" + operator + '\'' +
-                ", operateTime=" + operateTime +
+                ", operateDate=" + operateDate +
                 '}';
     }
 }

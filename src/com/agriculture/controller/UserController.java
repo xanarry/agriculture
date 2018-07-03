@@ -43,8 +43,8 @@ public class UserController {
      * @return String jsp视图的位置
      */
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
-    public String userAdminHomePage(ModelMap modelMap) {
-        List<User> userList = userDao.getUserList(null, null);
+    public String userAdminHomePage(ModelMap modelMap, @RequestParam(name = "role", required = false) String role) {
+        List<User> userList = userDao.getUserList(null, null, role);
         modelMap.put("userList", userList);
         modelMap.put("roleList", roleList);
         modelMap.put("typeList", typeList);
@@ -164,7 +164,7 @@ public class UserController {
      */
     @RequestMapping(value = "/list/{page}", method = RequestMethod.GET)
     public String getUserList(@PathVariable("page") int page, ModelMap modelMap) {
-        List<User> userList = userDao.getUserList((page - 1) * Consts.PAGE_COUNT, Consts.PAGE_COUNT);
+        List<User> userList = userDao.getUserList((page - 1) * Consts.PAGE_COUNT, Consts.PAGE_COUNT, null);
         PageBean pageBean = Util.getPagination(userDao.getCount(), page, "/user/");
         modelMap.addAttribute("userList", userList);
         modelMap.addAttribute("pageBean", pageBean);

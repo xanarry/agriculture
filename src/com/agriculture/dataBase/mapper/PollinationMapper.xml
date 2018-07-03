@@ -10,12 +10,12 @@
             `produceTaskID`,
 `method`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{pollination.produceTaskID},
 #{pollination.method},
 #{pollination.operator},
-#{pollination.operateTime}
+#{pollination.operateDate}
         )
     </insert>
 
@@ -28,7 +28,7 @@
             `produceTaskID` = #{pollination.produceTaskID},
 `method` = #{pollination.method},
 `operator` = #{pollination.operator},
-`operateTime` = #{pollination.operateTime}
+`operateDate` = #{pollination.operateDate}
         WHERE `ID` = #{pollination.ID}
     </update>
 

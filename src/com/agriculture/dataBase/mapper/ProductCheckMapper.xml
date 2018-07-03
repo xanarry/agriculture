@@ -11,13 +11,13 @@
 `item`,
 `result`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{productCheck.produceTaskID},
 #{productCheck.item},
 #{productCheck.result},
 #{productCheck.operator},
-#{productCheck.operateTime}
+#{productCheck.operateDate}
         )
     </insert>
 
@@ -31,7 +31,7 @@
 `item` = #{productCheck.item},
 `result` = #{productCheck.result},
 `operator` = #{productCheck.operator},
-`operateTime` = #{productCheck.operateTime}
+`operateDate` = #{productCheck.operateDate}
         WHERE `ID` = #{productCheck.ID}
     </update>
 

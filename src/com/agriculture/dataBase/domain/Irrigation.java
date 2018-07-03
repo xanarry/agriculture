@@ -7,7 +7,7 @@ public class Irrigation {
     private String otherWay;
     private String waterSource;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
 
     public void setID(int ID) {
@@ -58,17 +58,25 @@ public class Irrigation {
         return operator;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
-
-
+    @Override
     public String toString() {
-        return "Irrigation{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "method=" + method + "otherWay=" + otherWay + "waterSource=" + waterSource + "operator=" + operator + "operateTime=" + operateTime + "}";
+        return "Irrigation{" +
+                "ID=" + ID +
+                ", produceTaskID='" + produceTaskID + '\'' +
+                ", method='" + method + '\'' +
+                ", otherWay='" + otherWay + '\'' +
+                ", waterSource='" + waterSource + '\'' +
+                ", operator='" + operator + '\'' +
+                ", operateDate='" + operateDate + '\'' +
+                '}';
     }
 }

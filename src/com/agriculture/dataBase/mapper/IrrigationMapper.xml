@@ -12,14 +12,14 @@
 `otherWay`,
 `waterSource`,
 `operator`,
-`operateTime`
+`operateDate`
         )VALUES(
             #{irrigation.produceTaskID},
 #{irrigation.method},
 #{irrigation.otherWay},
 #{irrigation.waterSource},
 #{irrigation.operator},
-#{irrigation.operateTime}
+#{irrigation.operateDate}
         )
     </insert>
 
@@ -34,7 +34,7 @@
 `otherWay` = #{irrigation.otherWay},
 `waterSource` = #{irrigation.waterSource},
 `operator` = #{irrigation.operator},
-`operateTime` = #{irrigation.operateTime}
+`operateDate` = #{irrigation.operateDate}
         WHERE `ID` = #{irrigation.ID}
     </update>
 

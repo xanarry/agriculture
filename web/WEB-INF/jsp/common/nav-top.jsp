@@ -22,19 +22,18 @@
         <%--左侧商标--%>
         <div class="col-2">
             <div class="d-flex flex-row">
-                <div class="p-2 navbar-font"><a style="text-decoration: none; color: white; font-size: 1.2em" href="#">圣寿源</a></div>
+                <div class="p-2 navbar-font"><a style="text-decoration: none; color: white; font-size: 1.2em" href="/">圣寿源</a></div>
             </div>
         </div>
 
         <%--中间菜单栏--%>
         <div class="col-8">
             <div class="d-flex flex-row">
-                <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="/produce-task/">生产任务</a></div>
                 <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="/user/">人员管理</a></div>
+                <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="/produce-task/">生产任务</a></div>
                 <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="/material">投入品管理</a></div>
-                <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="/material">物资管理</a></div>
                 <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="#">企业信息</a></div>
-                <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="#">菜单5</a></div>
+
             </div>
         </div>
 

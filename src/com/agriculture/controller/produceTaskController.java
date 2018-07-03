@@ -130,7 +130,7 @@ public class produceTaskController {
         if (produceAreaBlock.getAreaBlock() != null) {
             produceAreaBlockDao.addProduceAreaBlock(produceAreaBlock);
         }
-        return "redirect:/produce-task/detaiproduceTaskIDl?ID=" + produceTaskID;
+        return "redirect:/produce-task/detail?ID=" + produceTaskID;
     }
 
 

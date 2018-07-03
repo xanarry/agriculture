@@ -8,7 +8,7 @@ public class ProductPack {
     private Integer packingCount;
     private String material;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
 
     public void setID(int ID) {
@@ -67,17 +67,15 @@ public class ProductPack {
         return operator;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
-
-
 
     public String toString() {
-        return "ProductPack{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "productName=" + productName + "packingNO=" + packingNO + "packingCount=" + packingCount + "material=" + material + "operator=" + operator + "operateTime=" + operateTime + "}";
+        return "ProductPack{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "productName=" + productName + "packingNO=" + packingNO + "packingCount=" + packingCount + "material=" + material + "operator=" + operator + "operateDate=" + operateDate + "}";
     }
 }

@@ -6,7 +6,7 @@ public class Weed {
     private String weedName;
     private String method;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
 
     @Override
@@ -17,7 +17,7 @@ public class Weed {
                 ", weedName='" + weedName + '\'' +
                 ", method='" + method + '\'' +
                 ", operator='" + operator + '\'' +
-                ", operateTime=" + operateTime +
+                ", operateDate=" + operateDate +
                 '}';
     }
 
@@ -61,12 +61,12 @@ public class Weed {
         this.operator = operator;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
     public Weed() {

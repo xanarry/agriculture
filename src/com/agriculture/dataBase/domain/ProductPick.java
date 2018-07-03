@@ -7,7 +7,7 @@ public class ProductPick {
     private String operator;
     private Integer pickCount;
     private String unit;
-    private Long operateTime;
+    private String operateDate;
 
 
     public void setID(int ID) {
@@ -58,17 +58,17 @@ public class ProductPick {
         return unit;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
 
 
     public String toString() {
-        return "ProductPick{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "method=" + method + "operator=" + operator + "pickCount=" + pickCount + "unit=" + unit + "operateTime=" + operateTime + "}";
+        return "ProductPick{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "method=" + method + "operator=" + operator + "pickCount=" + pickCount + "unit=" + unit + "operateDate=" + operateDate + "}";
     }
 }

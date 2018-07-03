@@ -6,7 +6,7 @@ public class ProductCheck {
     private String item;
     private String result;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
 
     public void setID(int ID) {
@@ -49,17 +49,23 @@ public class ProductCheck {
         return operator;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
-
-
+    @Override
     public String toString() {
-        return "ProductCheck{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "item=" + item + "result=" + result + "operator=" + operator + "operateTime=" + operateTime + "}";
+        return "ProductCheck{" +
+                "ID=" + ID +
+                ", produceTaskID='" + produceTaskID + '\'' +
+                ", item='" + item + '\'' +
+                ", result='" + result + '\'' +
+                ", operator='" + operator + '\'' +
+                ", operateDate='" + operateDate + '\'' +
+                '}';
     }
 }

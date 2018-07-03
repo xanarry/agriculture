@@ -24,75 +24,18 @@
     <script src="/js/bootstrap/bootstrap.min.js"></script>
     <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 
+    <script src="/js/util.js"></script>
+
+
     <script>
-        function postData(formName, tbodyName, modal) {
-            var distForm = $("#" + formName);
-            var tbody = $("#" + tbodyName);
-
-            var inputs = []
-            var trs = [];
-            var data = {};
-
-            var tdCount = $("#" + tbodyName + " tr").length;
-
-            trs.push("<td>" + (tdCount + 1) + "</td>");
-
-            $("form#" + formName + " :input").each(function () {
-                inputs.push($(this));
+        $(document).ready(function () {
+            $('#operateDate').datetimepicker({
+                locale: 'zh-cn',
+                format: "YYYY-MM-DD"
             });
-
-            for (var i = 0; i < inputs.length; ++i) {
-                var input = inputs[i]; // This is the jquery object of the input, do what you will
-                var name = input.attr("name");
-                var value = input.val();
-                var alt = input.attr("alt");
-
-                if (alt != null && alt.length > 0 && value.length == 0) {
-                    alert(alt + "不能为空");
-                    return;
-                }
-
-                data[name] = value;
-                if (name != 'produceTaskID') {
-                    trs.push("<td>" + value + "</td>");
-                }
-                console.log(name + " " + value + " " + alt);
-            }
-
-
-            console.log(tdCount);
-            console.log(distForm.attr("action"));
-            console.log(data);
-            console.log('<tr>' + trs.join("") + '</tr>')
-
-
-            $.ajax({
-                method: 'POST',
-                url: distForm.attr("action"),
-                data: data,
-                dataType: "text",
-
-                success: function (result) {
-                    console.log(result);
-                    if (result == "success") {
-                        tbody.append('<tr>' + trs.join("") + '</tr>');
-                        $("form#" + formName + " :input").each(function () {
-                            if ($(this).attr("name") != "produceTaskID") {
-                                $(this).val("");
-                            }
-                        });
-                        $("#" + modal).modal('hide')
-                    } else {
-                        alert(result);
-                    }
-                },
-                error: function (result) {
-                    console.log(result);
-                    alert("服务器请求出错");
-                }
-            })
-        }
+        });
     </script>
+
 </head>
 <body>
 
@@ -122,17 +65,12 @@
                         <tbody id="productPickTbody">
                         <c:forEach items="${productPickList}" var="productPick" varStatus="pos">
                             <tr>
-                                <th scope="row">${pos.count}</th>
+                                <td>${pos.count}</td>
                                 <td>${productPick.method}</td>
                                 <td>${productPick.pickCount}</td>
                                 <td>${productPick.unit}</td>
                                 <td>${productPick.operator}</td>
-                                <jsp:useBean id="productPickTime" class="java.util.Date"/>
-                                <c:set target="${productPickTime}" property="time"
-                                       value="${productPick.operateTime}"/>
-                                <td>
-                                    <fmt:formatDate pattern="yyyy-MM-dd" value="${productPickTime}"/>
-                                </td>
+                                <td>${productPick.operateDate}</td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -156,7 +94,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <form id="productPickForm" action="/produce-task/addProductPick">
-                                        <input type="text" value="${task.ID}" name="produceTaskID">
+                                        <input type="text" value="${param.ID}" name="produceTaskID">
                                         <div class="form-group">
                                             <label class="col-form-label">采摘方式:</label>
                                             <input type="text" class="form-control" name="method">
@@ -172,16 +110,13 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-form-label">单位:</label>
-                                            <input type="text" class="form-control" name="unit">
-                                        </div>
-                                        <div class="form-group">
                                             <label class="col-form-label">操作人:</label>
                                             <input type="text" class="form-control" alt="操作人" name="operator">
                                         </div>
                                         <div class="form-group">
                                             <label class="col-form-label">日期:</label>
-                                            <input type="text" class="form-control" alt="日期" name="operateTime">
+                                            <input type="text" class="form-control" alt="日期" name="operateDate" id="operateDate" data-toggle="datetimepicker"
+                                                   data-target="#operateDate">
                                         </div>
                                     </form>
                                 </div>
@@ -189,7 +124,7 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">取消
                                     </button>
                                     <button type="button" class="btn btn-primary"
-                                            onclick="postData('productPickForm', 'productPickTbody', 'productPickModal')">
+                                            onclick="postProduceTaskData('productPickForm', 'productPickTbody', 'productPickModal')">
                                         添加
                                     </button>
                                 </div>

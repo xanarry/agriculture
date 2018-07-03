@@ -8,7 +8,7 @@ public class Fertilization {
     private String method;
     private Double useAmount;
     private String operator;
-    private Long operateTime;
+    private String operateDate;
 
 
     public Fertilization() {
@@ -70,15 +70,15 @@ public class Fertilization {
         this.operator = operator;
     }
 
-    public Long getOperateTime() {
-        return operateTime;
+    public String getOperateDate() {
+        return operateDate;
     }
 
-    public void setOperateTime(Long operateTime) {
-        this.operateTime = operateTime;
+    public void setOperateDate(String operateDate) {
+        this.operateDate = operateDate;
     }
 
     public String toString() {
-        return "Fertilization{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "fertilizerID=" + fertilizerID + "fertilizerName=" + fertilizerName + "method=" + method + "useAmount=" + useAmount + "operator=" + operator + "operateTime=" + operateTime + "}";
+        return "Fertilization{" + "ID=" + ID + "produceTaskID=" + produceTaskID + "fertilizerID=" + fertilizerID + "fertilizerName=" + fertilizerName + "method=" + method + "useAmount=" + useAmount + "operator=" + operator + "operateDate=" + operateDate + "}";
     }
 }

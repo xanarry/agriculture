@@ -119,7 +119,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <jsp:include page="../common/nav-left.jsp"/>
+        <jsp:include page="leftMenu.jsp"/>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
             <h3>新增用户</h3>
