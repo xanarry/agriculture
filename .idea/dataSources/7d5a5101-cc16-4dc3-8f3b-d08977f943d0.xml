@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="db_agricultrue@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.8">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.9">
     <root id="1">
       <ServerVersion>5.7.22</ServerVersion>
+      <DefaultEngine>InnoDB</DefaultEngine>
+      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
     </root>
     <schema id="2" parent="1" name="db_agricultrue">
@@ -10,7 +12,8 @@
       <Visible>1</Visible>
       <Collation>utf8_general_ci</Collation>
     </schema>
-    <schema id="3" parent="1" name="db_kphr">
+    <schema id="3" parent="1" name="db_agriculture">
+      <Visible>1</Visible>
       <Collation>utf8_general_ci</Collation>
     </schema>
     <schema id="4" parent="1" name="information_schema">
@@ -913,107 +916,871 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="230" parent="2" name="t_anti_disease_pest">
+    <table id="230" parent="2" name="t_diseases_and_pests_ctrl"/>
+    <table id="231" parent="2" name="t_fertilization"/>
+    <table id="232" parent="2" name="t_fertilizer"/>
+    <table id="233" parent="2" name="t_goods"/>
+    <table id="234" parent="2" name="t_pesticide"/>
+    <table id="235" parent="2" name="t_plough"/>
+    <table id="236" parent="2" name="t_purchase"/>
+    <table id="237" parent="2" name="t_seed"/>
+    <table id="238" parent="2" name="t_soil"/>
+    <table id="239" parent="2" name="t_sow"/>
+    <table id="240" parent="2" name="t_task"/>
+    <table id="241" parent="2" name="t_unit"/>
+    <table id="242" parent="2" name="t_user"/>
+    <table id="243" parent="3" name="t_anti_disease_pest">
       <Comment>病虫害防治</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="231" parent="2" name="t_check_report">
+    <table id="244" parent="3" name="t_check_report">
       <Comment>检验报告</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="232" parent="2" name="t_fertilization">
+    <table id="245" parent="3" name="t_fertilization">
       <Comment>施肥信息</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="233" parent="2" name="t_fertilizer">
+    <table id="246" parent="3" name="t_fertilizer">
       <Comment>肥料</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="234" parent="2" name="t_forage">
+    <table id="247" parent="3" name="t_forage">
       <Comment>饲料</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="235" parent="2" name="t_irrigation">
+    <table id="248" parent="3" name="t_irrigation">
       <Comment>灌溉信息</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="236" parent="2" name="t_material_remain">
+    <table id="249" parent="3" name="t_material_remain">
       <Comment>投入品库存</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="237" parent="2" name="t_material_use_record">
+    <table id="250" parent="3" name="t_material_use_record">
       <Comment>投入品使用记录</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="238" parent="2" name="t_pesticide">
+    <table id="251" parent="3" name="t_pesticide">
       <Comment>农药</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="239" parent="2" name="t_plough">
+    <table id="252" parent="3" name="t_plough">
       <Comment>土地翻耕</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="240" parent="2" name="t_pollination">
+    <table id="253" parent="3" name="t_pollination">
       <Comment>授粉记录</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="241" parent="2" name="t_produce_area_block">
+    <table id="254" parent="3" name="t_produce_area_block">
       <Comment>生产区块</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="242" parent="2" name="t_produce_task">
+    <table id="255" parent="3" name="t_produce_task">
       <Comment>生产任务</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="243" parent="2" name="t_product_check">
+    <table id="256" parent="3" name="t_product_check">
       <Comment>产品检测信息</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="244" parent="2" name="t_product_pack">
+    <table id="257" parent="3" name="t_product_pack">
       <Comment>产品包装</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="245" parent="2" name="t_product_pick">
+    <table id="258" parent="3" name="t_product_pick">
       <Comment>采摘信息</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="246" parent="2" name="t_pruning">
+    <table id="259" parent="3" name="t_pruning">
       <Comment>整枝记录</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="247" parent="2" name="t_purchase_record">
+    <table id="260" parent="3" name="t_purchase_record">
       <Comment>投入品的采购信息</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="248" parent="2" name="t_seed">
+    <table id="261" parent="3" name="t_seed">
       <Comment>种子</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="249" parent="2" name="t_sell_info">
+    <table id="262" parent="3" name="t_sell_info">
       <Comment>销售流向信息</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="250" parent="2" name="t_shuguo_record">
+    <table id="263" parent="3" name="t_shuguo_record">
       <Comment>疏果记录</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="251" parent="2" name="t_sow">
+    <table id="264" parent="3" name="t_sow">
       <Comment>播种信息</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="252" parent="2" name="t_user">
+    <table id="265" parent="3" name="t_user">
       <Comment>系统中的用户表</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="253" parent="2" name="t_veterinary_drug">
+    <table id="266" parent="3" name="t_veterinary_drug">
       <Comment>兽药</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <table id="254" parent="2" name="t_weed">
+    <table id="267" parent="3" name="t_weed">
       <Comment>杂草管理</Comment>
-      <Engine>InnoDB</Engine>
     </table>
-    <column id="255" parent="230" name="ID">
+    <column id="268" parent="230" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="269" parent="230" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="270" parent="230" name="protectMethod">
+      <Position>3</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="271" parent="230" name="harmLevel">
+      <Position>4</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="272" parent="230" name="preventionPurpose">
+      <Position>5</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="273" parent="230" name="pesticideID">
+      <Position>6</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="274" parent="230" name="pesticideName">
+      <Position>7</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="275" parent="230" name="concentration">
+      <Position>8</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="276" parent="230" name="dosage">
+      <Position>9</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="277" parent="230" name="useDate">
+      <Position>10</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="278" parent="230" name="operator">
+      <Position>11</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="279" parent="230" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="280" parent="231" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="281" parent="231" name="fertilizerID">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="282" parent="231" name="fertilizerName">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="283" parent="231" name="fertilizationPeriod">
+      <Position>4</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="284" parent="231" name="fertilizationMethod">
+      <Position>5</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="285" parent="231" name="useAmount">
+      <Position>6</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="286" parent="231" name="useDate">
+      <Position>7</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="287" parent="231" name="operator">
+      <Position>8</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="288" parent="231" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="289" parent="232" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="290" parent="232" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="291" parent="232" name="model">
+      <Position>3</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="292" parent="232" name="recommendDilute">
+      <Position>4</Position>
+      <DataType>tinyint(4)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="293" parent="232" name="recommendUseAmount">
+      <Position>5</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="294" parent="232" name="registerno">
+      <Position>6</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="295" parent="232" name="remark">
+      <Position>7</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="296" parent="232" name="name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="297" parent="232" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="298" parent="232" name="name">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
+    </key>
+    <column id="299" parent="233" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="300" parent="233" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="301" parent="233" name="NO">
+      <Position>3</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="302" parent="233" name="model">
+      <Position>4</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="303" parent="233" name="type">
+      <Position>5</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="304" parent="233" name="producer">
+      <Position>6</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="305" parent="233" name="remain">
+      <Position>7</Position>
+      <DataType>double|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="306" parent="233" name="unit">
+      <Position>8</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="307" parent="233" name="purchaseTime">
+      <Position>9</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="308" parent="233" name="priceAllocRate">
+      <Position>10</Position>
+      <DataType>double|0s</DataType>
+      <DefaultExpression>&apos;-1&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="309" parent="233" name="amountAllocRate">
+      <Position>11</Position>
+      <DataType>double|0s</DataType>
+      <DefaultExpression>&apos;-1&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="310" parent="233" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="311" parent="234" name="id">
+      <Position>1</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="312" parent="234" name="producer">
+      <Position>2</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="313" parent="234" name="toxicityLevel">
+      <Position>3</Position>
+      <DataType>enum(&apos;高毒&apos;, &apos;中毒&apos;, &apos;低毒&apos;, &apos;微毒&apos;, &apos;限用&apos;)|0e</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="314" parent="234" name="suitFor">
+      <Position>4</Position>
+      <DataType>enum(&apos;农作物种植业&apos;, &apos;林业&apos;, &apos;畜牧业&apos;, &apos;渔业&apos;, &apos;农林牧渔服务业&apos;)|0e</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="315" parent="234" name="name">
+      <Position>5</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="316" parent="234" name="aimTo">
+      <Position>6</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="317" parent="234" name="recommendDilute">
+      <Position>7</Position>
+      <DataType>tinyint(4)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="318" parent="234" name="preparation">
+      <Position>8</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="319" parent="234" name="recommendDosage">
+      <Position>9</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="320" parent="234" name="registerno">
+      <Position>10</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="321" parent="234" name="stopdays">
+      <Position>11</Position>
+      <DataType>mediumint(9)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="322" parent="234" name="specification">
+      <Position>12</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="323" parent="234" name="remark">
+      <Position>13</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="324" parent="234" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="325" parent="235" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="326" parent="235" name="soilID">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="327" parent="235" name="soilName">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="328" parent="235" name="operator">
+      <Position>4</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="329" parent="235" name="ploughTime">
+      <Position>5</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="330" parent="235" name="state">
+      <Position>6</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="331" parent="235" name="soilName">
+      <ColNames>soilName</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="332" parent="235" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="333" parent="235" name="soilName">
+      <ColNames>soilName</ColNames>
+      <UnderlyingIndexName>soilName</UnderlyingIndexName>
+    </key>
+    <column id="334" parent="236" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="335" parent="236" name="goodsID">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="336" parent="236" name="goodsName">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="337" parent="236" name="seller">
+      <Position>4</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="338" parent="236" name="amount">
+      <Position>5</Position>
+      <DataType>double|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="339" parent="236" name="name">
+      <Position>6</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="340" parent="236" name="unitPrice">
+      <Position>7</Position>
+      <DataType>double|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="341" parent="236" name="totalPrice">
+      <Position>8</Position>
+      <DataType>double|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="342" parent="236" name="purchaseTime">
+      <Position>9</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="343" parent="236" name="operator">
+      <Position>10</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="344" parent="236" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="345" parent="237" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="346" parent="237" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="347" parent="237" name="source">
+      <Position>3</Position>
+      <DataType>enum(&apos;自种&apos;, &apos;外购&apos;)|0e</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="348" parent="237" name="seedProcess">
+      <Position>4</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="349" parent="237" name="useAmount">
+      <Position>5</Position>
+      <DataType>float|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="350" parent="237" name="purchaser">
+      <Position>6</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="351" parent="237" name="remark">
+      <Position>7</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="352" parent="237" name="name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="353" parent="237" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="354" parent="237" name="name">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
+    </key>
+    <column id="355" parent="238" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="356" parent="238" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="357" parent="238" name="location">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="358" parent="238" name="area">
+      <Position>4</Position>
+      <DataType>float|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="359" parent="238" name="remark">
+      <Position>5</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="360" parent="238" name="name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="361" parent="238" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="362" parent="238" name="name">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
+    </key>
+    <column id="363" parent="239" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="364" parent="239" name="seedID">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="365" parent="239" name="seedName">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="366" parent="239" name="sowingDensity">
+      <Position>4</Position>
+      <DataType>float|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="367" parent="239" name="sowingMethod">
+      <Position>5</Position>
+      <DataType>enum(&apos;type1&apos;, &apos;type2&apos;, &apos;type3&apos;, &apos;...&apos;)|0e</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="368" parent="239" name="sowingDate">
+      <Position>6</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="369" parent="239" name="operator">
+      <Position>7</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="370" parent="239" name="colonizationTime">
+      <Position>8</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="371" parent="239" name="colonizationInfo">
+      <Position>9</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="372" parent="239" name="remark">
+      <Position>10</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="373" parent="239" name="seedName">
+      <ColNames>seedName</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="374" parent="239" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="375" parent="239" name="seedName">
+      <ColNames>seedName</ColNames>
+      <UnderlyingIndexName>seedName</UnderlyingIndexName>
+    </key>
+    <column id="376" parent="240" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="377" parent="240" name="name">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="378" parent="240" name="productionArea">
+      <Position>3</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="379" parent="240" name="deadline">
+      <Position>4</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="380" parent="240" name="state">
+      <Position>5</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="381" parent="240" name="progress">
+      <Position>6</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="382" parent="240" name="operator">
+      <Position>7</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="383" parent="240" name="creator">
+      <Position>8</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="384" parent="240" name="createTime">
+      <Position>9</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="385" parent="240" name="item">
+      <Position>10</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="386" parent="240" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="387" parent="241" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="388" parent="241" name="name">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="389" parent="241" name="atomic">
+      <Position>3</Position>
+      <DataType>tinyint(4)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="390" parent="241" name="name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="391" parent="241" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="392" parent="241" name="name">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
+    </key>
+    <column id="393" parent="242" name="ID">
+      <Position>1</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="394" parent="242" name="name">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="395" parent="242" name="loginName">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="396" parent="242" name="email">
+      <Position>4</Position>
+      <DataType>varchar(254)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="397" parent="242" name="phone">
+      <Position>5</Position>
+      <DataType>varchar(25)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="398" parent="242" name="leaderID">
+      <Position>6</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="399" parent="242" name="leaderName">
+      <Position>7</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="400" parent="242" name="role">
+      <Position>8</Position>
+      <DataType>enum(&apos;系统管理员&apos;, &apos;系统操作员&apos;, &apos;操作员&apos;)|0e</DataType>
+      <DefaultExpression>&apos;操作员&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="401" parent="242" name="type">
+      <Position>9</Position>
+      <DataType>enum(&apos;合作社&apos;, &apos;种植大户&apos;, &apos;其他&apos;)|0e</DataType>
+      <DefaultExpression>&apos;种植大户&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="402" parent="242" name="password">
+      <Position>10</Position>
+      <DataType>varchar(160)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="403" parent="242" name="createTime">
+      <Position>11</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="404" parent="242" name="lastLoginTime">
+      <Position>12</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="405" parent="242" name="lastUpdateTime">
+      <Position>13</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="406" parent="242" name="failureCount">
+      <Position>14</Position>
+      <DataType>int(11)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="407" parent="242" name="loginCount">
+      <Position>15</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="408" parent="242" name="loginName">
+      <ColNames>loginName</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="409" parent="242" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="410" parent="242" name="loginName">
+      <ColNames>loginName</ColNames>
+      <UnderlyingIndexName>loginName</UnderlyingIndexName>
+    </key>
+    <column id="411" parent="243" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1021,73 +1788,73 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="230" name="produceTaskID">
+    <column id="412" parent="243" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="230" name="dpName">
+    <column id="413" parent="243" name="dpName">
       <Position>3</Position>
       <Comment>病虫害名称</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="230" name="harmLevel">
+    <column id="414" parent="243" name="harmLevel">
       <Position>4</Position>
       <Comment>危害程度</Comment>
       <DataType>enum(&apos;可忽略&apos;, &apos;轻度危害&apos;, &apos;中度危害&apos;, &apos;严重危害&apos;)|0e</DataType>
       <DefaultExpression>&apos;可忽略&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="230" name="method">
+    <column id="415" parent="243" name="method">
       <Position>5</Position>
       <Comment>防治方法</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="230" name="aimTo">
+    <column id="416" parent="243" name="aimTo">
       <Position>6</Position>
       <Comment>防治目的</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="230" name="pesticideID">
+    <column id="417" parent="243" name="pesticideID">
       <Position>7</Position>
       <Comment>使用农药ID</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="230" name="pesticideName">
+    <column id="418" parent="243" name="pesticideName">
       <Position>8</Position>
       <Comment>使用农药名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="230" name="operator">
+    <column id="419" parent="243" name="operator">
       <Position>9</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="230" name="operateDate">
+    <column id="420" parent="243" name="operateDate">
       <Position>10</Position>
       <Comment>操作日期</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="265" parent="230" name="PRIMARY">
+    <key id="421" parent="243" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="266" parent="231" name="ID">
+    <column id="422" parent="244" name="ID">
       <Position>1</Position>
       <Comment>ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1095,71 +1862,71 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="231" name="produceTaskID">
+    <column id="423" parent="244" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="231" name="sampleID">
+    <column id="424" parent="244" name="sampleID">
       <Position>3</Position>
       <Comment>样品编号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="231" name="sampleName">
+    <column id="425" parent="244" name="sampleName">
       <Position>4</Position>
       <Comment>产(样)品名称</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="231" name="institution">
+    <column id="426" parent="244" name="institution">
       <Position>5</Position>
       <Comment>受(送)检单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="231" name="checkType">
+    <column id="427" parent="244" name="checkType">
       <Position>6</Position>
       <Comment>检验类别</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="231" name="accordingTo">
+    <column id="428" parent="244" name="accordingTo">
       <Position>7</Position>
       <Comment>检验依据</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="231" name="result">
+    <column id="429" parent="244" name="result">
       <Position>8</Position>
       <Comment>检验结论</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="231" name="operator">
+    <column id="430" parent="244" name="operator">
       <Position>9</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="231" name="operateDate">
+    <column id="431" parent="244" name="operateDate">
       <Position>10</Position>
       <Comment>操作日期</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="276" parent="231" name="PRIMARY">
+    <key id="432" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="277" parent="232" name="ID">
+    <column id="433" parent="245" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1167,226 +1934,226 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="232" name="produceTaskID">
+    <column id="434" parent="245" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="232" name="fertilizerID">
+    <column id="435" parent="245" name="fertilizerID">
       <Position>3</Position>
       <Comment>肥料ID</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="232" name="fertilizerName">
+    <column id="436" parent="245" name="fertilizerName">
       <Position>4</Position>
       <Comment>肥料名称</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="232" name="method">
+    <column id="437" parent="245" name="method">
       <Position>5</Position>
       <Comment>施肥方式</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="232" name="useAmount">
+    <column id="438" parent="245" name="useAmount">
       <Position>6</Position>
       <Comment>使用量(千克/亩)</Comment>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="232" name="operator">
+    <column id="439" parent="245" name="operator">
       <Position>7</Position>
       <Comment>负责人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="232" name="operateDate">
+    <column id="440" parent="245" name="operateDate">
       <Position>8</Position>
       <Comment>操作日期</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="285" parent="232" name="PRIMARY">
+    <key id="441" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="286" parent="233" name="ID">
+    <column id="442" parent="246" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="233" name="NO">
+    <column id="443" parent="246" name="NO">
       <Position>2</Position>
       <Comment>编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="233" name="name">
+    <column id="444" parent="246" name="name">
       <Position>3</Position>
       <Comment>名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="233" name="producer">
+    <column id="445" parent="246" name="producer">
       <Position>4</Position>
       <Comment>生产企业</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="233" name="specification">
+    <column id="446" parent="246" name="specification">
       <Position>5</Position>
       <Comment>规格</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="233" name="unit">
+    <column id="447" parent="246" name="unit">
       <Position>6</Position>
       <Comment>单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="233" name="model">
+    <column id="448" parent="246" name="model">
       <Position>7</Position>
       <Comment>型号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="233" name="suitFor">
+    <column id="449" parent="246" name="suitFor">
       <Position>8</Position>
       <Comment>适用行业</Comment>
       <DataType>enum(&apos;农作物种植业&apos;, &apos;林业&apos;, &apos;畜牧业&apos;, &apos;渔业&apos;, &apos;农林牧渔服务业&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="233" name="recommendDilute">
+    <column id="450" parent="246" name="recommendDilute">
       <Position>9</Position>
       <Comment>推荐稀释倍数</Comment>
       <DataType>tinyint(4)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="233" name="recommendUseAmount">
+    <column id="451" parent="246" name="recommendUseAmount">
       <Position>10</Position>
       <Comment>推荐亩用量</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="233" name="licenseNO">
+    <column id="452" parent="246" name="licenseNO">
       <Position>11</Position>
       <Comment>肥料登记证号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="233" name="remark">
+    <column id="453" parent="246" name="remark">
       <Position>12</Position>
       <Comment>备注</Comment>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="298" parent="233" name="NO">
+    <index id="454" parent="246" name="NO">
       <ColNames>NO</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="299" parent="233" name="PRIMARY">
+    <key id="455" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="300" parent="233" name="NO">
+    <key id="456" parent="246" name="NO">
       <ColNames>NO</ColNames>
       <UnderlyingIndexName>NO</UnderlyingIndexName>
     </key>
-    <column id="301" parent="234" name="ID">
+    <column id="457" parent="247" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="234" name="NO">
+    <column id="458" parent="247" name="NO">
       <Position>2</Position>
       <Comment>编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="234" name="name">
+    <column id="459" parent="247" name="name">
       <Position>3</Position>
       <Comment>名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="234" name="producer">
+    <column id="460" parent="247" name="producer">
       <Position>4</Position>
       <Comment>生产企业</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="234" name="specification">
+    <column id="461" parent="247" name="specification">
       <Position>5</Position>
       <Comment>规格</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="306" parent="234" name="unit">
+    <column id="462" parent="247" name="unit">
       <Position>6</Position>
       <Comment>单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="307" parent="234" name="model">
+    <column id="463" parent="247" name="model">
       <Position>7</Position>
       <Comment>型号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="308" parent="234" name="suitFor">
+    <column id="464" parent="247" name="suitFor">
       <Position>8</Position>
       <Comment>适用行业</Comment>
       <DataType>enum(&apos;农作物种植业&apos;, &apos;林业&apos;, &apos;畜牧业&apos;, &apos;渔业&apos;, &apos;农林牧渔服务业&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="309" parent="234" name="licenseNO">
+    <column id="465" parent="247" name="licenseNO">
       <Position>9</Position>
       <Comment>批准文号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="310" parent="234" name="remark">
+    <column id="466" parent="247" name="remark">
       <Position>10</Position>
       <Comment>备注</Comment>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="311" parent="234" name="NO">
+    <index id="467" parent="247" name="NO">
       <ColNames>NO</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="312" parent="234" name="PRIMARY">
+    <key id="468" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="313" parent="234" name="NO">
+    <key id="469" parent="247" name="NO">
       <ColNames>NO</ColNames>
       <UnderlyingIndexName>NO</UnderlyingIndexName>
     </key>
-    <column id="314" parent="235" name="ID">
+    <column id="470" parent="248" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1394,296 +2161,296 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="315" parent="235" name="produceTaskID">
+    <column id="471" parent="248" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="316" parent="235" name="method">
+    <column id="472" parent="248" name="method">
       <Position>3</Position>
       <Comment>灌溉方式</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="235" name="otherWay">
+    <column id="473" parent="248" name="otherWay">
       <Position>4</Position>
       <Comment>其他方式</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="318" parent="235" name="waterSource">
+    <column id="474" parent="248" name="waterSource">
       <Position>5</Position>
       <Comment>用水来源</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="319" parent="235" name="operator">
+    <column id="475" parent="248" name="operator">
       <Position>6</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="320" parent="235" name="operateDate">
+    <column id="476" parent="248" name="operateDate">
       <Position>7</Position>
       <Comment>操作日期</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="321" parent="235" name="PRIMARY">
+    <key id="477" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="322" parent="236" name="materialNO">
+    <column id="478" parent="249" name="materialNO">
       <Position>1</Position>
       <Comment>投入品编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="323" parent="236" name="materialName">
+    <column id="479" parent="249" name="materialName">
       <Position>2</Position>
       <Comment>投入品名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="324" parent="236" name="materialType">
+    <column id="480" parent="249" name="materialType">
       <Position>3</Position>
       <Comment>投入品类型</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="325" parent="236" name="amount">
+    <column id="481" parent="249" name="amount">
       <Position>4</Position>
       <Comment>数量</Comment>
       <DataType>double|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="326" parent="236" name="specification">
+    <column id="482" parent="249" name="specification">
       <Position>5</Position>
       <Comment>规格</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="327" parent="236" name="unit">
+    <column id="483" parent="249" name="unit">
       <Position>6</Position>
       <Comment>单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="328" parent="236" name="model">
+    <column id="484" parent="249" name="model">
       <Position>7</Position>
       <Comment>型号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="329" parent="236" name="PRIMARY">
+    <key id="485" parent="249" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>materialNO</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="330" parent="237" name="ID">
+    <column id="486" parent="250" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="331" parent="237" name="produceTaskID">
+    <column id="487" parent="250" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产任务批次号: 2018060841766, 年月日+64位微秒时间戳后5位</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="332" parent="237" name="materialNO">
+    <column id="488" parent="250" name="materialNO">
       <Position>3</Position>
       <Comment>投入品编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="333" parent="237" name="materialName">
+    <column id="489" parent="250" name="materialName">
       <Position>4</Position>
       <Comment>投入品名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="334" parent="237" name="product">
+    <column id="490" parent="250" name="product">
       <Position>5</Position>
       <Comment>农产品名称</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="335" parent="237" name="area">
+    <column id="491" parent="250" name="area">
       <Position>6</Position>
       <Comment>生产区</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="336" parent="237" name="materialType">
+    <column id="492" parent="250" name="materialType">
       <Position>7</Position>
       <Comment>投入品类型</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="337" parent="237" name="produceTaskItem">
+    <column id="493" parent="250" name="produceTaskItem">
       <Position>8</Position>
       <Comment>使用在生产任务的什么项目</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="338" parent="237" name="useAmount">
+    <column id="494" parent="250" name="useAmount">
       <Position>9</Position>
       <Comment>使用量</Comment>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="339" parent="237" name="unit">
+    <column id="495" parent="250" name="unit">
       <Position>10</Position>
       <Comment>使用量单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="340" parent="237" name="userDate">
+    <column id="496" parent="250" name="userDate">
       <Position>11</Position>
       <Comment>使用日期</Comment>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="341" parent="237" name="remark">
+    <column id="497" parent="250" name="remark">
       <Position>12</Position>
       <Comment>备注</Comment>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="342" parent="237" name="PRIMARY">
+    <key id="498" parent="250" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="343" parent="238" name="ID">
+    <column id="499" parent="251" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="344" parent="238" name="NO">
+    <column id="500" parent="251" name="NO">
       <Position>2</Position>
       <Comment>编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="345" parent="238" name="name">
+    <column id="501" parent="251" name="name">
       <Position>3</Position>
       <Comment>名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="346" parent="238" name="producer">
+    <column id="502" parent="251" name="producer">
       <Position>4</Position>
       <Comment>生产企业</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="347" parent="238" name="specification">
+    <column id="503" parent="251" name="specification">
       <Position>5</Position>
       <Comment>规格</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="348" parent="238" name="unit">
+    <column id="504" parent="251" name="unit">
       <Position>6</Position>
       <Comment>单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="349" parent="238" name="model">
+    <column id="505" parent="251" name="model">
       <Position>7</Position>
       <Comment>型号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="350" parent="238" name="suitFor">
+    <column id="506" parent="251" name="suitFor">
       <Position>8</Position>
       <Comment>适用行业</Comment>
       <DataType>enum(&apos;农作物种植业&apos;, &apos;林业&apos;, &apos;畜牧业&apos;, &apos;渔业&apos;, &apos;农林牧渔服务业&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="351" parent="238" name="toxicityLevel">
+    <column id="507" parent="251" name="toxicityLevel">
       <Position>9</Position>
       <Comment>农药等级</Comment>
       <DataType>enum(&apos;高毒&apos;, &apos;中毒&apos;, &apos;低毒&apos;, &apos;微毒&apos;, &apos;限用&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="352" parent="238" name="aimTo">
+    <column id="508" parent="251" name="aimTo">
       <Position>10</Position>
       <Comment>针对病害</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="353" parent="238" name="recommendDilute">
+    <column id="509" parent="251" name="recommendDilute">
       <Position>11</Position>
       <Comment>推荐稀释倍数</Comment>
       <DataType>tinyint(4)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="354" parent="238" name="preparation">
+    <column id="510" parent="251" name="preparation">
       <Position>12</Position>
       <Comment>剂型</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="355" parent="238" name="recommendUseAmount">
+    <column id="511" parent="251" name="recommendUseAmount">
       <Position>13</Position>
       <Comment>亩用量</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="356" parent="238" name="licenseNO">
+    <column id="512" parent="251" name="licenseNO">
       <Position>14</Position>
       <Comment>农药登记证号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="238" name="stopdays">
+    <column id="513" parent="251" name="stopdays">
       <Position>15</Position>
       <Comment>停药期</Comment>
       <DataType>mediumint(9)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="238" name="remark">
+    <column id="514" parent="251" name="remark">
       <Position>16</Position>
       <Comment>备注</Comment>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="359" parent="238" name="NO">
+    <index id="515" parent="251" name="NO">
       <ColNames>NO</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="360" parent="238" name="PRIMARY">
+    <key id="516" parent="251" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="361" parent="238" name="NO">
+    <key id="517" parent="251" name="NO">
       <ColNames>NO</ColNames>
       <UnderlyingIndexName>NO</UnderlyingIndexName>
     </key>
-    <column id="362" parent="239" name="ID">
+    <column id="518" parent="252" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1691,40 +2458,40 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="363" parent="239" name="produceTaskID">
+    <column id="519" parent="252" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="364" parent="239" name="method">
+    <column id="520" parent="252" name="method">
       <Position>3</Position>
       <Comment>耕种方式</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="365" parent="239" name="operator">
+    <column id="521" parent="252" name="operator">
       <Position>4</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="366" parent="239" name="operateDate">
+    <column id="522" parent="252" name="operateDate">
       <Position>5</Position>
       <Comment>耕地时间</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="367" parent="239" name="PRIMARY">
+    <key id="523" parent="252" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="368" parent="240" name="ID">
+    <column id="524" parent="253" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1732,40 +2499,40 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="369" parent="240" name="produceTaskID">
+    <column id="525" parent="253" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="370" parent="240" name="method">
+    <column id="526" parent="253" name="method">
       <Position>3</Position>
       <Comment>授粉方式</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="371" parent="240" name="operator">
+    <column id="527" parent="253" name="operator">
       <Position>4</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="372" parent="240" name="operateDate">
+    <column id="528" parent="253" name="operateDate">
       <Position>5</Position>
       <Comment>耕地时间</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="373" parent="240" name="PRIMARY">
+    <key id="529" parent="253" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="374" parent="241" name="ID">
+    <column id="530" parent="254" name="ID">
       <Position>1</Position>
       <Comment>ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1773,92 +2540,92 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="375" parent="241" name="produceTaskID">
+    <column id="531" parent="254" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="376" parent="241" name="areaBlock">
+    <column id="532" parent="254" name="areaBlock">
       <Position>3</Position>
       <Comment>生产区块</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="377" parent="241" name="areaBlock">
+    <index id="533" parent="254" name="areaBlock">
       <ColNames>areaBlock</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="378" parent="241" name="PRIMARY">
+    <key id="534" parent="254" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="379" parent="241" name="areaBlock">
+    <key id="535" parent="254" name="areaBlock">
       <ColNames>areaBlock</ColNames>
       <UnderlyingIndexName>areaBlock</UnderlyingIndexName>
     </key>
-    <column id="380" parent="242" name="ID">
+    <column id="536" parent="255" name="ID">
       <Position>1</Position>
       <Comment>任务ID, 即批次号: 20180608-41766, 年月日+64位微秒时间戳后5位</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="381" parent="242" name="productName">
+    <column id="537" parent="255" name="productName">
       <Position>2</Position>
       <Comment>产品名</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="382" parent="242" name="productType">
+    <column id="538" parent="255" name="productType">
       <Position>3</Position>
       <Comment>产品类型</Comment>
       <DataType>enum(&apos;水果&apos;, &apos;蔬菜&apos;)|0e</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="383" parent="242" name="productDetail">
+    <column id="539" parent="255" name="productDetail">
       <Position>4</Position>
       <Comment>产品介绍</Comment>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="384" parent="242" name="area">
+    <column id="540" parent="255" name="area">
       <Position>5</Position>
       <Comment>生产区</Comment>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="385" parent="242" name="state">
+    <column id="541" parent="255" name="state">
       <Position>6</Position>
       <Comment>状态</Comment>
       <DataType>enum(&apos;待审核&apos;, &apos;新建&apos;, &apos;进行中&apos;, &apos;完成&apos;, &apos;作废&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="386" parent="242" name="operator">
+    <column id="542" parent="255" name="operator">
       <Position>7</Position>
       <Comment>录入人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="387" parent="242" name="createTime">
+    <column id="543" parent="255" name="createTime">
       <Position>8</Position>
       <Comment>创建时间</Comment>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="388" parent="242" name="PRIMARY">
+    <key id="544" parent="255" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="389" parent="243" name="ID">
+    <column id="545" parent="256" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1866,46 +2633,46 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="390" parent="243" name="produceTaskID">
+    <column id="546" parent="256" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="391" parent="243" name="item">
+    <column id="547" parent="256" name="item">
       <Position>3</Position>
       <Comment>检测依据/项目</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="392" parent="243" name="result">
+    <column id="548" parent="256" name="result">
       <Position>4</Position>
       <Comment>检测结果</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="393" parent="243" name="operator">
+    <column id="549" parent="256" name="operator">
       <Position>5</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="394" parent="243" name="operateDate">
+    <column id="550" parent="256" name="operateDate">
       <Position>6</Position>
       <Comment>操作日期</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="395" parent="243" name="PRIMARY">
+    <key id="551" parent="256" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="396" parent="244" name="ID">
+    <column id="552" parent="257" name="ID">
       <Position>1</Position>
       <Comment>ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1913,59 +2680,59 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="397" parent="244" name="produceTaskID">
+    <column id="553" parent="257" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="398" parent="244" name="productName">
+    <column id="554" parent="257" name="productName">
       <Position>3</Position>
       <Comment>产品名称</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="399" parent="244" name="packingNO">
+    <column id="555" parent="257" name="packingNO">
       <Position>4</Position>
       <Comment>包装批号</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="400" parent="244" name="packingCount">
+    <column id="556" parent="257" name="packingCount">
       <Position>5</Position>
       <Comment>包装数量</Comment>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="401" parent="244" name="material">
+    <column id="557" parent="257" name="material">
       <Position>6</Position>
       <Comment>包装材料</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="402" parent="244" name="operator">
+    <column id="558" parent="257" name="operator">
       <Position>7</Position>
       <Comment>负责人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="403" parent="244" name="operateDate">
+    <column id="559" parent="257" name="operateDate">
       <Position>8</Position>
       <Comment>包装日期</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="404" parent="244" name="PRIMARY">
+    <key id="560" parent="257" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="405" parent="245" name="ID">
+    <column id="561" parent="258" name="ID">
       <Position>1</Position>
       <Comment>ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -1973,53 +2740,53 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="406" parent="245" name="produceTaskID">
+    <column id="562" parent="258" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="407" parent="245" name="method">
+    <column id="563" parent="258" name="method">
       <Position>3</Position>
       <Comment>方式</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="408" parent="245" name="operator">
+    <column id="564" parent="258" name="operator">
       <Position>4</Position>
       <Comment>负责人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="409" parent="245" name="pickCount">
+    <column id="565" parent="258" name="pickCount">
       <Position>5</Position>
       <Comment>采摘数量</Comment>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="410" parent="245" name="unit">
+    <column id="566" parent="258" name="unit">
       <Position>6</Position>
       <Comment>单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="411" parent="245" name="operateDate">
+    <column id="567" parent="258" name="operateDate">
       <Position>7</Position>
       <Comment>操作日期</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="412" parent="245" name="PRIMARY">
+    <key id="568" parent="258" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="413" parent="246" name="ID">
+    <column id="569" parent="259" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2027,212 +2794,212 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="414" parent="246" name="produceTaskID">
+    <column id="570" parent="259" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="415" parent="246" name="method">
+    <column id="571" parent="259" name="method">
       <Position>3</Position>
       <Comment>整枝方式</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="416" parent="246" name="operator">
+    <column id="572" parent="259" name="operator">
       <Position>4</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="417" parent="246" name="operateDate">
+    <column id="573" parent="259" name="operateDate">
       <Position>5</Position>
       <Comment>耕地时间</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="418" parent="246" name="PRIMARY">
+    <key id="574" parent="259" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="419" parent="247" name="ID">
+    <column id="575" parent="260" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="420" parent="247" name="orderNO">
+    <column id="576" parent="260" name="orderNO">
       <Position>2</Position>
       <Comment>采购订单编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="421" parent="247" name="materialNO">
+    <column id="577" parent="260" name="materialNO">
       <Position>3</Position>
       <Comment>投入品编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="422" parent="247" name="materialName">
+    <column id="578" parent="260" name="materialName">
       <Position>4</Position>
       <Comment>投入品名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="423" parent="247" name="provider">
+    <column id="579" parent="260" name="provider">
       <Position>5</Position>
       <Comment>供应商</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="424" parent="247" name="producer">
+    <column id="580" parent="260" name="producer">
       <Position>6</Position>
       <Comment>生产厂家</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="425" parent="247" name="purchaseCount">
+    <column id="581" parent="260" name="purchaseCount">
       <Position>7</Position>
       <Comment>采购数量</Comment>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="426" parent="247" name="unit">
+    <column id="582" parent="260" name="unit">
       <Position>8</Position>
       <Comment>单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="427" parent="247" name="purchaseDate">
+    <column id="583" parent="260" name="purchaseDate">
       <Position>9</Position>
       <Comment>采购日期</Comment>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="428" parent="247" name="produceDate">
+    <column id="584" parent="260" name="produceDate">
       <Position>10</Position>
       <Comment>生产日期</Comment>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="429" parent="247" name="produceNO">
+    <column id="585" parent="260" name="produceNO">
       <Position>11</Position>
       <Comment>生产批号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="430" parent="247" name="validDate">
+    <column id="586" parent="260" name="validDate">
       <Position>12</Position>
       <Comment>有效期</Comment>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="431" parent="247" name="validDateUnit">
+    <column id="587" parent="260" name="validDateUnit">
       <Position>13</Position>
       <Comment>有效期单位</Comment>
       <DataType>enum(&apos;年&apos;, &apos;月&apos;, &apos;日&apos;)|0e</DataType>
       <DefaultExpression>&apos;月&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="432" parent="247" name="operator">
+    <column id="588" parent="260" name="operator">
       <Position>14</Position>
       <Comment>责任人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="433" parent="247" name="remark">
+    <column id="589" parent="260" name="remark">
       <Position>15</Position>
       <Comment>备注</Comment>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="434" parent="247" name="PRIMARY">
+    <key id="590" parent="260" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="435" parent="248" name="ID">
+    <column id="591" parent="261" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="436" parent="248" name="NO">
+    <column id="592" parent="261" name="NO">
       <Position>2</Position>
       <Comment>编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="437" parent="248" name="name">
+    <column id="593" parent="261" name="name">
       <Position>3</Position>
       <Comment>名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="438" parent="248" name="producer">
+    <column id="594" parent="261" name="producer">
       <Position>4</Position>
       <Comment>生产企业</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="439" parent="248" name="specification">
+    <column id="595" parent="261" name="specification">
       <Position>5</Position>
       <Comment>规格</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="440" parent="248" name="unit">
+    <column id="596" parent="261" name="unit">
       <Position>6</Position>
       <Comment>单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="441" parent="248" name="model">
+    <column id="597" parent="261" name="model">
       <Position>7</Position>
       <Comment>型号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="442" parent="248" name="suitFor">
+    <column id="598" parent="261" name="suitFor">
       <Position>8</Position>
       <Comment>适用行业</Comment>
       <DataType>enum(&apos;农作物种植业&apos;, &apos;林业&apos;, &apos;畜牧业&apos;, &apos;渔业&apos;, &apos;农林牧渔服务业&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="443" parent="248" name="remark">
+    <column id="599" parent="261" name="remark">
       <Position>9</Position>
       <Comment>备注</Comment>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="444" parent="248" name="NO">
+    <index id="600" parent="261" name="NO">
       <ColNames>NO</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="445" parent="248" name="PRIMARY">
+    <key id="601" parent="261" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="446" parent="248" name="NO">
+    <key id="602" parent="261" name="NO">
       <ColNames>NO</ColNames>
       <UnderlyingIndexName>NO</UnderlyingIndexName>
     </key>
-    <column id="447" parent="249" name="ID">
+    <column id="603" parent="262" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2240,70 +3007,70 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="448" parent="249" name="produceTaskID">
+    <column id="604" parent="262" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="449" parent="249" name="productName">
+    <column id="605" parent="262" name="productName">
       <Position>3</Position>
       <Comment>产品名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="450" parent="249" name="sellTo">
+    <column id="606" parent="262" name="sellTo">
       <Position>4</Position>
       <Comment>销往单位</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="451" parent="249" name="amount">
+    <column id="607" parent="262" name="amount">
       <Position>5</Position>
       <Comment>数量</Comment>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="452" parent="249" name="unit">
+    <column id="608" parent="262" name="unit">
       <Position>6</Position>
       <Comment>单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="453" parent="249" name="wrapMethod">
+    <column id="609" parent="262" name="wrapMethod">
       <Position>7</Position>
       <Comment>包装方式</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="454" parent="249" name="conveyMethod">
+    <column id="610" parent="262" name="conveyMethod">
       <Position>8</Position>
       <Comment>运输方式</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="455" parent="249" name="operator">
+    <column id="611" parent="262" name="operator">
       <Position>9</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="456" parent="249" name="sellDate">
+    <column id="612" parent="262" name="sellDate">
       <Position>10</Position>
       <Comment>销售日期</Comment>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="457" parent="249" name="PRIMARY">
+    <key id="613" parent="262" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="458" parent="250" name="ID">
+    <column id="614" parent="263" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2311,47 +3078,47 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="459" parent="250" name="produceTaskID">
+    <column id="615" parent="263" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="460" parent="250" name="cropName">
+    <column id="616" parent="263" name="cropName">
       <Position>3</Position>
       <Comment>作物名称</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="461" parent="250" name="method">
+    <column id="617" parent="263" name="method">
       <Position>4</Position>
       <Comment>蔬果方式</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="462" parent="250" name="operator">
+    <column id="618" parent="263" name="operator">
       <Position>5</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="463" parent="250" name="operateDate">
+    <column id="619" parent="263" name="operateDate">
       <Position>6</Position>
       <Comment>耕地时间</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="464" parent="250" name="PRIMARY">
+    <key id="620" parent="263" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="465" parent="251" name="ID">
+    <column id="621" parent="264" name="ID">
       <Position>1</Position>
       <Comment>ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2359,279 +3126,279 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="466" parent="251" name="produceTaskID">
+    <column id="622" parent="264" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="467" parent="251" name="seed">
+    <column id="623" parent="264" name="seed">
       <Position>3</Position>
       <Comment>种子品种</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="468" parent="251" name="source">
+    <column id="624" parent="264" name="source">
       <Position>4</Position>
       <Comment>种子来源</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="469" parent="251" name="handle">
+    <column id="625" parent="264" name="handle">
       <Position>5</Position>
       <Comment>种子处理</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="470" parent="251" name="amountPerMu">
+    <column id="626" parent="264" name="amountPerMu">
       <Position>6</Position>
       <Comment>亩用量</Comment>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="471" parent="251" name="sowingDensity">
+    <column id="627" parent="264" name="sowingDensity">
       <Position>7</Position>
       <Comment>播种密度/亩</Comment>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="472" parent="251" name="sowingMethod">
+    <column id="628" parent="264" name="sowingMethod">
       <Position>8</Position>
       <Comment>播种方式</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="473" parent="251" name="colonizationTime">
+    <column id="629" parent="264" name="colonizationTime">
       <Position>9</Position>
       <Comment>定植时间</Comment>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="474" parent="251" name="colonizationInfo">
+    <column id="630" parent="264" name="colonizationInfo">
       <Position>10</Position>
       <Comment>定植信息</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="475" parent="251" name="operateDate">
+    <column id="631" parent="264" name="operateDate">
       <Position>11</Position>
       <Comment>播种时间</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="476" parent="251" name="operator">
+    <column id="632" parent="264" name="operator">
       <Position>12</Position>
       <Comment>采购人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="477" parent="251" name="PRIMARY">
+    <key id="633" parent="264" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="478" parent="252" name="ID">
+    <column id="634" parent="265" name="ID">
       <Position>1</Position>
       <Comment>身份证号码, 唯一标示用户</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="479" parent="252" name="name">
+    <column id="635" parent="265" name="name">
       <Position>2</Position>
       <Comment>姓名</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="480" parent="252" name="loginName">
+    <column id="636" parent="265" name="loginName">
       <Position>3</Position>
       <Comment>登录名</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="481" parent="252" name="email">
+    <column id="637" parent="265" name="email">
       <Position>4</Position>
       <Comment>邮箱</Comment>
       <DataType>varchar(254)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="482" parent="252" name="phone">
+    <column id="638" parent="265" name="phone">
       <Position>5</Position>
       <Comment>电话</Comment>
       <DataType>varchar(25)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="483" parent="252" name="leaderID">
+    <column id="639" parent="265" name="leaderID">
       <Position>6</Position>
       <Comment>直属领导ID</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="484" parent="252" name="leaderName">
+    <column id="640" parent="265" name="leaderName">
       <Position>7</Position>
       <Comment>领导名字</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="485" parent="252" name="role">
+    <column id="641" parent="265" name="role">
       <Position>8</Position>
       <Comment>用户角色</Comment>
       <DataType>enum(&apos;系统管理员&apos;, &apos;系统操作员&apos;, &apos;操作员&apos;)|0e</DataType>
       <DefaultExpression>&apos;操作员&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="486" parent="252" name="type">
+    <column id="642" parent="265" name="type">
       <Position>9</Position>
       <Comment>用户类型</Comment>
       <DataType>enum(&apos;合作社&apos;, &apos;种植大户&apos;, &apos;公司&apos;, &apos;其他&apos;)|0e</DataType>
       <DefaultExpression>&apos;种植大户&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="487" parent="252" name="password">
+    <column id="643" parent="265" name="password">
       <Position>10</Position>
       <Comment>用户密码,保存密码的sha1值</Comment>
       <DataType>varchar(160)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="488" parent="252" name="createTime">
+    <column id="644" parent="265" name="createTime">
       <Position>11</Position>
       <Comment>管理员账号创建时间</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="489" parent="252" name="lastLoginTime">
+    <column id="645" parent="265" name="lastLoginTime">
       <Position>12</Position>
       <Comment>管理员最后登录时间</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="490" parent="252" name="lastUpdateTime">
+    <column id="646" parent="265" name="lastUpdateTime">
       <Position>13</Position>
       <Comment>管理员密码最后修改时间</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="491" parent="252" name="failureCount">
+    <column id="647" parent="265" name="failureCount">
       <Position>14</Position>
       <Comment>失败次数</Comment>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="492" parent="252" name="loginCount">
+    <column id="648" parent="265" name="loginCount">
       <Position>15</Position>
       <Comment>登录次数</Comment>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="493" parent="252" name="loginName">
+    <index id="649" parent="265" name="loginName">
       <ColNames>loginName</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="494" parent="252" name="PRIMARY">
+    <key id="650" parent="265" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="495" parent="252" name="loginName">
+    <key id="651" parent="265" name="loginName">
       <ColNames>loginName</ColNames>
       <UnderlyingIndexName>loginName</UnderlyingIndexName>
     </key>
-    <column id="496" parent="253" name="ID">
+    <column id="652" parent="266" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="497" parent="253" name="NO">
+    <column id="653" parent="266" name="NO">
       <Position>2</Position>
       <Comment>编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="498" parent="253" name="name">
+    <column id="654" parent="266" name="name">
       <Position>3</Position>
       <Comment>名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="499" parent="253" name="producer">
+    <column id="655" parent="266" name="producer">
       <Position>4</Position>
       <Comment>生产企业</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="500" parent="253" name="specification">
+    <column id="656" parent="266" name="specification">
       <Position>5</Position>
       <Comment>规格</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="501" parent="253" name="unit">
+    <column id="657" parent="266" name="unit">
       <Position>6</Position>
       <Comment>单位</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="502" parent="253" name="model">
+    <column id="658" parent="266" name="model">
       <Position>7</Position>
       <Comment>型号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="503" parent="253" name="suitFor">
+    <column id="659" parent="266" name="suitFor">
       <Position>8</Position>
       <Comment>适用行业</Comment>
       <DataType>enum(&apos;农作物种植业&apos;, &apos;林业&apos;, &apos;畜牧业&apos;, &apos;渔业&apos;, &apos;农林牧渔服务业&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="504" parent="253" name="licenseNO">
+    <column id="660" parent="266" name="licenseNO">
       <Position>9</Position>
       <Comment>批准文号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="505" parent="253" name="aimTo">
+    <column id="661" parent="266" name="aimTo">
       <Position>10</Position>
       <Comment>针对病害</Comment>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="506" parent="253" name="remark">
+    <column id="662" parent="266" name="remark">
       <Position>11</Position>
       <Comment>备注</Comment>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="507" parent="253" name="NO">
+    <index id="663" parent="266" name="NO">
       <ColNames>NO</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="508" parent="253" name="PRIMARY">
+    <key id="664" parent="266" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="509" parent="253" name="NO">
+    <key id="665" parent="266" name="NO">
       <ColNames>NO</ColNames>
       <UnderlyingIndexName>NO</UnderlyingIndexName>
     </key>
-    <column id="510" parent="254" name="ID">
+    <column id="666" parent="267" name="ID">
       <Position>1</Position>
       <Comment>耕地ID</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2639,41 +3406,41 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="511" parent="254" name="produceTaskID">
+    <column id="667" parent="267" name="produceTaskID">
       <Position>2</Position>
       <Comment>生产批次号</Comment>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="512" parent="254" name="weedName">
+    <column id="668" parent="267" name="weedName">
       <Position>3</Position>
       <Comment>杂草名</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="513" parent="254" name="method">
+    <column id="669" parent="267" name="method">
       <Position>4</Position>
       <Comment>授粉方式</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="514" parent="254" name="operator">
+    <column id="670" parent="267" name="operator">
       <Position>5</Position>
       <Comment>操作人</Comment>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="515" parent="254" name="operateDate">
+    <column id="671" parent="267" name="operateDate">
       <Position>6</Position>
       <Comment>操作日期</Comment>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="516" parent="254" name="PRIMARY">
+    <key id="672" parent="267" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>

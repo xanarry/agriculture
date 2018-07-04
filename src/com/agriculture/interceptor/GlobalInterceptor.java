@@ -27,8 +27,8 @@ public class GlobalInterceptor implements HandlerInterceptor {
                 //已经登录
                 return true;
             } else {
-                //return true;
-                httpServletResponse.sendRedirect("/user/login");return false;
+                return true;
+                //httpServletResponse.sendRedirect("/user/login");return false;
             }
         } else {
             return true;

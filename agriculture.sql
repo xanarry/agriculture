@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS db_agricultrue;
-CREATE DATABASE IF NOT EXISTS db_agricultrue
+DROP DATABASE IF EXISTS db_agriculture;
+CREATE DATABASE IF NOT EXISTS db_agriculture
   charset = "utf8";
-USE db_agricultrue;
+USE db_agriculture;
 
 
 /* 操作员没有任何类型, 系统管理员也只有一个, 系统操作员则分为{合作社", "种植大户", "公司"} */
