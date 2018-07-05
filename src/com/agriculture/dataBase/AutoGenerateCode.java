@@ -1,53 +1,48 @@
-package com.agriculture.dataBase;
-
-
+package com.agriculture.database;
+import javax.print.DocFlavor;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.util.*;
-
+class PrimaryKey {
+    String primaryKey;
+    String PrimaryKeyType;
+    public PrimaryKey(String primaryKeyType, String primaryKey) {
+        this.primaryKey = primaryKey;
+        PrimaryKeyType = primaryKeyType;
+    }
+}
 class Table {
     String tableName;
-    String primaryKey;
-    String primarkeyType;
+    List<PrimaryKey> primaryKeys;
     boolean autoIncrement;
     List<Variable> variables;
-
-    Table(String tableName, String primaryKey, String primarkeyType, boolean autoIncrement, List<Variable> variables) {
+    public Table(String tableName, List<PrimaryKey> primaryKeys, boolean autoIncrement, List<Variable> variables) {
         this.tableName = tableName;
-        this.primaryKey = primaryKey;
-        this.primarkeyType = primarkeyType;
+        this.primaryKeys = primaryKeys;
         this.autoIncrement = autoIncrement;
         this.variables = variables;
     }
 }
-
-
 class Variable {
     String type;
     String fieldName;
-
     Variable(String type, String fieldName) {
         this.type = type;
         this.fieldName = fieldName;
     }
-
     public String toString() {
         return String.format("{%s,%s}", type, fieldName);
     }
-
     public String toFiledCode() {
         return String.format("    private %s %s;", type, fieldName);
     }
-
     public String getter() {
         return String.format("    public %s get%s() {\n        return %s;\n    }\n", type, Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1), fieldName);
     }
-
     public String setter() {
         return String.format("    public void set%s(%s %s) {\n        this.%s = %s;\n    }", Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1), type, fieldName, fieldName, fieldName);
     }
 }
-
 public class AutoGenerateCode {
     private static String readFile(String path) throws IOException {
         StringBuilder contentBuf = new StringBuilder("");
@@ -60,7 +55,6 @@ public class AutoGenerateCode {
         reader.close();
         return contentBuf.toString();
     }
-
     private static void writeFile(String content, String path) throws IOException {
         FileOutputStream fos = new FileOutputStream(path);
         FileDescriptor fd = fos.getFD();
@@ -68,43 +62,61 @@ public class AutoGenerateCode {
         fos.flush();
         fd.sync();
     }
-
-
-    public static void generateDao(String daoDir, String primaryKey, String primaryKeyType, Class clz) {
+    public static void generateDao(String daoDir, List<PrimaryKey> primaryKeys, Class clz) {
         String className = clz.getSimpleName();
         String varName = Character.toLowerCase(className.charAt(0)) + className.substring(1);
+        List<String> strPrimaryKeys = new ArrayList<>();
+        for (PrimaryKey pk : primaryKeys) {
+            strPrimaryKeys.add(String.format("@Param(\"%s\") %s %s", pk.primaryKey, pk.PrimaryKeyType, pk.primaryKey));
+        }
         try {
             String daoCode = readFile(daoDir + "/TemplateDao.txt");
             daoCode = daoCode
                     .replaceAll("\\{className\\}", className)
                     .replaceAll("\\{varName\\}", varName)
-                    .replaceAll("\\{primaryKey\\}", primaryKey)
-                    .replaceAll("\\{primaryKeyType\\}", primaryKeyType);
+                    .replaceAll("\\{primaryKey\\}", String.join(", ", strPrimaryKeys));
             writeFile(daoCode, daoDir + "/" + className + "Dao.java");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    public static void generateMapper(String mapperDir, Class clz, String tableName, String primaryKey, String generateKey) {
+    public static boolean isPrimaryKey(List<PrimaryKey> primaryKeys, String variable) {
+        for (PrimaryKey pk : primaryKeys) {
+            if (pk.primaryKey.equals(variable)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void generateMapper(String mapperDir, Class clz, String tableName, List<PrimaryKey> primaryKeys, String generateKey) {
         Field[] fields = clz.getDeclaredFields();
         List<String> fieldsName = new ArrayList<>(fields.length);
         List<String> valueStrs = new ArrayList<>(fields.length);
         List<String> updates = new ArrayList<>(fields.length);
-
-
         String className = clz.getSimpleName();
         String varName = Character.toLowerCase(className.charAt(0)) + className.substring(1);
-        primaryKey = (primaryKey == null || primaryKey.length() == 0) ? "ID" : primaryKey;
-        generateKey = (generateKey == null || generateKey.length() == 0) ? "true" : generateKey;
-
-
+        //keyProperty="{varName}.{primaryKey}" keyColumn="{primaryKey}" useGeneratedKeys="{generateKey}"
+        //keyProperty="%s.%s" keyColumn="%s" useGeneratedKeys="%s"
+        String autocrement = "";
+        if (generateKey.equals("true")) {
+            autocrement = String.format("keyProperty=\"%s.%s\" keyColumn=\"%s\" useGeneratedKeys=\"%s\"",
+                    varName,
+                    primaryKeys.get(0).primaryKey,
+                    primaryKeys.get(0).primaryKey,
+                    generateKey);
+        }
+        List<String> deleteConditions = new ArrayList<>();
+        List<String> updateConditions = new ArrayList<>();
+        //`` = #{{varName}.{primaryKey}}
+        for (PrimaryKey pk : primaryKeys) {
+            deleteConditions.add(String.format("`%s`=#{%s}", pk.primaryKey, pk.primaryKey));
+            updateConditions.add(String.format("`%s`=#{%s.%s}", pk.primaryKey, varName, pk.primaryKey));
+        }
         for (int i = 0; i < fields.length; i++) {
             String k = "`" + fields[i].getName() + "`";
             String v = "#{" + varName + "." + fields[i].getName() + "}";
-
             //check if is primary key
-            if (fields[i].getName().toLowerCase().equals(primaryKey.toLowerCase())) {
+            if (isPrimaryKey(primaryKeys, fields[i].getName())) {
                 //is primary key
                 if (generateKey.equals("false")) {
                     fieldsName.add(k);
@@ -117,24 +129,22 @@ public class AutoGenerateCode {
                 updates.add(k + " = " + v);
             }
         }
-
-
         String properties = String.join(",\n", fieldsName);
         String values = String.join(",\n", valueStrs);
         String updateString = String.join(",\n", updates);
-
         /*
         System.out.println(className); System.out.println(varName); System.out.println(primaryKey);System.out.println(generateKey);
         System.out.println(properties);System.out.println(values);
         System.out.println(updateString);
         */
-
         try {
             String mapper = readFile(mapperDir + "/templateMapper.txt");
             mapper = mapper
                     .replaceAll("\\{className\\}", className)
                     .replaceAll("\\{varName\\}", varName)
-                    .replaceAll("\\{primaryKey\\}", primaryKey)
+                    .replaceAll("\\{autocrement\\}", autocrement)
+                    .replaceAll("\\{deleteCondition\\}", String.join(" and ", deleteConditions))
+                    .replaceAll("\\{updateCondition\\}", String.join(" and ", updateConditions))
                     .replaceAll("\\{generateKey\\}", generateKey)
                     .replaceAll("\\{properties\\}", properties)
                     .replaceAll("\\{values\\}", values)
@@ -146,32 +156,28 @@ public class AutoGenerateCode {
             e.printStackTrace();
         }
     }
-
-
     private static Map<String, Table> loadTable(String sqlPath) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(sqlPath));
         List<Variable> variables = null;
         String className = "";
         String tableName = "";
-        String primaryKey = "";
-        String primaryKeyType = "";
+        List<PrimaryKey> primaryKeys = null;
         boolean autoIncrement = false;
-
-
         Map<String, Table> tables = new HashMap<>();
-
         String buf = "";
         while ((buf = reader.readLine()) != null) {
             if (buf.toLowerCase().startsWith("create table")) {
-                tableName = buf.split("\\s+")[2];
+                String[] strs = buf.split("\\s+");
+                //System.out.println(String.join("|", strs));
+                tableName = strs[strs.length - 2];
                 String[] words = tableName.replaceFirst("t_", "").split("_");
                 for (String w : words) {
                     className += Character.toUpperCase(w.charAt(0)) + w.substring(1);
                 }
                 variables = new ArrayList<>();
-            } else {
+                primaryKeys = new ArrayList<>();
+            } else if (!buf.trim().toLowerCase().startsWith("primary key")) {
                 if (className.length() > 0 && !buf.toLowerCase().trim().startsWith(")")) {
-
                     String[] filed = buf.trim().split("\\s+");
                     //System.out.println(buf);
                     //System.out.println("=====================");
@@ -188,89 +194,117 @@ public class AutoGenerateCode {
                     }
                     variables.add(new Variable(type, fieldName));
                     if (buf.toLowerCase().contains("primary key")) {
-                        primaryKey = fieldName;
-                        primaryKeyType = type;
+                        primaryKeys.add(new PrimaryKey(type, fieldName));
                         if (buf.toLowerCase().contains("auto_increment")) {
                             autoIncrement = true;
                         }
                     }
                 }
-
                 if (buf.toLowerCase().trim().startsWith(")")) {
-                    Table table = new Table(tableName, primaryKey, primaryKeyType, autoIncrement, variables);
+                    Table table = new Table(tableName, primaryKeys, autoIncrement, variables);
                     tables.put(className, table);
                     variables = new ArrayList<>();
                     className = "";
-                    primaryKey = "";
-                    primaryKeyType = "";
+                    primaryKeys = new ArrayList<>();
                     autoIncrement = false;
                     tableName = "";
+                }
+            } else if (buf.trim().toUpperCase().startsWith("PRIMARY KEY")) {
+                System.out.println("===============" + buf);
+                int indexOfStart = buf.indexOf("(");
+                int indexOfLast = buf.indexOf(")", indexOfStart);
+                //PRIMARY KEY (`employeeID`, `date`) /*不同员工ID与不同的日期作为主键*/
+                String pks[] = buf.substring(indexOfStart + 1, indexOfLast).replaceAll("`", "").replaceAll(",", "").split("\\s+");
+                for (String pk : pks) {
+                    System.out.println(pk);
+                    for (int i = 0; i < variables.size(); i++) {
+                        if (variables.get(i).fieldName.equals(pk)) {
+                            primaryKeys.add(new PrimaryKey(variables.get(i).type, pk));
+                        }
+                    }
                 }
             }
         }
         reader.close();
         return tables;
     }
-
-
     public static void generateDomain(String domainDir, String className, List<Variable> variables) {
         try {
             String template = readFile(domainDir + "/templateDomain.txt");
             String fileds = "";
             String getterSetter = "";
-            String objectString = "    public String toString() {\n        return \"" + className + "{\" + ";
+            String construct = "    public " + className + "() {}";
+            String objectString = "    public String toString() {\n        return \"" + className + " {\"\n             + ";
             ArrayList<String> singleToString = new ArrayList<>();
             for (Variable v : variables) {
                 fileds += v.toFiledCode() + "\n";
                 getterSetter += v.setter() + "\n\n" + v.getter() + "\n";
-                singleToString.add(String.format("\"%s=\" + %s", v.fieldName, v.fieldName));
+                singleToString.add(String.format("\"%s=\" + %s + \",\"\n            ", v.fieldName, v.fieldName));
             }
-
             objectString = objectString + String.join(" + ", singleToString) + " + \"}\";\n    }";
-            String code = fileds + "\n\n" + getterSetter + "\n\n" + objectString;
+            String code = fileds + "\n\n" + construct + "\n\n" + getterSetter + "\n\n" + objectString;
             code = template.replaceAll("\\{className\\}", className).replaceAll("\\{code\\}", code);
             writeFile(code, domainDir + "/" + className + ".java");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-    public static void main(String[] argv) {
-        String domainDir = "/home/xanarry/Workspace/IdeaProjects/agriculture/src/com/agriculture/dataBase/domain";
-        String daoDir = "/home/xanarry/Workspace/IdeaProjects/agriculture/src/com/agriculture/dataBase/dao";
-        String mapperDir = "/home/xanarry/Workspace/IdeaProjects/agriculture/src/com/agriculture/dataBase/mapper";
-
+    public static void fullGen(String sqlPath, String domainDir, String daoDir, String mapperDir) {
         Map<String, Table> tables = null;
         try {
-            tables = loadTable("/home/xanarry/Workspace/IdeaProjects/agriculture/src/com/agriculture/dataBase/sql.txt");
+            tables = loadTable(sqlPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         for (String k : tables.keySet()) {
             Table table = tables.get(k);
-            System.out.println(k + " " + table.primarkeyType + " " + table.primaryKey + " " + table.autoIncrement);
+            System.out.println(k + " " + table.primaryKeys + " " + table.autoIncrement);
             generateDomain(domainDir, k, table.variables);
             System.out.println("generate domain file: " + k);
-
-
             Class clz = null;
-                try {
-                    clz = Class.forName("com.agriculture.dataBase.domain." + k);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+            try {
+                clz = Class.forName("com.agriculture.dataBase.domain." + k);
+            } catch (ClassNotFoundException e) {
+                System.out.println("class Not found");
+            }
             if (clz != null) {
-                generateDao(daoDir, table.primaryKey, table.primarkeyType, clz);
+                generateDao(daoDir, table.primaryKeys, clz);
                 System.out.println("generate dao    file: " + k);
-                generateMapper(mapperDir, clz, table.tableName, table.primaryKey, table.autoIncrement ? "true" : "false");
+                generateMapper(mapperDir, clz, table.tableName, table.primaryKeys, table.autoIncrement ? "true" : "false");
                 System.out.println("generate mapper file: " + k);
             }
-
         }
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+    }
+    public static void nonDomainGen(String daoDir, String mapperDir) {
+        /*Object[][] toDoList = new Object[][]{
+        };
+        for (Object[] objects : toDoList) {
+            Class clz            = (Class)  objects[0];
+            String primarkeyType = (String) objects[1];
+            String primaryKey    = (String) objects[2];
+            String generateKey   = (String) objects[3];
+            String tableName     = (String) objects[4];
+            generateDao(daoDir, primaryKey, primarkeyType, clz);
+            generateMapper(mapperDir, clz, tableName, primaryKey, generateKey);
+        }*/
     }
 
+    public static void main(String[] argv) {
+        String platform = System.getProperty("os.name");
+        String baseDir = "";
+        if (platform.toLowerCase().startsWith("windows")) {
+            baseDir = "E:/Workspace/IdeaProjects/agriculture/src/com/agriculture/dataBase/";
+        } else {
+            baseDir = "/home/xanarry/Workspace/IdeaProjects/agriculture/src/com/agriculture/database/";
+        }
+        String domainDir = baseDir + "domain";
+        String daoDir = baseDir + "dao";
+        String mapperDir = baseDir + "mapper";
+        String sqlPath = baseDir + "tmp.sql";
+        if ("full".equals("full")) {
+            fullGen(sqlPath, domainDir, daoDir, mapperDir);
+        } else {
+            nonDomainGen(daoDir, mapperDir);
+        }
+    }
 }

@@ -249,6 +249,14 @@ CREATE TABLE t_produce_area_block (
 )DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='生产区块';
 
 
+/*产品唯一识别码*/
+DROP TABLE IF EXISTS t_product_identity;
+CREATE TABLE t_product_identity (
+  `produceTaskID`       VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
+  `productIdentity`     VARCHAR(10)                    NOT NULL COMMENT '产品唯一识别码',
+  PRIMARY KEY (`produceTaskID`, `productIdentity`)
+)DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='产品唯一识别码';
+
 
 
 /*土地翻耕[翻耕时间,翻耕方式,责任人]*/
@@ -264,8 +272,8 @@ CREATE TABLE t_plough (
 
 
 
-​/*播种信息[品种,种子来源,证明文件,购买单据,产品证明书,采购人,种子处理,亩用种量,播种方式,播种时间,播种密度,农事操作人员,定植时间,定植信息]*/
-​ DROP TABLE IF EXISTS t_sow;
+/*播种信息[品种,种子来源,证明文件,购买单据,产品证明书,采购人,种子处理,亩用种量,播种方式,播种时间,播种密度,农事操作人员,定植时间,定植信息]*/
+DROP TABLE IF EXISTS t_sow;
 CREATE TABLE t_sow (
   `ID`               INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID',
   `produceTaskID`    VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -285,7 +293,7 @@ CREATE TABLE t_sow (
 
 
 /*整枝记录[日期,整枝方式,负责人]*/
-​ DROP TABLE IF EXISTS t_pruning;
+DROP TABLE IF EXISTS t_pruning;
 CREATE TABLE t_pruning (
   `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -298,7 +306,7 @@ CREATE TABLE t_pruning (
 
 
 /*疏果记录[日期,作物名称,疏果方式,负责人]*/
-​ DROP TABLE IF EXISTS t_shuguo_record;
+DROP TABLE IF EXISTS t_shuguo_record;
 CREATE TABLE t_shuguo_record (
   `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -312,7 +320,7 @@ CREATE TABLE t_shuguo_record (
 
 
 /*授粉记录[日期,授粉方式,负责人]*/
-​ DROP TABLE IF EXISTS t_pollination;
+DROP TABLE IF EXISTS t_pollination;
 CREATE TABLE t_pollination (
   `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -325,7 +333,7 @@ CREATE TABLE t_pollination (
 
 
 /*施肥信息[施肥日期,肥料名称(引用肥料的信息),施肥时期,施肥方式,使用量(千克/亩),负责人]*/
-​ DROP TABLE IF EXISTS t_fertilization;
+DROP TABLE IF EXISTS t_fertilization;
 CREATE TABLE t_fertilization (
   `ID`             INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
   `produceTaskID`  VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -341,7 +349,7 @@ CREATE TABLE t_fertilization (
 
 
 /*病虫害防治[病虫害名称,危害程度,防治目的,防治方法,使用物质(引用农药的信息),浓度,负责人]*/
-​ DROP TABLE IF EXISTS t_anti_disease_pest;
+DROP TABLE IF EXISTS t_anti_disease_pest;
 CREATE TABLE t_anti_disease_pest (
   `ID`            INT                                  AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
   `produceTaskID` VARCHAR(15)                                                     NOT NULL COMMENT '生产批次号',
@@ -359,7 +367,7 @@ CREATE TABLE t_anti_disease_pest (
 
 
 /*杂草管理[日期,杂草名称,除草方式,负责人]*/
-​ DROP TABLE IF EXISTS t_weed;
+DROP TABLE IF EXISTS t_weed;
 CREATE TABLE t_weed (
   `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -373,7 +381,7 @@ CREATE TABLE t_weed (
 
 
 /*灌溉信息[日期,作物名称,灌溉方式,其他方式,用水来源,负责人]*/
-​ DROP TABLE IF EXISTS t_irrigation;
+DROP TABLE IF EXISTS t_irrigation;
 CREATE TABLE t_irrigation (
   `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -389,7 +397,7 @@ CREATE TABLE t_irrigation (
 
 
 /*采摘信息[日期,采摘方式,采摘数量,单位,负责人]*/
-​ DROP TABLE IF EXISTS t_product_pick;
+DROP TABLE IF EXISTS t_product_pick;
 CREATE TABLE t_product_pick (
   `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -405,7 +413,7 @@ CREATE TABLE t_product_pick (
 
 
 /*产品包装[产品名称,包装批号,包装日期,负责人,包装材料,包装数量,包装规格]*/
-​ DROP TABLE IF EXISTS t_product_pack;
+DROP TABLE IF EXISTS t_product_pack;
 CREATE TABLE t_product_pack (
   `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -421,7 +429,7 @@ CREATE TABLE t_product_pack (
 
 
 /*产品检测信息[日期,检测依据/项目,检测结果]*/
-​ DROP TABLE IF EXISTS t_product_check;
+DROP TABLE IF EXISTS t_product_check;
 CREATE TABLE t_product_check (
   `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
@@ -435,7 +443,7 @@ CREATE TABLE t_product_check (
 
 
 /*检验报告[样品编号,产(样)品名称,受(送)检单位,检验类别,检验依据,检验结论]*/
-​ DROP TABLE IF EXISTS t_check_report;
+DROP TABLE IF EXISTS t_check_report;
 CREATE TABLE t_check_report (
   `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',

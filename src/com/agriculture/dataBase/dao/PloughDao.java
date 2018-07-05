@@ -1,10 +1,8 @@
-package com.agriculture.dataBase.dao;
 
+package com.agriculture.dataBase.dao;
 import com.agriculture.dataBase.domain.Plough;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
-
 public interface PloughDao {
     void addPlough(@Param("plough") Plough plough);
     void deletePlough(int ID);

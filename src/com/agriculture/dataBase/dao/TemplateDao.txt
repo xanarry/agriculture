@@ -2,14 +2,12 @@ package com.agriculture.dataBase.dao;
 
 import com.agriculture.dataBase.domain.{className};
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
-
 public interface {className}Dao {
     void add{className}(@Param("{varName}") {className} {varName});
-    void delete{className}({primaryKeyType} {primaryKey});
+    void delete{className}({primaryKey});
     void update{className}(@Param("{varName}") {className} {varName});
-    {className} get{className}({primaryKeyType} {primaryKey});
+    {className} get{className}({primaryKey});
     List<{className}> get{className}List(@Param("start") Integer start, @Param("count") Integer count);
     int getCount();
 }

@@ -2,49 +2,37 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.agriculture.dataBase.dao.PloughDao">
-
     <insert id="addPlough" keyProperty="plough.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.Plough">
         INSERT INTO t_plough(
             `produceTaskID`,
-`method`,
-`operator`,
-`operateDate`
+            `method`,
+            `operator`,
+            `operateDate`
         )VALUES(
             #{plough.produceTaskID},
-#{plough.method},
-#{plough.operator},
-#{plough.operateDate}
+            #{plough.method},
+            #{plough.operator},
+            #{plough.operateDate}
         )
     </insert>
-
     <delete id="deletePlough">
         DELETE FROM t_plough WHERE `ID` = #{ID}
     </delete>
-
     <update id="updatePlough" parameterType="com.agriculture.dataBase.domain.Plough">
         UPDATE t_plough SET
             `produceTaskID` = #{plough.produceTaskID},
-`method` = #{plough.method},
-`operator` = #{plough.operator},
-`operateDate` = #{plough.operateDate}
+            `method` = #{plough.method},
+            `operator` = #{plough.operator},
+            `operateDate` = #{plough.operateDate}
         WHERE `ID` = #{plough.ID}
     </update>
-
-
     <select id="getCount" resultType="java.lang.Integer">
         select count(*) from t_plough
     </select>
-
-
-
-
     <select id="getPlough"  resultType="com.agriculture.dataBase.domain.Plough">
         SELECT * FROM t_plough WHERE `ID` = #{ID}
     </select>
-
-
     <select id="getPloughList"  resultType="com.agriculture.dataBase.domain.Plough">
         SELECT * from t_plough
         where 1=1
@@ -55,5 +43,4 @@
             limit #{start}, #{count}
         </if>
     </select>
-
 </mapper>
