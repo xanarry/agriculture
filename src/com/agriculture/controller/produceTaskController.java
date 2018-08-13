@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.awt.geom.Area;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/produce-task")
@@ -23,7 +21,9 @@ public class produceTaskController {
     @Autowired
     ProduceTaskDao produceTaskDao;
     @Autowired
-    ProduceAreaBlockDao produceAreaBlockDao;
+    AreaBlockDao areaBlockDao;
+    @Autowired
+    ProduceTaskAreaBlockDao produceTaskAreaBlockDao;
     @Autowired
     PloughDao ploughDao;
     @Autowired
@@ -52,15 +52,24 @@ public class produceTaskController {
     CheckReportDao checkReportDao;
     @Autowired
     SellInfoDao sellInfoDao;
+    @Autowired
+    ProductIdentifierDao productIdentifierDao;
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
         List<ProduceTask> produceTaskList = produceTaskDao.getProduceTaskList(null, null);
         String[] produceAreaBlockList = new String[] {"胥家圣寿","崇义罗桥","天马金马","天马仙鹤","天马长虹","天马童山","胥家石龙","胥家歇马","胥家金虹","胥家纪家","胥家南海","胥家共和","聚源泉水","天马金华村","天马金陵","崇义笆桥","中心红旗","聚源五龙","天马建华","天马法华","天马二郎","蒲阳长林","天马禹王","胥家正林","胥家羊合","胥家圣寿村","胥家羗家","蒲阳双柏村","崇义桂桥","石羊","蒲阳拦厢"};
+
         modelMap.put("produceTaskList", produceTaskList);
         modelMap.put("produceAreaBlockList", produceAreaBlockList);
         return "produceTask/index";
     }
+
+
+
+
+
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProduceTask(ProduceTask produceTask, @RequestParam("productionAreaBlock") List<String> blocks) {
@@ -74,63 +83,69 @@ public class produceTaskController {
         produceTask.setState("待审核");
         produceTaskDao.addProduceTask(produceTask);
 
+        List<AreaBlock> areaBlockList = areaBlockDao.getAreaBlockList(null, null);
 
         for (String block : blocks) {
-            ProduceAreaBlock produceAreaBlock = new ProduceAreaBlock();
-            produceAreaBlock.setAreaBlock(block);
-            produceAreaBlock.setProduceTaskID(ID);
-            produceAreaBlockDao.addProduceAreaBlock(produceAreaBlock);
+            for (AreaBlock ab : areaBlockList) {
+                if (ab.getAreaBlock().equals(block)) {
+                    ProduceTaskAreaBlock produceTaskAreaBlock = new ProduceTaskAreaBlock();
+                    produceTaskAreaBlock.setProduceTaskID(ID);
+                    produceTaskAreaBlock.setAreaBlockID(ab.getID());
+                    produceTaskAreaBlock.setAreaBlock(ab.getAreaBlock());
+                    produceTaskAreaBlockDao.addProduceTaskAreaBlock(produceTaskAreaBlock);
+                }
+            }
         }
 
         return "redirect:/produce-task";
     }
 
+
+
+
+
+
+
+
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String getDetail(@RequestParam("ID") String taskID, ModelMap modelMap) {
         ProduceTask produceTask = produceTaskDao.getProduceTask(taskID);
-        List<ProduceAreaBlock> areaBlockList = produceAreaBlockDao.getProduceAreaBlockList(null, null, taskID);
+
+        //获取该生产任务的生产区
+        List<ProduceTaskAreaBlock> selecteAreaBlockList = produceTaskAreaBlockDao.getProduceTaskAreaBlockList(null, null, taskID);
+
+        //获取系统中的所有生产区的map
+        Map<Integer, AreaBlock> allAreaBlockMap = areaBlockDao.getAreaBlockMap();
+
+
+        List<ProductIdentifier> productIdentifierList = productIdentifierDao.getProductIdentifierList(null, null, taskID);
 
         List<String> selectedAreaBlock = new ArrayList<>();
-        List<String> selectableAreaBlock = new ArrayList<>();
+        List<AreaBlock> selectableAreaBlock = new ArrayList<>();
 
-        for (ProduceAreaBlock ab : areaBlockList) {
-            if (!ab.getProduceTaskID().equals(taskID)) {
-                selectableAreaBlock.add(ab.getAreaBlock());
+        for (ProduceTaskAreaBlock selected : selecteAreaBlockList) {
+            if (!selected.getProduceTaskID().equals(taskID)) {
+                //selectableAreaBlock.add(selected.getAreaBlock());
             } else {
-                selectedAreaBlock.add(ab.getAreaBlock());
+                //已经选择的区域
+                selectedAreaBlock.add(selected.getAreaBlock());
+                allAreaBlockMap.remove(selected.getAreaBlockID());
             }
+        }
+
+        for (Integer key : allAreaBlockMap.keySet()) {
+            selectableAreaBlock.add(allAreaBlockMap.get(key));
         }
 
         modelMap.put("task", produceTask);
 
         modelMap.put("selectedAreaBlock", selectedAreaBlock);
         modelMap.put("selectableAreaBlock", selectableAreaBlock);
-
-        //modelMap.put("areaBlockList", areaBlockList);
+        modelMap.put("productIdentifierList", productIdentifierList);
 
 
 
         return "produceTask/detail";
-    }
-
-
-    @RequestMapping(value = "/addAreaBlock", method = RequestMethod.POST)
-    private String addAreaBlock(@RequestParam("produceTaskID") String produceTaskID, @RequestParam(name = "selectedAreaBlock", required = false) String selectedAreaBlock, @RequestParam(name = "inputAreaBlock", required = false) String inputAreaBlock) {
-        ProduceAreaBlock produceAreaBlock = new ProduceAreaBlock();
-        produceAreaBlock.setProduceTaskID(produceTaskID);
-        produceAreaBlock.setAreaBlock(null);
-
-
-        if (selectedAreaBlock != null && selectedAreaBlock.trim().length() > 0) {
-            produceAreaBlock.setAreaBlock(selectedAreaBlock);
-        } else if (inputAreaBlock != null && inputAreaBlock.trim().length() > 0) {
-            produceAreaBlock.setAreaBlock(inputAreaBlock);
-        }
-
-        if (produceAreaBlock.getAreaBlock() != null) {
-            produceAreaBlockDao.addProduceAreaBlock(produceAreaBlock);
-        }
-        return "redirect:/produce-task/detail?ID=" + produceTaskID;
     }
 
 

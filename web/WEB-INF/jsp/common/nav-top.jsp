@@ -31,9 +31,9 @@
             <div class="d-flex flex-row">
                 <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="/user/">人员管理</a></div>
                 <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="/produce-task/">生产任务</a></div>
+                <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="/area-block">生产区</a></div>
                 <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="/material">投入品管理</a></div>
                 <div class="p-2 navbar-font"><a style="text-decoration: none; color: white" href="#">企业信息</a></div>
-
             </div>
         </div>
 

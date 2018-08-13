@@ -158,37 +158,6 @@ CREATE TABLE t_seed (
 ) DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='种子';
 
 
-/*兽药[编号,生产企业,类型,适用行业,名称,条形码,单位,型号,规格,兽药批准文号,针对病害,备注]*/
-DROP TABLE IF EXISTS t_veterinary_drug;
-CREATE TABLE t_veterinary_drug (
-  `ID`            INT PRIMARY KEY AUTO_INCREMENT,
-  `NO`            VARCHAR(20) NOT NULL UNIQUE COMMENT '编号',
-  `name`          VARCHAR(20) NOT NULL COMMENT '名称',
-  `producer`      VARCHAR(30) COMMENT '生产企业',
-  `specification` VARCHAR(20) COMMENT '规格',
-  `unit`          VARCHAR(10) COMMENT '单位',
-  `model`         VARCHAR(20) COMMENT '型号',
-  `suitFor`       ENUM ("农作物种植业", "林业", "畜牧业", "渔业", "农林牧渔服务业") COMMENT '适用行业',
-  `licenseNO`     VARCHAR(20) COMMENT '批准文号',
-  `aimTo`         VARCHAR(50) COMMENT '针对病害',
-  `remark`        VARCHAR(200) COMMENT '备注'
-) DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='兽药';
-
-
-/*饲料[编号,生产企业,类型,适用行业,名称,条形码,单位,型号,规格,兽药批准文号,备注]*/
-DROP TABLE IF EXISTS t_forage;
-CREATE TABLE t_forage (
-  `ID`            INT PRIMARY KEY AUTO_INCREMENT,
-  `NO`            VARCHAR(20) NOT NULL UNIQUE COMMENT '编号',
-  `name`          VARCHAR(20) NOT NULL COMMENT '名称',
-  `producer`      VARCHAR(30) COMMENT '生产企业',
-  `specification` VARCHAR(20) COMMENT '规格',
-  `unit`          VARCHAR(10) COMMENT '单位',
-  `model`         VARCHAR(20) COMMENT '型号',
-  `suitFor`       ENUM ("农作物种植业", "林业", "畜牧业", "渔业", "农林牧渔服务业") COMMENT '适用行业',
-  `licenseNO`    VARCHAR(20) COMMENT '批准文号',
-  `remark`        VARCHAR(200) COMMENT '备注'
-) DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='饲料';
 
 
 
@@ -241,20 +210,35 @@ CREATE TABLE t_produce_task (
 
 
 /*生产区块[ID, 区块名]*/
-DROP TABLE IF EXISTS t_produce_area_block;
-CREATE TABLE t_produce_area_block (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID',
-  `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
-  `areaBlock`     VARCHAR(10)                    NOT NULL UNIQUE COMMENT '生产区块'
+DROP TABLE IF EXISTS t_area_block;
+CREATE TABLE t_area_block (
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY COMMENT 'ID',
+  `areaBlock`     VARCHAR(10)      NOT NULL UNIQUE COMMENT '生产区块',
+  `remark`        VARCHAR(200)     COMMENT '备注',
+  `area`          DOUBLE           DEFAULT 0 COMMENT '面积',
+  `longitude`     DOUBLE           NOT NULL COMMENT '经度',
+  `latitude`      DOUBLE           NOT NULL COMMENT '纬度'
 )DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='生产区块';
 
 
+
+/*生产区块与生产任务的联系*/
+DROP TABLE IF EXISTS t_produce_task_area_block;
+CREATE TABLE t_produce_task_area_block (
+  `produceTaskID`       VARCHAR(15)     NOT NULL COMMENT '生产批次号',
+  `areaBlockID`         INT             NOT NULL COMMENT '生产区ID',
+  `areaBlock`     VARCHAR(10)           NOT NULL COMMENT '生产区块,冗余字段,避开联合查询',
+  PRIMARY KEY (`produceTaskID`, `areaBlockID`)
+) DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='生产区块与生产任务的联系';
+
+
+
 /*产品唯一识别码*/
-DROP TABLE IF EXISTS t_product_identity;
-CREATE TABLE t_product_identity (
+DROP TABLE IF EXISTS t_product_identifier;
+CREATE TABLE t_product_identifier (
   `produceTaskID`       VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
-  `productIdentity`     VARCHAR(10)                    NOT NULL COMMENT '产品唯一识别码',
-  PRIMARY KEY (`produceTaskID`, `productIdentity`)
+  `identifier`     VARCHAR(20)                    NOT NULL COMMENT '产品唯一识别码',
+  PRIMARY KEY (`produceTaskID`, `identifier`)
 )DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='产品唯一识别码';
 
 
@@ -262,7 +246,7 @@ CREATE TABLE t_product_identity (
 /*土地翻耕[翻耕时间,翻耕方式,责任人]*/
 DROP TABLE IF EXISTS t_plough;
 CREATE TABLE t_plough (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID,自增主键',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `method`        VARCHAR(10)                    NOT NULL COMMENT '耕种方式',
   `operator`      VARCHAR(10)                    NOT NULL COMMENT '操作人',
@@ -275,7 +259,7 @@ CREATE TABLE t_plough (
 /*播种信息[品种,种子来源,证明文件,购买单据,产品证明书,采购人,种子处理,亩用种量,播种方式,播种时间,播种密度,农事操作人员,定植时间,定植信息]*/
 DROP TABLE IF EXISTS t_sow;
 CREATE TABLE t_sow (
-  `ID`               INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID',
+  `ID`               INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID,自增主键',
   `produceTaskID`    VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `seed`             VARCHAR(10)                    NOT NULL COMMENT '种子品种',
   `source`           VARCHAR(20)                    NOT NULL COMMENT '种子来源',
@@ -295,7 +279,7 @@ CREATE TABLE t_sow (
 /*整枝记录[日期,整枝方式,负责人]*/
 DROP TABLE IF EXISTS t_pruning;
 CREATE TABLE t_pruning (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '整枝记录ID,自增主键',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `method`        VARCHAR(10)                    NOT NULL COMMENT '整枝方式',
   `operator`      VARCHAR(10)                    NOT NULL COMMENT '操作人',
@@ -308,7 +292,7 @@ CREATE TABLE t_pruning (
 /*疏果记录[日期,作物名称,疏果方式,负责人]*/
 DROP TABLE IF EXISTS t_shuguo_record;
 CREATE TABLE t_shuguo_record (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '疏果记录ID,自增主键',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `cropName`      VARCHAR(10)                    NOT NULL COMMENT '作物名称',
   `method`        VARCHAR(10)                    NOT NULL COMMENT '蔬果方式',
@@ -322,7 +306,7 @@ CREATE TABLE t_shuguo_record (
 /*授粉记录[日期,授粉方式,负责人]*/
 DROP TABLE IF EXISTS t_pollination;
 CREATE TABLE t_pollination (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '授粉记录ID,自增主键',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `method`        VARCHAR(10)                    NOT NULL COMMENT '授粉方式',
   `operator`      VARCHAR(10)                    NOT NULL COMMENT '操作人',
@@ -335,7 +319,7 @@ CREATE TABLE t_pollination (
 /*施肥信息[施肥日期,肥料名称(引用肥料的信息),施肥时期,施肥方式,使用量(千克/亩),负责人]*/
 DROP TABLE IF EXISTS t_fertilization;
 CREATE TABLE t_fertilization (
-  `ID`             INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`             INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '施肥信息ID,自增主键',
   `produceTaskID`  VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `fertilizerID`   INT                            NOT NULL COMMENT '肥料ID',
   `fertilizerName` VARCHAR(10)                    NOT NULL COMMENT '肥料名称',
@@ -351,7 +335,7 @@ CREATE TABLE t_fertilization (
 /*病虫害防治[病虫害名称,危害程度,防治目的,防治方法,使用物质(引用农药的信息),浓度,负责人]*/
 DROP TABLE IF EXISTS t_anti_disease_pest;
 CREATE TABLE t_anti_disease_pest (
-  `ID`            INT                                  AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`            INT                                  AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '病虫害防治ID,自增主键',
   `produceTaskID` VARCHAR(15)                                                     NOT NULL COMMENT '生产批次号',
   `dpName`        VARCHAR(10) COMMENT '病虫害名称',
   `harmLevel`     ENUM ("可忽略", "轻度危害", "中度危害", "严重危害") DEFAULT "可忽略" COMMENT '危害程度',
@@ -369,7 +353,7 @@ CREATE TABLE t_anti_disease_pest (
 /*杂草管理[日期,杂草名称,除草方式,负责人]*/
 DROP TABLE IF EXISTS t_weed;
 CREATE TABLE t_weed (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '杂草管理ID,自增主键',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `weedName`      VARCHAR(10) COMMENT '杂草名',
   `method`        VARCHAR(10)                    NOT NULL COMMENT '授粉方式',
@@ -383,7 +367,7 @@ CREATE TABLE t_weed (
 /*灌溉信息[日期,作物名称,灌溉方式,其他方式,用水来源,负责人]*/
 DROP TABLE IF EXISTS t_irrigation;
 CREATE TABLE t_irrigation (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '灌溉信息ID,自增主键',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `method`        VARCHAR(10)                    NOT NULL COMMENT '灌溉方式',
   `otherWay`      VARCHAR(20) COMMENT '其他方式',
@@ -399,7 +383,7 @@ CREATE TABLE t_irrigation (
 /*采摘信息[日期,采摘方式,采摘数量,单位,负责人]*/
 DROP TABLE IF EXISTS t_product_pick;
 CREATE TABLE t_product_pick (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '采摘信息ID,自增主键',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `method`        VARCHAR(10)                    NOT NULL COMMENT '方式',
   `operator`      VARCHAR(10)                    NOT NULL COMMENT '负责人',
@@ -415,7 +399,7 @@ CREATE TABLE t_product_pick (
 /*产品包装[产品名称,包装批号,包装日期,负责人,包装材料,包装数量,包装规格]*/
 DROP TABLE IF EXISTS t_product_pack;
 CREATE TABLE t_product_pack (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '产品包装ID,自增主键',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `productName`   VARCHAR(10) COMMENT '产品名称',
   `packingNO`     VARCHAR(10)                    NOT NULL COMMENT '包装批号',
@@ -431,7 +415,7 @@ CREATE TABLE t_product_pack (
 /*产品检测信息[日期,检测依据/项目,检测结果]*/
 DROP TABLE IF EXISTS t_product_check;
 CREATE TABLE t_product_check (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '产品检测信息记录ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `item`          VARCHAR(10) COMMENT '检测依据/项目',
   `result`        VARCHAR(10)                    NOT NULL COMMENT '检测结果',
@@ -445,7 +429,7 @@ CREATE TABLE t_product_check (
 /*检验报告[样品编号,产(样)品名称,受(送)检单位,检验类别,检验依据,检验结论]*/
 DROP TABLE IF EXISTS t_check_report;
 CREATE TABLE t_check_report (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT 'ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '检验报告ID',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `sampleID`      VARCHAR(15)                    NOT NULL COMMENT '样品编号',
   `sampleName`    VARCHAR(10) COMMENT '产(样)品名称',
@@ -463,7 +447,7 @@ CREATE TABLE t_check_report (
 /*销售流向信息[产品名称,销售日期,销往单位,数量,单位,其他单位,产品包装,运输方式,负责人]*/
 DROP TABLE IF EXISTS t_sell_info;
 CREATE TABLE t_sell_info (
-  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '耕地ID',
+  `ID`            INT AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '销售信息的编号',
   `produceTaskID` VARCHAR(15)                    NOT NULL COMMENT '生产批次号',
   `productName`   VARCHAR(20)                    NOT NULL COMMENT '产品名称',
   `sellTo`        VARCHAR(20)                    NOT NULL COMMENT '销往单位',
@@ -487,7 +471,7 @@ CREATE TABLE t_sell_info (
 
 
 
-
+/*==============未使用的表=========*/
 
 
 
@@ -536,6 +520,38 @@ CREATE TABLE t_fertilization (
 
 
 
+
+/*兽药[编号,生产企业,类型,适用行业,名称,条形码,单位,型号,规格,兽药批准文号,针对病害,备注]*/
+DROP TABLE IF EXISTS t_veterinary_drug;
+CREATE TABLE t_veterinary_drug (
+  `ID`            INT PRIMARY KEY AUTO_INCREMENT,
+  `NO`            VARCHAR(20) NOT NULL UNIQUE COMMENT '编号',
+  `name`          VARCHAR(20) NOT NULL COMMENT '名称',
+  `producer`      VARCHAR(30) COMMENT '生产企业',
+  `specification` VARCHAR(20) COMMENT '规格',
+  `unit`          VARCHAR(10) COMMENT '单位',
+  `model`         VARCHAR(20) COMMENT '型号',
+  `suitFor`       ENUM ("农作物种植业", "林业", "畜牧业", "渔业", "农林牧渔服务业") COMMENT '适用行业',
+  `licenseNO`     VARCHAR(20) COMMENT '批准文号',
+  `aimTo`         VARCHAR(50) COMMENT '针对病害',
+  `remark`        VARCHAR(200) COMMENT '备注'
+) DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='兽药';
+
+
+/*饲料[编号,生产企业,类型,适用行业,名称,条形码,单位,型号,规格,兽药批准文号,备注]*/
+DROP TABLE IF EXISTS t_forage;
+CREATE TABLE t_forage (
+  `ID`            INT PRIMARY KEY AUTO_INCREMENT,
+  `NO`            VARCHAR(20) NOT NULL UNIQUE COMMENT '编号',
+  `name`          VARCHAR(20) NOT NULL COMMENT '名称',
+  `producer`      VARCHAR(30) COMMENT '生产企业',
+  `specification` VARCHAR(20) COMMENT '规格',
+  `unit`          VARCHAR(10) COMMENT '单位',
+  `model`         VARCHAR(20) COMMENT '型号',
+  `suitFor`       ENUM ("农作物种植业", "林业", "畜牧业", "渔业", "农林牧渔服务业") COMMENT '适用行业',
+  `licenseNO`    VARCHAR(20) COMMENT '批准文号',
+  `remark`        VARCHAR(200) COMMENT '备注'
+) DEFAULT charset = "utf8" ENGINE = InnoDB COMMENT='饲料';
 
 
 

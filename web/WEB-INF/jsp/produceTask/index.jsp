@@ -87,7 +87,6 @@
                         <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${createTime}"/>
                     </td>
                     <td class="text-center" style="vertical-align: middle">
-                        <a href="/purchase/list?taskID=${param.ID}">身份码管理</a>
                         <a href="/purchase/list?taskID=${param.ID}">编辑</a>
                         <a href="#">删除</a>
                     </td>
