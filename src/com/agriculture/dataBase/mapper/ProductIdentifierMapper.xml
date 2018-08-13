@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agriculture.dataBase.dao.ProductIdentifierDao">
+    <insert id="addProductIdentifier"  parameterType="com.agriculture.dataBase.domain.ProductIdentifier">
+        INSERT INTO t_product_identifier(
+            `produceTaskID`,
+`identifier`
+        )VALUES(
+            #{productIdentifier.produceTaskID},
+#{productIdentifier.identifier}
+        )
+    </insert>
+    <delete id="deleteProductIdentifier">
+        DELETE FROM t_product_identifier WHERE `produceTaskID`=#{produceTaskID} and `identifier`=#{identifier}
+    </delete>
+    <update id="updateProductIdentifier" parameterType="com.agriculture.dataBase.domain.ProductIdentifier">
+        UPDATE t_product_identifier SET
+            `produceTaskID`=#{productIdentifier.produceTaskID},
+            `identifier`=#{productIdentifier.identifier}
+        WHERE `produceTaskID`=#{productIdentifier.produceTaskID} and `identifier`=#{productIdentifier.identifier}
+    </update>
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_product_identifier
+    </select>
+    <select id="getProductIdentifier"  resultType="com.agriculture.dataBase.domain.ProductIdentifier">
+        SELECT * FROM t_product_identifier WHERE `produceTaskID`=#{produceTaskID} and `identifier`=#{identifier}
+    </select>
+    <select id="getProductIdentifierList"  resultType="com.agriculture.dataBase.domain.ProductIdentifier">
+        SELECT * from t_product_identifier where 1=1
+        <if test="produceTaskID != null">
+            and  `produceTaskID` = #{produceTaskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+</mapper>

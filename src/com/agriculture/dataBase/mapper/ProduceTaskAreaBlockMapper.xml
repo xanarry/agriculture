@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agriculture.dataBase.dao.ProduceTaskAreaBlockDao">
+    <insert id="addProduceTaskAreaBlock"  parameterType="com.agriculture.dataBase.domain.ProduceTaskAreaBlock">
+        INSERT INTO t_produce_task_area_block(
+            `produceTaskID`,
+`areaBlockID`,
+            `areaBlock`
+        )VALUES(
+            #{produceTaskAreaBlock.produceTaskID},
+#{produceTaskAreaBlock.areaBlockID},
+            #{produceTaskAreaBlock.areaBlock}
+        )
+    </insert>
+    <delete id="deleteProduceTaskAreaBlock">
+        DELETE FROM t_produce_task_area_block WHERE `produceTaskID` = #{taskID} and `areaBlockID` = #{areaBlockID}
+    </delete>
+    <update id="updateProduceTaskAreaBlock" parameterType="com.agriculture.dataBase.domain.ProduceTaskAreaBlock">
+        UPDATE t_produce_task_area_block SET
+            `produceTaskID` = #{produceTaskAreaBlock.produceTaskID},
+`areaBlockID` = #{produceTaskAreaBlock.areaBlockID}
+        WHERE
+            `produceTaskID` = #{produceTaskAreaBlock.produceTaskID} and
+            `areaBlockID` = #{produceTaskAreaBlock.areaBlockID}
+    </update>
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_produce_task_area_block
+    </select>
+    <select id="getProduceTaskAreaBlock"  resultType="com.agriculture.dataBase.domain.ProduceTaskAreaBlock">
+        SELECT * FROM t_produce_task_area_block WHERE  `produceTaskID` = #{taskID} and `areaBlockID` = #{areaBlockID}
+    </select>
+    <select id="getProduceTaskAreaBlockList"  resultType="com.agriculture.dataBase.domain.ProduceTaskAreaBlock">
+        SELECT * from t_produce_task_area_block where 1=1
+        <if test="taskID != null">
+          and `produceTaskID` = #{taskID}
+        </if>
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+</mapper>

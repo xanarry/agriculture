@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agriculture.dataBase.dao.AreaBlockDao">
+    <insert id="addAreaBlock" keyProperty="areaBlock.ID" keyColumn="ID" useGeneratedKeys="true" parameterType="com.agriculture.dataBase.domain.AreaBlock">
+        INSERT INTO t_area_block(
+            `areaBlock`,
+`remark`,
+            `area`,
+`longitude`,
+`latitude`
+        )VALUES(
+            #{areaBlock.areaBlock},
+#{areaBlock.remark},
+            #{areaBlock.area},
+#{areaBlock.longitude},
+#{areaBlock.latitude}
+        )
+    </insert>
+    <delete id="deleteAreaBlock">
+        DELETE FROM t_area_block WHERE `ID`=#{ID}
+    </delete>
+    <update id="updateAreaBlock" parameterType="com.agriculture.dataBase.domain.AreaBlock">
+        UPDATE t_area_block SET
+            `areaBlock` = #{areaBlock.areaBlock},
+`remark` = #{areaBlock.remark},
+            `area`=#{areaBlock.area},
+`longitude` = #{areaBlock.longitude},
+`latitude` = #{areaBlock.latitude}
+        WHERE `ID`=#{areaBlock.ID}
+    </update>
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from t_area_block
+    </select>
+    <select id="getAreaBlock"  resultType="com.agriculture.dataBase.domain.AreaBlock">
+        SELECT * FROM t_area_block WHERE `ID`=#{ID}
+    </select>
+    <select id="getAreaBlockList"  resultType="com.agriculture.dataBase.domain.AreaBlock">
+        SELECT * from t_area_block
+        <if test="start != null and count != null">
+            limit #{start}, #{count}
+        </if>
+    </select>
+
+    <select id="getAreaBlockMap" resultType="Map">
+        select * from t_area_block
+    </select>
+</mapper>
